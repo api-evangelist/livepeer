@@ -1,0 +1,283 @@
+aid: livepeer
+url: https://raw.githubusercontent.com/api-evangelist/livepeer/refs/heads/main/apis.yml
+name: Livepeer
+kind: company
+description: >-
+  Livepeer is a decentralized video infrastructure network. Independent
+  orchestrators run GPU hardware to provide live and on-demand video
+  transcoding services, paid for in ETH/LPT on the Livepeer protocol. Livepeer
+  Studio is the managed gateway and developer platform sitting on top of the
+  network, exposing a REST API at livepeer.studio/api for live streams, on-
+  demand assets, multistream targets, transcoding jobs, sessions, playback,
+  signing keys, AI generation (text-to-image, image-to-image, image-to-video,
+  upscale, audio-to-text), and webhooks. Official SDKs are published for
+  JavaScript/TypeScript, Python, Go, and Ruby, with React Player and React
+  Broadcast components for client-side playback and ingest.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Video
+  - Streaming
+  - Transcoding
+  - Decentralized
+  - Web3
+  - Live Video
+  - AI Video
+created: '2026-05-23'
+modified: '2026-05-23'
+specificationVersion: '0.19'
+apis:
+  - aid: livepeer:studio
+    name: Livepeer Studio REST API
+    description: >-
+      Primary REST API for the Livepeer Studio gateway. Resource-oriented JSON
+      endpoints for live streams, on-demand assets, multistream targets,
+      transcoding jobs, sessions, playback, signing keys, webhooks, and access
+      controls. Authenticated via API keys issued from the Livepeer Studio
+      dashboard.
+    humanURL: https://docs.livepeer.org/api-reference/overview
+    baseURL: https://livepeer.studio/api
+    tags:
+      - REST
+      - Streams
+      - Assets
+      - Transcoding
+    properties:
+      - type: Documentation
+        url: https://docs.livepeer.org/api-reference/overview
+  - aid: livepeer:streams
+    name: Livepeer Streams API
+    description: >-
+      Endpoints for creating and managing live streams, ingest RTMP/WHIP
+      URLs, profiles for adaptive bitrate transcoding, recording, and stream
+      keys.
+    humanURL: https://docs.livepeer.org/api-reference/stream/overview
+    baseURL: https://livepeer.studio/api/stream
+    tags:
+      - Live Streams
+      - RTMP
+      - WHIP
+    properties:
+      - type: Documentation
+        url: https://docs.livepeer.org/api-reference/stream/overview
+  - aid: livepeer:assets
+    name: Livepeer Assets API
+    description: >-
+      Endpoints for uploading, importing, transcoding, and serving on-demand
+      video assets, including direct upload, URL import, and IPFS storage.
+    humanURL: https://docs.livepeer.org/api-reference/asset/overview
+    baseURL: https://livepeer.studio/api/asset
+    tags:
+      - VOD
+      - Assets
+      - IPFS
+    properties:
+      - type: Documentation
+        url: https://docs.livepeer.org/api-reference/asset/overview
+  - aid: livepeer:multistream
+    name: Livepeer Multistream Targets API
+    description: >-
+      Endpoints for registering and managing multistream destinations that
+      forward an active live stream to additional RTMP/RTMPS endpoints such
+      as YouTube, Twitch, or X.
+    humanURL: https://docs.livepeer.org/api-reference/multistream-target/overview
+    baseURL: https://livepeer.studio/api/multistream/target
+    tags:
+      - Multistream
+      - Restream
+    properties:
+      - type: Documentation
+        url: https://docs.livepeer.org/api-reference/multistream-target/overview
+  - aid: livepeer:webhooks
+    name: Livepeer Webhooks API
+    description: >-
+      Webhook management endpoints plus outbound event notifications for
+      stream lifecycle events (stream.started, stream.idle, recording.ready,
+      asset.ready, playback.access_control). Signed payloads delivered to
+      customer-configured URLs.
+    humanURL: https://docs.livepeer.org/api-reference/webhook/overview
+    baseURL: https://livepeer.studio/api/webhook
+    tags:
+      - Webhooks
+      - Events
+      - Callbacks
+    properties:
+      - type: Documentation
+        url: https://docs.livepeer.org/api-reference/webhook/overview
+  - aid: livepeer:transcode
+    name: Livepeer Transcode API
+    description: >-
+      Endpoints for one-off transcoding jobs against source files in
+      object storage, returning a job handle and transcoded renditions.
+    humanURL: https://docs.livepeer.org/api-reference/transcode/overview
+    baseURL: https://livepeer.studio/api/transcode
+    tags:
+      - Transcoding
+      - Jobs
+    properties:
+      - type: Documentation
+        url: https://docs.livepeer.org/api-reference/transcode/overview
+  - aid: livepeer:sessions
+    name: Livepeer Sessions API
+    description: >-
+      Endpoints for retrieving completed live session recordings and metadata
+      for past live streams.
+    humanURL: https://docs.livepeer.org/api-reference/session/overview
+    baseURL: https://livepeer.studio/api/session
+    tags:
+      - Sessions
+      - Recordings
+    properties:
+      - type: Documentation
+        url: https://docs.livepeer.org/api-reference/session/overview
+  - aid: livepeer:playback
+    name: Livepeer Playback API
+    description: >-
+      Playback info endpoint returning HLS/WebRTC playback URLs and metadata
+      for a stream or asset, plus access-control gating.
+    humanURL: https://docs.livepeer.org/api-reference/playback/overview
+    baseURL: https://livepeer.studio/api/playback
+    tags:
+      - Playback
+      - HLS
+      - WebRTC
+    properties:
+      - type: Documentation
+        url: https://docs.livepeer.org/api-reference/playback/overview
+  - aid: livepeer:signing-keys
+    name: Livepeer Signing Keys API
+    description: >-
+      Endpoints for managing JWT signing keys used for playback access
+      control and webhook signature verification.
+    humanURL: https://docs.livepeer.org/api-reference/access-control/overview
+    baseURL: https://livepeer.studio/api/access-control/signing-key
+    tags:
+      - Access Control
+      - JWT
+      - Signing Keys
+    properties:
+      - type: Documentation
+        url: https://docs.livepeer.org/api-reference/access-control/overview
+  - aid: livepeer:ai-generate
+    name: Livepeer AI Generate API
+    description: >-
+      AI video and image generation endpoints (text-to-image, image-to-image,
+      image-to-video, upscale, audio-to-text) routed through the Livepeer AI
+      subnet of GPU orchestrators.
+    humanURL: https://docs.livepeer.org/ai/api-reference/text-to-image
+    baseURL: https://livepeer.studio/api/generate
+    tags:
+      - AI
+      - Generation
+      - Text-to-Image
+      - Image-to-Video
+    properties:
+      - type: Documentation
+        url: https://docs.livepeer.org/ai/api-reference/text-to-image
+  - aid: livepeer:js-sdk
+    name: Livepeer JavaScript/TypeScript SDK
+    description: >-
+      Official TypeScript/JavaScript SDK (@livepeer/ai or livepeer) for the
+      Livepeer Studio REST API and AI endpoints.
+    humanURL: https://github.com/livepeer/livepeer-js
+    baseURL: https://github.com/livepeer/livepeer-js
+    tags:
+      - SDK
+      - TypeScript
+      - JavaScript
+    properties:
+      - type: Repository
+        url: https://github.com/livepeer/livepeer-js
+  - aid: livepeer:python-sdk
+    name: Livepeer Python SDK
+    description: Official Python SDK for the Livepeer Studio REST API.
+    humanURL: https://github.com/livepeer/livepeer-python
+    baseURL: https://github.com/livepeer/livepeer-python
+    tags:
+      - SDK
+      - Python
+    properties:
+      - type: Repository
+        url: https://github.com/livepeer/livepeer-python
+  - aid: livepeer:go-sdk
+    name: Livepeer Go SDK
+    description: Official Go SDK for the Livepeer Studio REST API.
+    humanURL: https://github.com/livepeer/livepeer-go
+    baseURL: https://github.com/livepeer/livepeer-go
+    tags:
+      - SDK
+      - Go
+    properties:
+      - type: Repository
+        url: https://github.com/livepeer/livepeer-go
+  - aid: livepeer:ruby-sdk
+    name: Livepeer Ruby SDK
+    description: Official Ruby SDK for the Livepeer Studio REST API.
+    humanURL: https://github.com/livepeer/livepeer-ruby
+    baseURL: https://github.com/livepeer/livepeer-ruby
+    tags:
+      - SDK
+      - Ruby
+    properties:
+      - type: Repository
+        url: https://github.com/livepeer/livepeer-ruby
+  - aid: livepeer:react-player
+    name: Livepeer React Player Component
+    description: >-
+      React video player component for HLS/WebRTC playback of Livepeer
+      streams and assets, with customisable controls and access-control
+      integration.
+    humanURL: https://docs.livepeer.org/developers/react/player
+    baseURL: https://github.com/livepeer/react
+    tags:
+      - SDK
+      - React
+      - Player
+    properties:
+      - type: Documentation
+        url: https://docs.livepeer.org/developers/react/player
+  - aid: livepeer:react-broadcast
+    name: Livepeer React Broadcast Component
+    description: >-
+      React component for in-browser WebRTC broadcasting to a Livepeer live
+      stream, with device selection and settings controls.
+    humanURL: https://docs.livepeer.org/developers/react/broadcast
+    baseURL: https://github.com/livepeer/react
+    tags:
+      - SDK
+      - React
+      - Broadcast
+      - WebRTC
+    properties:
+      - type: Documentation
+        url: https://docs.livepeer.org/developers/react/broadcast
+common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/livepeer
+  - type: Website
+    url: https://livepeer.org/
+  - type: Studio
+    url: https://livepeer.studio/
+  - type: Documentation
+    url: https://docs.livepeer.org/
+  - type: GitHub
+    url: https://github.com/livepeer
+  - type: Status
+    url: https://status.livepeer.studio/
+  - type: Plans
+    url: plans/livepeer-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/livepeer-rate-limits.yml
+  - type: FinOps
+    url: finops/livepeer-finops.yml
+integrations:
+  - name: IPFS
+  - name: Arweave
+  - name: AWS S3
+  - name: Google Cloud Storage
+  - name: Cloudflare R2
+  - name: YouTube
+  - name: Twitch
+  - name: X
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
