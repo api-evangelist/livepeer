@@ -269,6 +269,8 @@ common:
     url: rate-limits/livepeer-rate-limits.yml
   - type: FinOps
     url: finops/livepeer-finops.yml
+  - type: LLMsTxt
+    url: https://docs.livepeer.org/llms.txt
 integrations:
   - name: IPFS
   - name: Arweave
