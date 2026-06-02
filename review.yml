@@ -1,0 +1,236 @@
+aid: livepeer:asyncapi-review
+name: Livepeer AsyncAPI Review
+description: >-
+  Honest review of Livepeer's public real-time / event-driven surface area for
+  the purpose of producing an AsyncAPI 2.6 specification. After crawling the
+  publicly documented Livepeer developer resources (docs.livepeer.org, the
+  llms-full.txt knowledge dump, and the separately hosted Daydream pipelines
+  docs at docs.daydream.live), Livepeer does not expose any public WebSocket
+  APIs, MQTT topics, AMQP exchanges, Kafka topics, or other AsyncAPI-applicable
+  message channels. Livepeer's event-driven surface is limited to HTTP webhooks
+  delivered to customer endpoints. Its real-time media surface is built on
+  RTMP/RTMPS (ingest), SRT (ingest), WHIP (WebRTC ingest), WHEP (WebRTC
+  playback), and HLS / low-latency HLS (playback) - which are media transport
+  protocols rather than API protocols describable with AsyncAPI. The real-time
+  AI pipelines (live-video-to-video, ComfyStream, Daydream / StreamDiffusion)
+  also run over WebRTC with WHIP/WHEP signaling, not WebSocket. The only
+  streaming response protocol exposed is Server-Sent Events (SSE) on the
+  OpenAI-compatible LLM pipeline, which is conventionally described in OpenAPI
+  rather than AsyncAPI. Therefore no livepeer-asyncapi.yml was produced.
+type: Review
+created: '2026-05-29'
+modified: '2026-05-29'
+specificationVersion: '0.19'
+
+review:
+  target: Livepeer public real-time / WebSocket API surface
+  outcome: no-public-websocket-api
+  spec_produced: false
+  spec_path: null
+  reviewer: Kin Lane
+  reviewed_on: '2026-05-29'
+
+findings:
+  - id: no-public-websocket
+    summary: >-
+      No public WebSocket endpoint is documented anywhere in the Livepeer
+      developer area. The Livepeer Studio API reference exclusively documents
+      REST/HTTP operations against https://livepeer.studio/api authenticated
+      with a bearer API key. A full-text grep of the official llms-full.txt
+      documentation dump (~80,000 lines covering every page on
+      docs.livepeer.org) returns no occurrences of "WebSocket", "wss://", or
+      "ws://" outside four references to an internal `setWebsocketMetadata`
+      state setter on the Livepeer React Player component (used to surface
+      timed in-band metadata to the player UI; not a developer-facing
+      WebSocket API).
+    evidence:
+      - https://docs.livepeer.org/api-reference/overview
+      - https://docs.livepeer.org/llms-full.txt
+      - https://docs.livepeer.org/llms.txt
+  - id: realtime-ai-uses-webrtc-not-websocket
+    summary: >-
+      Livepeer's real-time AI products (live-video-to-video on the AI gateway,
+      ComfyStream, BYOC pipelines, and the Daydream hosted StreamDiffusion
+      platform) all use WebRTC for client-server frame transport, with WHIP
+      for ingest signaling and WHEP for playback signaling. ComfyStream
+      additionally exposes a WebRTC data channel for emitting text from
+      workflows; this is a WebRTC data channel, not a WebSocket. The Daydream
+      docs at docs.daydream.live explicitly diagram the flow as
+      "OBS --WHIP--> Daydream (AI Proc) --WHEP--> Client". No WebSocket
+      signaling is exposed to developers.
+    evidence:
+      - https://docs.livepeer.org/v2/developers/ai-pipelines/comfystream
+      - https://docs.livepeer.org/v2/gateways/using-gateways/gateway-providers/daydream-gateway
+      - https://docs.daydream.live/scope/getting-started/quickstart
+      - https://docs.daydream.live/llms-full.txt
+  - id: ingest-and-playback-are-media-protocols
+    summary: >-
+      Livepeer Studio accepts live ingest over RTMP (rtmp://rtmp.livepeer.com/
+      live, with regional variants such as rtmp://sin-rtmp.livepeer.com/live)
+      and WHIP (WebRTC-HTTP Ingestion Protocol). Playback is delivered over
+      HLS, low-latency HLS, and WHEP (WebRTC-HTTP Egress Protocol). These are
+      media transport / streaming protocols, not API protocols, and are not
+      in scope for AsyncAPI 2.6 bindings (which cover ws, mqtt, amqp, kafka,
+      sns, sqs, nats, jms, http-sse, etc.).
+    evidence:
+      - https://docs.livepeer.org/v2/solutions/livepeer-studio/livestream/stream-via-obs
+      - https://docs.livepeer.org/v2/solutions/livepeer-studio/livestream/livestream-from-browser
+      - https://docs.livepeer.org/v2/solutions/livepeer-studio/livestream/playback-livestream
+      - https://docs.livepeer.org/v2/solutions/livepeer-studio/livestream/optimize-latency
+  - id: events-are-http-webhooks-only
+    summary: >-
+      Livepeer Studio's only event-driven surface for customer applications
+      is HTTP webhooks. Studio POSTs lifecycle events to a customer-supplied
+      HTTPS URL with a signed payload. The documented event types are
+      stream.started, stream.idle, recording.started, recording.waiting,
+      recording.ready, multistream.connected, multistream.disconnected,
+      multistream.error, asset.created, asset.ready, and
+      playback.accessControl (used for gated playback decisions). Webhooks
+      are a one-way HTTP push pattern, conventionally modeled in OpenAPI 3.1
+      (webhooks object) rather than AsyncAPI 2.6. They do not require an
+      AsyncAPI spec.
+    evidence:
+      - https://docs.livepeer.org/v2/solutions/livepeer-studio/analytics/webhooks
+      - https://docs.livepeer.org/v2/solutions/livepeer-studio/analytics/listen-to-events
+      - https://docs.livepeer.org/v1/developers/guides/setup-and-listen-to-webhooks
+      - https://docs.livepeer.org/v1/developers/guides/access-control-webhooks
+  - id: llm-pipeline-streams-via-sse-not-websocket
+    summary: >-
+      The only streaming response protocol exposed on the Livepeer AI
+      gateway is Server-Sent Events (SSE) on the OpenAI-compatible LLM
+      pipeline (chat/completions style endpoint, opted in via "stream": true).
+      SSE is unidirectional server-to-client over plain HTTP and is the
+      standard pattern used by OpenAI-compatible APIs; it is conventionally
+      described in the same OpenAPI document as the underlying POST endpoint,
+      not in a separate AsyncAPI spec. There is no WebSocket equivalent.
+    evidence:
+      - https://docs.livepeer.org/v2/gateways/references/api-reference/AI-API/ai
+  - id: realtime-viewership-is-rest-polling
+    summary: >-
+      Livepeer Studio exposes a "Get Realtime Viewership" endpoint under the
+      analytics API. Despite the name, this is a conventional GET endpoint
+      intended to be polled; it does not push, stream, or open a persistent
+      connection. It is already covered by the existing Livepeer Studio
+      OpenAPI definition and needs no AsyncAPI representation.
+    evidence:
+      - https://docs.livepeer.org/v2/solutions/livepeer-studio/api-reference/viewership/get-realtime-viewership
+  - id: player-internal-websocket-metadata-is-not-public-api
+    summary: >-
+      The Livepeer React Player and Broadcast components expose an internal
+      controller method `setWebsocketMetadata(metadata: Metadata)` alongside
+      other internal setters such as `setHlsConfig`, `setVideoQuality`, and
+      `setLive`. This is an SDK-internal state setter used to push timed
+      in-band metadata into the player's React state; it does not document,
+      establish, or proxy a public WebSocket connection that application
+      developers would open against a Livepeer-hosted endpoint. No
+      corresponding wss:// URL or subscribe-style API is published.
+    evidence:
+      - https://docs.livepeer.org/llms-full.txt
+
+protocols_checked:
+  - protocol: WebSocket (ws/wss)
+    documented: false
+    note: >-
+      Zero developer-facing wss:// or ws:// endpoints. The only mentions in
+      the full docs dump are an internal React Player state setter
+      (setWebsocketMetadata) and an example OvenPlayer config showing a
+      generic third-party WebRTC-over-WebSocket URL on docs.daydream.live -
+      neither is a Livepeer-hosted WebSocket API.
+  - protocol: MQTT
+    documented: false
+  - protocol: AMQP
+    documented: false
+  - protocol: Kafka
+    documented: false
+  - protocol: NATS
+    documented: false
+  - protocol: gRPC streaming
+    documented: false
+    note: >-
+      gRPC is used internally between gateway and orchestrator nodes on the
+      Livepeer network but is not a public application API surface.
+  - protocol: Server-Sent Events (SSE)
+    documented: true
+    note: >-
+      Used on the OpenAI-compatible LLM pipeline only (stream:true). Modeled
+      in OpenAPI alongside the underlying REST endpoint; no separate
+      AsyncAPI binding needed.
+  - protocol: WebRTC (WHIP ingest)
+    documented: true
+    note: media transport, not an API protocol; HTTP-based signaling
+  - protocol: WebRTC (WHEP playback)
+    documented: true
+    note: media transport, not an API protocol; HTTP-based signaling
+  - protocol: RTMP / RTMPS (ingest)
+    documented: true
+    note: media transport, not an API protocol
+  - protocol: SRT (ingest)
+    documented: true
+    note: media transport, not an API protocol
+  - protocol: HLS / low-latency HLS (playback)
+    documented: true
+    note: media delivery, not an API protocol
+  - protocol: HTTP Webhooks (outbound from Livepeer Studio)
+    documented: true
+    note: >-
+      one-way HTTP push with signed payloads; modeled via OpenAPI webhooks,
+      not AsyncAPI
+
+sources_checked:
+  - url: https://docs.livepeer.org/
+    note: Top-level docs landing; no WebSocket references.
+  - url: https://docs.livepeer.org/llms.txt
+    note: Documentation index; lists every public docs page.
+  - url: https://docs.livepeer.org/llms-full.txt
+    note: >-
+      Full-text dump of the Livepeer docs (~80,000 lines). Grepped for
+      websocket / wss:// / ws:// - only four matches, all internal Player
+      SDK state setters.
+  - url: https://docs.livepeer.org/api-reference/overview
+    note: Livepeer Studio REST API reference; HTTP/JSON only.
+  - url: https://docs.livepeer.org/v2/solutions/livepeer-studio/livestream/overview
+    note: Livestream concepts; ingest via RTMP/SRT/WHIP, playback via HLS/WHEP.
+  - url: https://docs.livepeer.org/v2/solutions/livepeer-studio/livestream/livestream-from-browser
+    note: Browser broadcasting; uses WHIP, not WebSocket signaling.
+  - url: https://docs.livepeer.org/v2/solutions/livepeer-studio/analytics/webhooks
+    note: Webhook event reference (stream.*, recording.*, multistream.*, asset.*).
+  - url: https://docs.livepeer.org/v2/solutions/livepeer-studio/access-control/webhooks
+    note: Playback access-control webhook.
+  - url: https://docs.livepeer.org/v2/developers/ai-pipelines/overview
+    note: Real-time AI uses persistent WebRTC or RTMP, not WebSocket.
+  - url: https://docs.livepeer.org/v2/developers/ai-pipelines/comfystream
+    note: ComfyStream uses WebRTC with a data channel; no WebSocket.
+  - url: https://docs.livepeer.org/v2/developers/ai-pipelines/byoc
+    note: BYOC pipelines; no WebSocket interface defined.
+  - url: https://docs.livepeer.org/v2/gateways/using-gateways/gateway-providers/daydream-gateway
+    note: Daydream gateway routes WHIP ingest to real-time AI pipelines.
+  - url: https://docs.livepeer.org/v2/gateways/references/api-reference/AI-API/ai
+    note: AI gateway API; SSE for LLM streaming, HTTP for everything else.
+  - url: https://docs.daydream.live/
+    note: Separately hosted Daydream pipelines docs.
+  - url: https://docs.daydream.live/llms-full.txt
+    note: >-
+      Daydream full docs dump (~15,700 lines). Confirms WHIP-in / WHEP-out
+      WebRTC architecture; the single wss:// reference is in a generic
+      OvenPlayer example, not a Daydream endpoint.
+  - url: https://github.com/livepeer
+    note: >-
+      Livepeer GitHub organization. The four official Studio SDKs
+      (livepeer-js, livepeer-python, livepeer-go, livepeer-ruby) are
+      REST clients with no WebSocket transport.
+
+conclusion: >-
+  No AsyncAPI 2.6 specification is warranted for Livepeer at this time.
+  Livepeer's current public surface is well-modeled by its existing OpenAPI
+  definition (openapi/livepeer-openapi.yml in this repository) plus the
+  documented webhook event catalog. Media plane protocols (RTMP, SRT, WHIP,
+  WHEP, HLS) are out of scope for AsyncAPI. Should Livepeer introduce a
+  developer-facing WebSocket, MQTT, NATS, or similar message channel - for
+  example a stream-events WebSocket as an alternative to webhooks, a
+  real-time chat channel, or a pipeline control WebSocket on the AI gateway -
+  this review should be revisited and an asyncapi/livepeer-asyncapi.yml
+  produced at that time.
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
