@@ -269,7 +269,7 @@ common:
     url: rate-limits/livepeer-rate-limits.yml
   - type: FinOps
     url: finops/livepeer-finops.yml
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.livepeer.org/llms.txt
 integrations:
   - name: IPFS
