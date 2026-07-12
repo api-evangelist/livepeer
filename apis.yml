@@ -251,6 +251,10 @@ apis:
       - type: Documentation
         url: https://docs.livepeer.org/developers/react/broadcast
 common:
+  - type: DomainSecurity
+    url: security/livepeer-domain-security.yml
+  - type: Authentication
+    url: authentication/livepeer-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/livepeer
   - type: Website
@@ -271,6 +275,8 @@ common:
     url: finops/livepeer-finops.yml
   - type: LlmsText
     url: https://docs.livepeer.org/llms.txt
+  - url: https://livepeer.org/blog
+    type: Blog
 integrations:
   - name: IPFS
   - name: Arweave
