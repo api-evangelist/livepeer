@@ -251,6 +251,8 @@ apis:
       - type: Documentation
         url: https://docs.livepeer.org/developers/react/broadcast
 common:
+  - type: AgenticAccess
+    url: agentic-access/livepeer-agentic-access.yml
   - type: DomainSecurity
     url: security/livepeer-domain-security.yml
   - type: Authentication
