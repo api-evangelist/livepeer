@@ -1,0 +1,36 @@
+{
+  "provider": "livepeer",
+  "sources": [
+    "livepeer-accesscontrol-api-openapi.yml",
+    "livepeer-asset-api-openapi.yml",
+    "livepeer-generate-api-openapi.yml",
+    "livepeer-metrics-api-openapi.yml",
+    "livepeer-multistream-api-openapi.yml",
+    "livepeer-playback-api-openapi.yml",
+    "livepeer-room-api-openapi.yml",
+    "livepeer-session-api-openapi.yml",
+    "livepeer-stream-api-openapi.yml",
+    "livepeer-task-api-openapi.yml",
+    "livepeer-transcode-api-openapi.yml",
+    "livepeer-webhook-api-openapi.yml"
+  ],
+  "outputs": [
+    "livepeer-accesscontrol-api-openapi.yml",
+    "livepeer-asset-api-openapi.yml",
+    "livepeer-generate-api-openapi.yml",
+    "livepeer-metrics-api-openapi.yml",
+    "livepeer-multistream-api-openapi.yml",
+    "livepeer-playback-api-openapi.yml",
+    "livepeer-room-api-openapi.yml",
+    "livepeer-session-api-openapi.yml",
+    "livepeer-stream-api-openapi.yml",
+    "livepeer-task-api-openapi.yml",
+    "livepeer-transcode-api-openapi.yml",
+    "livepeer-webhook-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
