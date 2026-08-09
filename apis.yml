@@ -2,17 +2,13 @@ aid: livepeer
 url: https://raw.githubusercontent.com/api-evangelist/livepeer/refs/heads/main/apis.yml
 name: Livepeer
 kind: company
-description: >-
-  Livepeer is a decentralized video infrastructure network. Independent
-  orchestrators run GPU hardware to provide live and on-demand video
-  transcoding services, paid for in ETH/LPT on the Livepeer protocol. Livepeer
-  Studio is the managed gateway and developer platform sitting on top of the
-  network, exposing a REST API at livepeer.studio/api for live streams, on-
-  demand assets, multistream targets, transcoding jobs, sessions, playback,
-  signing keys, AI generation (text-to-image, image-to-image, image-to-video,
-  upscale, audio-to-text), and webhooks. Official SDKs are published for
-  JavaScript/TypeScript, Python, Go, and Ruby, with React Player and React
-  Broadcast components for client-side playback and ingest.
+description: Livepeer is a decentralized video infrastructure network. Independent orchestrators run GPU
+  hardware to provide live and on-demand video transcoding services, paid for in ETH/LPT on the Livepeer
+  protocol. Livepeer Studio is the managed gateway and developer platform sitting on top of the network,
+  exposing a REST API at livepeer.studio/api for live streams, on- demand assets, multistream targets,
+  transcoding jobs, sessions, playback, signing keys, AI generation (text-to-image, image-to-image, image-to-video,
+  upscale, audio-to-text), and webhooks. Official SDKs are published for JavaScript/TypeScript, Python,
+  Go, and Ruby, with React Player and React Broadcast components for client-side playback and ingest.
 accessModel:
   pricing: free
   onboarding: self-serve
@@ -28,23 +24,22 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/livepeer.png
 tags:
-  - Video
-  - Streaming
-  - Transcoding
-  - Decentralized
-  - Web3
-  - Live Video
-  - AI Video
+- Video
+- Streaming
+- Transcoding
+- Decentralized
+- Web3
+- Live Video
+- AI Video
 created: '2026-05-23'
-modified: '2026-05-23'
+modified: '2026-08-08'
 specificationVersion: '0.19'
 apis:
 - aid: livepeer:studio
   name: Livepeer Studio REST API
-  description: >-
-    Primary REST API for the Livepeer Studio gateway. Resource-oriented JSON endpoints for live streams,
-    on-demand assets, multistream targets, transcoding jobs, sessions, playback, signing keys, webhooks,
-    and access controls. Authenticated via API keys issued from the Livepeer Studio dashboard.
+  description: Primary REST API for the Livepeer Studio gateway. Resource-oriented JSON endpoints for
+    live streams, on-demand assets, multistream targets, transcoding jobs, sessions, playback, signing
+    keys, webhooks, and access controls. Authenticated via API keys issued from the Livepeer Studio dashboard.
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
   tags:
@@ -57,9 +52,8 @@ apis:
     url: https://docs.livepeer.org/api-reference/overview
 - aid: livepeer:streams
   name: Livepeer Streams API
-  description: >-
-    Endpoints for creating and managing live streams, ingest RTMP/WHIP URLs, profiles for adaptive bitrate
-    transcoding, recording, and stream keys.
+  description: Endpoints for creating and managing live streams, ingest RTMP/WHIP URLs, profiles for adaptive
+    bitrate transcoding, recording, and stream keys.
   humanURL: https://docs.livepeer.org/api-reference/stream/overview
   baseURL: https://livepeer.studio/api/stream
   tags:
@@ -71,9 +65,8 @@ apis:
     url: https://docs.livepeer.org/api-reference/stream/overview
 - aid: livepeer:assets
   name: Livepeer Assets API
-  description: >-
-    Endpoints for uploading, importing, transcoding, and serving on-demand video assets, including direct
-    upload, URL import, and IPFS storage.
+  description: Endpoints for uploading, importing, transcoding, and serving on-demand video assets, including
+    direct upload, URL import, and IPFS storage.
   humanURL: https://docs.livepeer.org/api-reference/asset/overview
   baseURL: https://livepeer.studio/api/asset
   tags:
@@ -85,9 +78,8 @@ apis:
     url: https://docs.livepeer.org/api-reference/asset/overview
 - aid: livepeer:multistream
   name: Livepeer Multistream Targets API
-  description: >-
-    Endpoints for registering and managing multistream destinations that forward an active live stream
-    to additional RTMP/RTMPS endpoints such as YouTube, Twitch, or X.
+  description: Endpoints for registering and managing multistream destinations that forward an active
+    live stream to additional RTMP/RTMPS endpoints such as YouTube, Twitch, or X.
   humanURL: https://docs.livepeer.org/api-reference/multistream-target/overview
   baseURL: https://livepeer.studio/api/multistream/target
   tags:
@@ -98,10 +90,9 @@ apis:
     url: https://docs.livepeer.org/api-reference/multistream-target/overview
 - aid: livepeer:webhooks
   name: Livepeer Webhooks API
-  description: >-
-    Webhook management endpoints plus outbound event notifications for stream lifecycle events (stream.started,
-    stream.idle, recording.ready, asset.ready, playback.access_control). Signed payloads delivered to
-    customer-configured URLs.
+  description: Webhook management endpoints plus outbound event notifications for stream lifecycle events
+    (stream.started, stream.idle, recording.ready, asset.ready, playback.access_control). Signed payloads
+    delivered to customer-configured URLs.
   humanURL: https://docs.livepeer.org/api-reference/webhook/overview
   baseURL: https://livepeer.studio/api/webhook
   tags:
@@ -113,9 +104,8 @@ apis:
     url: https://docs.livepeer.org/api-reference/webhook/overview
 - aid: livepeer:transcode
   name: Livepeer Transcode API
-  description: >-
-    Endpoints for one-off transcoding jobs against source files in object storage, returning a job handle
-    and transcoded renditions.
+  description: Endpoints for one-off transcoding jobs against source files in object storage, returning
+    a job handle and transcoded renditions.
   humanURL: https://docs.livepeer.org/api-reference/transcode/overview
   baseURL: https://livepeer.studio/api/transcode
   tags:
@@ -126,8 +116,7 @@ apis:
     url: https://docs.livepeer.org/api-reference/transcode/overview
 - aid: livepeer:sessions
   name: Livepeer Sessions API
-  description: >-
-    Endpoints for retrieving completed live session recordings and metadata for past live streams.
+  description: Endpoints for retrieving completed live session recordings and metadata for past live streams.
   humanURL: https://docs.livepeer.org/api-reference/session/overview
   baseURL: https://livepeer.studio/api/session
   tags:
@@ -138,9 +127,8 @@ apis:
     url: https://docs.livepeer.org/api-reference/session/overview
 - aid: livepeer:playback
   name: Livepeer Playback API
-  description: >-
-    Playback info endpoint returning HLS/WebRTC playback URLs and metadata for a stream or asset, plus
-    access-control gating.
+  description: Playback info endpoint returning HLS/WebRTC playback URLs and metadata for a stream or
+    asset, plus access-control gating.
   humanURL: https://docs.livepeer.org/api-reference/playback/overview
   baseURL: https://livepeer.studio/api/playback
   tags:
@@ -152,8 +140,8 @@ apis:
     url: https://docs.livepeer.org/api-reference/playback/overview
 - aid: livepeer:signing-keys
   name: Livepeer Signing Keys API
-  description: >-
-    Endpoints for managing JWT signing keys used for playback access control and webhook signature verification.
+  description: Endpoints for managing JWT signing keys used for playback access control and webhook signature
+    verification.
   humanURL: https://docs.livepeer.org/api-reference/access-control/overview
   baseURL: https://livepeer.studio/api/access-control/signing-key
   tags:
@@ -165,9 +153,8 @@ apis:
     url: https://docs.livepeer.org/api-reference/access-control/overview
 - aid: livepeer:ai-generate
   name: Livepeer AI Generate API
-  description: >-
-    AI video and image generation endpoints (text-to-image, image-to-image, image-to-video, upscale, audio-to-text)
-    routed through the Livepeer AI subnet of GPU orchestrators.
+  description: AI video and image generation endpoints (text-to-image, image-to-image, image-to-video,
+    upscale, audio-to-text) routed through the Livepeer AI subnet of GPU orchestrators.
   humanURL: https://docs.livepeer.org/ai/api-reference/text-to-image
   baseURL: https://livepeer.studio/api/generate
   tags:
@@ -180,9 +167,8 @@ apis:
     url: https://docs.livepeer.org/ai/api-reference/text-to-image
 - aid: livepeer:js-sdk
   name: Livepeer JavaScript/TypeScript SDK
-  description: >-
-    Official TypeScript/JavaScript SDK (@livepeer/ai or livepeer) for the Livepeer Studio REST API and
-    AI endpoints.
+  description: Official TypeScript/JavaScript SDK (@livepeer/ai or livepeer) for the Livepeer Studio REST
+    API and AI endpoints.
   humanURL: https://github.com/livepeer/livepeer-js
   baseURL: https://github.com/livepeer/livepeer-js
   tags:
@@ -227,9 +213,8 @@ apis:
     url: https://github.com/livepeer/livepeer-ruby
 - aid: livepeer:react-player
   name: Livepeer React Player Component
-  description: >-
-    React video player component for HLS/WebRTC playback of Livepeer streams and assets, with customisable
-    controls and access-control integration.
+  description: React video player component for HLS/WebRTC playback of Livepeer streams and assets, with
+    customisable controls and access-control integration.
   humanURL: https://docs.livepeer.org/developers/react/player
   baseURL: https://github.com/livepeer/react
   tags:
@@ -241,9 +226,8 @@ apis:
     url: https://docs.livepeer.org/developers/react/player
 - aid: livepeer:react-broadcast
   name: Livepeer React Broadcast Component
-  description: >-
-    React component for in-browser WebRTC broadcasting to a Livepeer live stream, with device selection
-    and settings controls.
+  description: React component for in-browser WebRTC broadcasting to a Livepeer live stream, with device
+    selection and settings controls.
   humanURL: https://docs.livepeer.org/developers/react/broadcast
   baseURL: https://github.com/livepeer/react
   tags:
@@ -375,43 +359,168 @@ apis:
   - type: OpenAPI
     url: openapi/livepeer-webhook-api-openapi.yml
 common:
-  - type: AgenticAccess
-    url: agentic-access/livepeer-agentic-access.yml
-  - type: DomainSecurity
-    url: security/livepeer-domain-security.yml
-  - type: Authentication
-    url: authentication/livepeer-authentication.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/livepeer
-  - type: Website
-    url: https://livepeer.org/
-  - type: Studio
-    url: https://livepeer.studio/
-  - type: Documentation
-    url: https://docs.livepeer.org/
-  - type: GitHub
-    url: https://github.com/livepeer
-  - type: Status
-    url: https://status.livepeer.studio/
-  - type: Plans
-    url: plans/livepeer-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/livepeer-rate-limits.yml
-  - type: FinOps
-    url: finops/livepeer-finops.yml
-  - type: LlmsText
-    url: https://docs.livepeer.org/llms.txt
-  - url: https://livepeer.org/blog
-    type: Blog
+- type: AgenticAccess
+  url: agentic-access/livepeer-agentic-access.yml
+- type: DomainSecurity
+  url: security/livepeer-domain-security.yml
+- type: Authentication
+  url: authentication/livepeer-authentication.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/livepeer
+- type: Website
+  url: https://livepeer.org/
+- type: Studio
+  url: https://livepeer.studio/
+- type: Documentation
+  url: https://docs.livepeer.org/
+- type: GitHub
+  url: https://github.com/livepeer
+- type: Status
+  url: https://status.livepeer.studio/
+- type: Plans
+  url: plans/livepeer-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/livepeer-rate-limits.yml
+- type: FinOps
+  url: finops/livepeer-finops.yml
+- type: LlmsText
+  url: https://docs.livepeer.org/llms.txt
+- url: https://livepeer.org/blog
+  type: Blog
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/livepeer/overview
+- type: Arazzo
+  url: arazzo/livepeer-clip-livestream-workflow.yml
+  name: Livepeer Clip a Livestream
+- type: StudioPortal
+  url: https://livepeer.studio
+- type: APIReference
+  url: https://docs.livepeer.org/api-reference
+- type: Pricing
+  url: https://livepeer.studio/pricing
+- type: ChangeLog
+  url: https://docs.livepeer.org/changelog
+- type: Explorer
+  url: https://explorer.livepeer.org
+- type: Forums
+  url: https://forum.livepeer.org
+- type: RoadMap
+  url: https://roadmap.livepeer.org/roadmap
+- type: StatusPage
+  url: https://status.livepeer.studio
+- type: Signup
+  url: https://livepeer.studio/register
+- type: Login
+  url: https://livepeer.studio/login
+- type: TermsOfService
+  url: https://www.livepeer.org/legal/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.livepeer.org/legal/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/livepeer
+- type: GitHubRepository
+  url: https://github.com/livepeer/go-livepeer
+- type: SDKs
+  url: https://docs.livepeer.org/sdks
+- type: TypeScriptSDK
+  url: https://github.com/livepeer/livepeer-js
+- type: PythonSDK
+  url: https://github.com/livepeer/livepeer-python
+- type: GoSDK
+  url: https://github.com/livepeer/livepeer-go
+- type: UIKit
+  url: https://github.com/livepeer/ui-kit
+  name: Livepeer React UI Kit
+- type: ReferenceImplementation
+  url: https://github.com/livepeer/go-livepeer
+- type: AIWorker
+  url: https://github.com/livepeer/ai-worker
+- type: Plugin
+  url: https://github.com/livepeer/naap
+  name: NAAP — Livepeer AI Compute Network plugin platform
+- type: SmartContracts
+  url: https://github.com/livepeer/protocol
+- type: NetworkExplorer
+  url: https://explorer.livepeer.org
+- type: TokenContractEthereum
+  url: https://etherscan.io/token/0x58b6a8a3302369daec383334672404ee733ab239
+- type: TokenContractArbitrum
+  url: https://arbiscan.io/token/0x289ba1701c2f088cf0faf8b3705246331cb8a839
+- type: Discord
+  url: https://discord.gg/livepeer
+- type: Twitter
+  url: https://twitter.com/Livepeer
+- type: YouTube
+  url: https://www.youtube.com/@LivepeerNetwork
+- type: SpectralRuleset
+  url: rules/livepeer-studio-rules.yml
+- type: Vocabulary
+  url: vocabulary/livepeer-vocabulary.yml
+- type: JSONLD
+  url: json-ld/livepeer-context.jsonld
+- type: JSONStructure
+  url: json-structure/livepeer-platform-structure.json
+- type: Features
+  data:
+  - Decentralized GPU network for transcoding + AI inference
+  - LPT token live on Ethereum mainnet and Arbitrum One
+  - Probabilistic micropayment (PM) tickets for sub-cent settlement
+  - Livepeer Studio managed REST API with Bearer auth
+  - Live streaming via RTMP, SRT, and WHIP ingest
+  - Adaptive bitrate HLS + WebRTC playback
+  - Recording, clipping, and on-demand asset hosting
+  - Multistream simulcast to YouTube, Twitch, Facebook, etc.
+  - WebRTC rooms with optional RTMP egress
+  - Token-gated playback via signing keys, JWT, and webhook policies
+  - Webhooks for stream/asset/recording/task lifecycle
+  - AI pipelines (text-to-image, image-to-video, live video-to-video, LLM, etc.)
+  - Two AI gateways (community + Studio beta) interchangeable per request
+  - Official TypeScript, Python (Studio + AI + Gateway), and Go SDKs
+  - React UI Kit (Player, Broadcast) for client embedding
+  - go-livepeer reference node for operators
+  - NAAP plugin platform for the AI Compute Network
+  - Open governance via Livepeer Improvement Proposals (LIPs)
+  sources:
+  - https://livepeer.org
+  - https://docs.livepeer.org
+  - https://livepeer.studio/pricing
+  updated: '2026-05-25'
+  url: ''
+- type: UseCases
+  data:
+  - User-generated live streaming platforms (creator economy)
+  - On-demand video platforms with low transcoding cost
+  - Web3 / NFT video drops with on-chain provenance
+  - Multistream restreaming to incumbent social platforms
+  - Real-time video AI transformation (Daydream / live video-to-video)
+  - AI avatars and embodied agents (Embody)
+  - Open streaming infrastructure (Stream.place, Frameworks)
+  - Generative video for marketing, advertising, and entertainment
+  - Realtime sports / security / manufacturing video intelligence
+  - LLM inference on decentralized GPU capacity
+  url: ''
+- type: Integrations
+  data:
+  - YouTube, Twitch, Facebook Live (multistream targets)
+  - IPFS / Filecoin (asset storage)
+  - Ethereum Mainnet (LPT, governance)
+  - Arbitrum One (PM tickets, AI fee settlement)
+  - The Graph (subgraph for Livepeer protocol)
+  - OBS, Streamlabs, Larix, Restream (ingest tooling)
+  - OpenAI-compatible LLM clients (via /llm endpoint)
+  - Daydream, Embody, Frameworks, Stream.place, Storyboard (ecosystem apps)
+  url: ''
 integrations:
-  - name: IPFS
-  - name: Arweave
-  - name: AWS S3
-  - name: Google Cloud Storage
-  - name: Cloudflare R2
-  - name: YouTube
-  - name: Twitch
-  - name: X
+- name: IPFS
+- name: Arweave
+- name: AWS S3
+- name: Google Cloud Storage
+- name: Cloudflare R2
+- name: YouTube
+- name: Twitch
+- name: X
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-merged-from:
+- livepeer-com
