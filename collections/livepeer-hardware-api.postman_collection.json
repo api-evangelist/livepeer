@@ -1,0 +1,170 @@
+{
+  "item": [
+    {
+      "id": "5c352e87-7a6c-4bd1-a783-7550b24fa49b",
+      "name": "Hardware",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d682ecb-8551-4b24-ae84-68e40dff60b9",
+          "name": "Hardware Info",
+          "request": {
+            "name": "Hardware Info",
+            "description": {},
+            "url": {
+              "path": [
+                "hardware",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86bc56e1-dca6-40b0-92b9-b26ac8f4709f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hardware",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pipeline\": \"string\",\n  \"model_id\": \"string\",\n  \"gpu_info\": {\n    \"key_0\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"memory_total\": 3230,\n      \"memory_free\": 1521,\n      \"major\": 7637,\n      \"minor\": 2531\n    },\n    \"key_1\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"memory_total\": 8522,\n      \"memory_free\": 7760,\n      \"major\": 366,\n      \"minor\": 3908\n    },\n    \"key_2\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"memory_total\": 3620,\n      \"memory_free\": 7180,\n      \"major\": 8526,\n      \"minor\": 72\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56062341-641c-4217-b22c-467560476cd0",
+          "name": "Hardware Stats",
+          "request": {
+            "name": "Hardware Stats",
+            "description": {},
+            "url": {
+              "path": [
+                "hardware",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "312f5ae9-19ca-450b-8744-49ca7f3406e1",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hardware",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pipeline\": \"string\",\n  \"model_id\": \"string\",\n  \"gpu_stats\": {\n    \"key_0\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"memory_total\": 1380,\n      \"memory_free\": 5973,\n      \"utilization_compute\": 2108,\n      \"utilization_memory\": 2764\n    },\n    \"key_1\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"memory_total\": 6866,\n      \"memory_free\": 6468,\n      \"utilization_compute\": 5685,\n      \"utilization_memory\": 3669\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dream-gateway.livepeer.cloud",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2f0e3222-dc85-4386-a022-7fb209311f46",
+    "name": "Livepeer AI Runner accessControl Hardware API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An application to run AI pipelines",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer AI Runner accessControl Orchestrator API",
+    "version": "0.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orchestrator",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Activate orchestrator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dream-gateway.livepeer.cloud/activateOrchestrator",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Multi-step process to become an orchestrator"
+        },
+        {
+          "info": {
+            "name": "Claim orchestrator rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dream-gateway.livepeer.cloud/reward"
+          },
+          "docs": "Claim orchestrator rewards for current round"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

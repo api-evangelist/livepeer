@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer AI Runner accessControl Health API",
+    "version": "0.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dream-gateway.livepeer.cloud/health"
+          },
+          "docs": "Health"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

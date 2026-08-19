@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "0cc371be-ff19-4b56-bb8d-2922d757b859",
+      "name": "Gateway",
+      "description": {
+        "content": "Gateway/broadcaster configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cfd22645-a958-491f-8671-244f990d8cc8",
+          "name": "Set broadcast configuration",
+          "request": {
+            "name": "Set broadcast configuration",
+            "description": {
+              "content": "Configure transcoding options and max price",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "setBroadcastConfig"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maxPricePerUnit\": \"<string>\",\n  \"pixelsPerUnit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8cb42a8d-a352-4a40-9ce3-770c93695dad",
+              "name": "Broadcast config updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "setBroadcastConfig"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"maxPricePerUnit\": \"1000\",\n  \"pixelsPerUnit\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c811cc81-511b-4dc7-afbc-9eec5d47fd90",
+          "name": "Set max price per AI capability",
+          "request": {
+            "name": "Set max price per AI capability",
+            "description": {
+              "content": "Set pricing for specific AI pipelines and models",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "setMaxPriceForCapability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"capabilities_prices\": [\n    {\n      \"pipeline\": \"<string>\",\n      \"price_per_unit\": \"<integer>\",\n      \"model_id\": \"<string>\",\n      \"pixels_per_unit\": \"<integer>\"\n    },\n    {\n      \"pipeline\": \"<string>\",\n      \"price_per_unit\": \"<integer>\",\n      \"model_id\": \"<string>\",\n      \"pixels_per_unit\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4fa82e2b-6180-48d2-940e-ae2d432d54cd",
+              "name": "AI pricing updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "setMaxPriceForCapability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"capabilities_prices\": [\n    {\n      \"pipeline\": \"text-to-image\",\n      \"price_per_unit\": 1000,\n      \"model_id\": \"stabilityai/sd-turbo\",\n      \"pixels_per_unit\": 1\n    },\n    {\n      \"pipeline\": \"text-to-image\",\n      \"price_per_unit\": 1000,\n      \"model_id\": \"stabilityai/sd-turbo\",\n      \"pixels_per_unit\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dream-gateway.livepeer.cloud",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "175ae6ef-8609-4243-8136-372fed113f94",
+    "name": "Livepeer AI Runner accessControl Gateway API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An application to run AI pipelines",
+      "type": "text/plain"
+    }
+  }
+}

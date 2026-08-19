@@ -1,0 +1,238 @@
+{
+  "item": [
+    {
+      "id": "1e2968a2-7fd6-4223-bdea-6ae22a5ddca6",
+      "name": "playback",
+      "description": {
+        "content": "Operations related to playback api",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "db99f12c-bd6d-4b90-887b-a0da09a96413",
+          "name": "Retrieve Playback Info",
+          "request": {
+            "name": "Retrieve Playback Info",
+            "description": {},
+            "url": {
+              "path": [
+                "playback",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The playback ID from the asset or livestream, e.g. `eaw4nk06ts2d0mzb`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1251765-1996-4d54-86d8-74e5b99c3a65",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playback",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The playback ID from the asset or livestream, e.g. `eaw4nk06ts2d0mzb`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"vod\",\n  \"meta\": {\n    \"source\": [\n      {\n        \"hrn\": \"MP4\",\n        \"type\": \"html5/video/mp4\",\n        \"url\": \"https://asset-cdn.lp-playback.monster/hls/1bde4o2i6xycudoy/static360p0.mp4\",\n        \"size\": 494778,\n        \"width\": 204,\n        \"height\": 360,\n        \"bitrate\": 449890\n      },\n      {\n        \"hrn\": \"MP4\",\n        \"type\": \"html5/video/mp4\",\n        \"url\": \"https://asset-cdn.lp-playback.monster/hls/1bde4o2i6xycudoy/static360p0.mp4\",\n        \"size\": 494778,\n        \"width\": 204,\n        \"height\": 360,\n        \"bitrate\": 449890\n      }\n    ],\n    \"live\": 0,\n    \"playbackPolicy\": {\n      \"type\": \"webhook\",\n      \"webhookId\": \"1bde4o2i6xycudoy\",\n      \"webhookContext\": {\n        \"streamerId\": \"my-custom-id\"\n      },\n      \"refreshInterval\": 600,\n      \"allowedOrigins\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"dvrPlayback\": [\n      {\n        \"hrn\": \"HLS (TS)\",\n        \"type\": \"html5/application/vnd.apple.mpegurl\",\n        \"url\": \"https://asset-cdn.lp-playback.monster/hls/1bde4o2i6xycudoy/static360p0.mp4\",\n        \"error\": \"string\"\n      },\n      {\n        \"hrn\": \"HLS (TS)\",\n        \"type\": \"html5/application/vnd.apple.mpegurl\",\n        \"url\": \"https://asset-cdn.lp-playback.monster/hls/1bde4o2i6xycudoy/static360p0.mp4\",\n        \"error\": \"string\"\n      }\n    ],\n    \"attestation\": {\n      \"primaryType\": \"VideoAttestation\",\n      \"domain\": {\n        \"name\": \"Verifiable Video\",\n        \"version\": \"1\"\n      },\n      \"message\": {\n        \"video\": \"5b9e63bb-6fd0-4bea-aff2-cc5d4eb9cad0\",\n        \"attestations\": [\n          {\n            \"role\": \"creator\",\n            \"address\": \"string\"\n          },\n          {\n            \"role\": \"creator\",\n            \"address\": \"string\"\n          }\n        ],\n        \"signer\": \"string\",\n        \"timestamp\": 1587667174725\n      },\n      \"signature\": \"string\",\n      \"id\": \"5b9e63bb-6fd0-4bea-aff2-cc5d4eb9cad0\",\n      \"createdAt\": 1587667174725,\n      \"signatureType\": \"eip712\",\n      \"storage\": {\n        \"ipfs\": {\n          \"$ref\": \"\",\n          \"updatedAt\": 1587667174725\n        },\n        \"status\": {\n          \"phase\": \"ready\",\n          \"tasks\": {\n            \"pending\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n            \"last\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n            \"failed\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n          },\n          \"progress\": 0.5,\n          \"errorMessage\": \"Failed to update storage\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44bbf17e-8378-4f92-ac9c-5f6afd078395",
+              "name": "Playback not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playback",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The playback ID from the asset or livestream, e.g. `eaw4nk06ts2d0mzb`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a75184d9-f9d0-48c4-a6ba-f7c27871ce75",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playback",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The playback ID from the asset or livestream, e.g. `eaw4nk06ts2d0mzb`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://livepeer.studio/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7a92caf0-1d26-4a87-a522-ecc6594d55d1",
+    "name": "Livepeer API Reference accessControl playback API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the Livepeer API reference docs. Here you will find all the\nendpoints exposed on the standard Livepeer API, learn how to use them and\nwhat they return.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1096 @@
+{
+  "item": [
+    {
+      "id": "84e030f2-e35b-4eed-b8ab-9e8404cdb8e2",
+      "name": "metrics",
+      "description": {
+        "content": "Operations related to metrics api",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9d2e636a-9235-401b-95e0-180e7c35794a",
+          "name": "Query realtime viewership",
+          "request": {
+            "name": "Query realtime viewership",
+            "description": {
+              "content": "Requires a private (non-CORS) API key to be used.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "views",
+                "now"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "playbackId",
+                  "value": "<string>",
+                  "description": "The playback ID to filter the query results. This can be a canonical\nplayback ID from Livepeer assets or streams, or dStorage identifiers\nfor assets\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "creatorId",
+                  "value": "<string>",
+                  "description": "The creator ID to filter the query results"
+                },
+                {
+                  "disabled": false,
+                  "key": "breakdownBy[]",
+                  "value": "<string>",
+                  "description": "The list of fields to break down the query results. Specify this\nquery-string multiple times to break down by multiple fields.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "breakdownBy[]",
+                  "value": "<string>",
+                  "description": "The list of fields to break down the query results. Specify this\nquery-string multiple times to break down by multiple fields.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "604a62d6-ccaf-4e3d-a1a6-8a52e7091aad",
+              "name": "A list of Metric objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "views",
+                    "now"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "playbackId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "creatorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"viewCount\": 100,\n    \"errorRate\": 0.1,\n    \"playbackId\": \"1bde4o2i6xycudoy\",\n    \"device\": \"iPhone\",\n    \"browser\": \"Safari\",\n    \"country\": \"United States\"\n  },\n  {\n    \"viewCount\": 100,\n    \"errorRate\": 0.1,\n    \"playbackId\": \"1bde4o2i6xycudoy\",\n    \"device\": \"iPhone\",\n    \"browser\": \"Safari\",\n    \"country\": \"United States\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b33aa23-3d0e-4ce5-bc6c-b58bd857fd55",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "views",
+                    "now"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "playbackId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "creatorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "756ff3bb-ace7-48fb-bb0c-ddd338523636",
+          "name": "Query viewership metrics",
+          "request": {
+            "name": "Query viewership metrics",
+            "description": {
+              "content": "Requires a private (non-CORS) API key to be used.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "views",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "playbackId",
+                  "value": "<string>",
+                  "description": "The playback ID to filter the query results. This can be a canonical\nplayback ID from Livepeer assets or streams, or dStorage identifiers\nfor assets\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "Start timestamp for the query range (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "End timestamp for the query range (exclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeStep",
+                  "value": "<string>",
+                  "description": "The time step to aggregate viewership metrics by"
+                },
+                {
+                  "disabled": false,
+                  "key": "assetId",
+                  "value": "<string>",
+                  "description": "The asset ID to filter metrics for"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamId",
+                  "value": "<string>",
+                  "description": "The stream ID to filter metrics for"
+                },
+                {
+                  "disabled": false,
+                  "key": "creatorId",
+                  "value": "<string>",
+                  "description": "The creator ID to filter the query results"
+                },
+                {
+                  "disabled": false,
+                  "key": "breakdownBy[]",
+                  "value": "<string>",
+                  "description": "The list of fields to break down the query results. Specify this\nquery-string multiple times to break down by multiple fields.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "breakdownBy[]",
+                  "value": "<string>",
+                  "description": "The list of fields to break down the query results. Specify this\nquery-string multiple times to break down by multiple fields.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd73c7cf-4a7a-4e6e-8ca6-009e572e4cbb",
+              "name": "A list of Metric objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "views",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "playbackId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timeStep",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "creatorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"viewCount\": 100,\n    \"playtimeMins\": 10,\n    \"playbackId\": \"1bde4o2i6xycudoy\",\n    \"creatorId\": \"john@doe.com\",\n    \"viewerId\": \"1bde4o2i6xycudoy\",\n    \"dStorageUrl\": \"ipfs://QmZ4\",\n    \"timestamp\": 1587667174725,\n    \"device\": \"iPhone\",\n    \"deviceType\": \"mobile\",\n    \"cpu\": \"ARM\",\n    \"os\": \"iOS\",\n    \"browser\": \"Safari\",\n    \"browserEngine\": \"WebKit\",\n    \"continent\": \"North America\",\n    \"country\": \"United States\",\n    \"subdivision\": \"California\",\n    \"timezone\": \"America/Los_Angeles\",\n    \"geohash\": \"string\",\n    \"ttffMs\": 100,\n    \"rebufferRatio\": 0.1,\n    \"errorRate\": 0.1,\n    \"exitsBeforeStart\": 0.5\n  },\n  {\n    \"viewCount\": 100,\n    \"playtimeMins\": 10,\n    \"playbackId\": \"1bde4o2i6xycudoy\",\n    \"creatorId\": \"john@doe.com\",\n    \"viewerId\": \"1bde4o2i6xycudoy\",\n    \"dStorageUrl\": \"ipfs://QmZ4\",\n    \"timestamp\": 1587667174725,\n    \"device\": \"iPhone\",\n    \"deviceType\": \"mobile\",\n    \"cpu\": \"ARM\",\n    \"os\": \"iOS\",\n    \"browser\": \"Safari\",\n    \"browserEngine\": \"WebKit\",\n    \"continent\": \"North America\",\n    \"country\": \"United States\",\n    \"subdivision\": \"California\",\n    \"timezone\": \"America/Los_Angeles\",\n    \"geohash\": \"string\",\n    \"ttffMs\": 100,\n    \"rebufferRatio\": 0.1,\n    \"errorRate\": 0.1,\n    \"exitsBeforeStart\": 0.5\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d3f2cff-855c-4a54-99ec-d112c86be4ff",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "views",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "playbackId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timeStep",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "creatorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "501c270d-897b-4583-8bc8-5716f2f80262",
+          "name": "Query creator viewership metrics",
+          "request": {
+            "name": "Query creator viewership metrics",
+            "description": {
+              "content": "Requires a proof of ownership to be sent in the request, which for now is just the assetId or streamId parameters (1 of those must be in the query-string).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "views",
+                "query",
+                "creator"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "Start timestamp for the query range (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "End timestamp for the query range (exclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeStep",
+                  "value": "<string>",
+                  "description": "The time step to aggregate viewership metrics by"
+                },
+                {
+                  "disabled": false,
+                  "key": "assetId",
+                  "value": "<string>",
+                  "description": "The asset ID to filter metrics for"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamId",
+                  "value": "<string>",
+                  "description": "The stream ID to filter metrics for"
+                },
+                {
+                  "disabled": false,
+                  "key": "creatorId",
+                  "value": "<string>",
+                  "description": "The creator ID to filter the query results"
+                },
+                {
+                  "disabled": false,
+                  "key": "breakdownBy[]",
+                  "value": "<string>",
+                  "description": "The list of fields to break down the query results. Specify this\nquery-string multiple times to break down by multiple fields.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "breakdownBy[]",
+                  "value": "<string>",
+                  "description": "The list of fields to break down the query results. Specify this\nquery-string multiple times to break down by multiple fields.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34adb8a3-bc1e-467b-bfe3-f36dcbe70a5f",
+              "name": "A list of Metric objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "views",
+                    "query",
+                    "creator"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timeStep",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "creatorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"viewCount\": 100,\n    \"playtimeMins\": 10,\n    \"playbackId\": \"1bde4o2i6xycudoy\",\n    \"creatorId\": \"john@doe.com\",\n    \"viewerId\": \"1bde4o2i6xycudoy\",\n    \"dStorageUrl\": \"ipfs://QmZ4\",\n    \"timestamp\": 1587667174725,\n    \"device\": \"iPhone\",\n    \"deviceType\": \"mobile\",\n    \"cpu\": \"ARM\",\n    \"os\": \"iOS\",\n    \"browser\": \"Safari\",\n    \"browserEngine\": \"WebKit\",\n    \"continent\": \"North America\",\n    \"country\": \"United States\",\n    \"subdivision\": \"California\",\n    \"timezone\": \"America/Los_Angeles\",\n    \"geohash\": \"string\",\n    \"ttffMs\": 100,\n    \"rebufferRatio\": 0.1,\n    \"errorRate\": 0.1,\n    \"exitsBeforeStart\": 0.5\n  },\n  {\n    \"viewCount\": 100,\n    \"playtimeMins\": 10,\n    \"playbackId\": \"1bde4o2i6xycudoy\",\n    \"creatorId\": \"john@doe.com\",\n    \"viewerId\": \"1bde4o2i6xycudoy\",\n    \"dStorageUrl\": \"ipfs://QmZ4\",\n    \"timestamp\": 1587667174725,\n    \"device\": \"iPhone\",\n    \"deviceType\": \"mobile\",\n    \"cpu\": \"ARM\",\n    \"os\": \"iOS\",\n    \"browser\": \"Safari\",\n    \"browserEngine\": \"WebKit\",\n    \"continent\": \"North America\",\n    \"country\": \"United States\",\n    \"subdivision\": \"California\",\n    \"timezone\": \"America/Los_Angeles\",\n    \"geohash\": \"string\",\n    \"ttffMs\": 100,\n    \"rebufferRatio\": 0.1,\n    \"errorRate\": 0.1,\n    \"exitsBeforeStart\": 0.5\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2e660b6-a34b-4895-ac19-91e4bb69e30c",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "views",
+                    "query",
+                    "creator"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timeStep",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "creatorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6963712-759a-4785-afa4-1f75a79b7de0",
+          "name": "Query public total views metrics",
+          "request": {
+            "name": "Query public total views metrics",
+            "description": {
+              "content": "Allows querying for the public metrics for viewership about a video.\nThis can be called from the frontend with a CORS key, or even\nunauthenticated.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "views",
+                "query",
+                "total",
+                ":playbackId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "playbackId",
+                  "description": "(Required) The playback ID to filter the query results. This can be a canonical\nplayback ID from Livepeer assets or streams, or dStorage identifiers\nfor assets\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0d5d0ae-c6c7-40ad-8286-86ad1dda75fe",
+              "name": "A single Metric object with the viewCount and playtimeMins metrics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "views",
+                    "query",
+                    "total",
+                    ":playbackId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playbackId",
+                      "description": "(Required) The playback ID to filter the query results. This can be a canonical\nplayback ID from Livepeer assets or streams, or dStorage identifiers\nfor assets\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"playbackId\": \"1bde4o2i6xycudoy\",\n  \"dStorageUrl\": \"ipfs://QmZ4\",\n  \"viewCount\": 100,\n  \"playtimeMins\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31b9a68b-cf4a-4d34-a186-9992cd21d05f",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "views",
+                    "query",
+                    "total",
+                    ":playbackId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playbackId",
+                      "description": "(Required) The playback ID to filter the query results. This can be a canonical\nplayback ID from Livepeer assets or streams, or dStorage identifiers\nfor assets\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dec43e9-6ea1-49f1-889c-c629c76e2b82",
+          "name": "Query usage metrics",
+          "request": {
+            "name": "Query usage metrics",
+            "description": {},
+            "url": {
+              "path": [
+                "data",
+                "usage",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<integer>",
+                  "description": "Start millis timestamp for the query range (inclusive)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<integer>",
+                  "description": "End millis timestamp for the query range (exclusive)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeStep",
+                  "value": "<string>",
+                  "description": "The time step to aggregate viewership metrics by\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "creatorId",
+                  "value": "<string>",
+                  "description": "The creator ID to filter the query results\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "breakdownBy[]",
+                  "value": "<string>",
+                  "description": "The list of fields to break down the query results. Currently the\nonly supported breakdown is by `creatorId`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "breakdownBy[]",
+                  "value": "<string>",
+                  "description": "The list of fields to break down the query results. Currently the\nonly supported breakdown is by `creatorId`.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45d978b8-8512-43df-a575-ad186f3f3699",
+              "name": "A Usage Metric object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "timeStep",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "creatorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"UserID\": \"1bde4o2i6xycudoy\",\n  \"CreatorID\": \"john@doe.com\",\n  \"DeliveryUsageMins\": 100,\n  \"TotalUsageMins\": 100,\n  \"StorageUsageMins\": 100\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4ae5d09-e164-4b2c-860e-bb88fdbe7083",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "timeStep",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "creatorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdownBy[]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://livepeer.studio/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "471b6b29-0da3-4796-90e5-b6c1ff37f6f1",
+    "name": "Livepeer API Reference accessControl metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the Livepeer API reference docs. Here you will find all the\nendpoints exposed on the standard Livepeer API, learn how to use them and\nwhat they return.\n",
+      "type": "text/plain"
+    }
+  }
+}

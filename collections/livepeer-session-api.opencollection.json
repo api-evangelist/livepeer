@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer API Reference accessControl session API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "session",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve clips of a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/session/:id/clips",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the parent session"
+              }
+            ]
+          },
+          "docs": "Retrieve clips of a session"
+        },
+        {
+          "info": {
+            "name": "Retrieve sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/session"
+          },
+          "docs": "Retrieve sessions"
+        },
+        {
+          "info": {
+            "name": "Retrieve a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/session/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the session"
+              }
+            ]
+          },
+          "docs": "Retrieve a session"
+        },
+        {
+          "info": {
+            "name": "Retrieve Recorded Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/stream/:parentId/sessions",
+            "params": [
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the parent stream"
+              },
+              {
+                "name": "record",
+                "value": "",
+                "type": "query",
+                "description": "Flag indicating if the response should only include recorded\nsessions\n"
+              }
+            ]
+          },
+          "docs": "Retrieve Recorded Sessions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

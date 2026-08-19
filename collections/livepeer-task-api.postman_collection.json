@@ -1,0 +1,300 @@
+{
+  "item": [
+    {
+      "id": "ee2ffd79-1c14-42a7-b58c-ecf878ce6fe4",
+      "name": "task",
+      "description": {
+        "content": "Operations related to tasks api",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e73624e0-5ce0-4116-97b3-5e388190a709",
+          "name": "Retrieve Tasks",
+          "request": {
+            "name": "Retrieve Tasks",
+            "description": {},
+            "url": {
+              "path": [
+                "task"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4486181f-b601-47e5-b7a1-0a18e6dd087f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "task"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"type\": \"upload\",\n    \"createdAt\": 1587667174725,\n    \"scheduledAt\": 1587667174725,\n    \"inputAssetId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"outputAssetId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"projectId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"requesterId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"params\": {\n      \"upload\": {\n        \"url\": \"https://cdn.livepeer.com/ABC123/filename.mp4\",\n        \"encryption\": null,\n        \"c2pa\": true,\n        \"profiles\": [\n          {\n            \"bitrate\": 3000000,\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fpsDen\": 1,\n            \"gop\": \"string\",\n            \"profile\": \"H264Baseline\",\n            \"encoder\": \"H.264\"\n          },\n          {\n            \"bitrate\": 3000000,\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fpsDen\": 1,\n            \"gop\": \"string\",\n            \"profile\": \"H264Baseline\",\n            \"encoder\": \"H.264\"\n          }\n        ],\n        \"targetSegmentSizeSecs\": 6\n      },\n      \"export\": {\n        \"custom\": {\n          \"url\": \"https://s3.amazonaws.com/my-bucket/path/filename.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=LLMMB\",\n          \"method\": \"POST\",\n          \"headers\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        }\n      },\n      \"exportData\": {\n        \"content\": {\n          \"data\": \"Hello, World!\"\n        },\n        \"ipfs\": {\n          \"$ref\": \"\",\n          \"pinata\": null\n        },\n        \"type\": \"text/plain\",\n        \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n      },\n      \"transcode-file\": {\n        \"input\": {\n          \"url\": \"https://cdn.livepeer.com/ABC123/filename.mp4\"\n        },\n        \"storage\": {\n          \"url\": \"s3+https://accessKeyId:secretAccessKey@s3Endpoint/bucket\"\n        },\n        \"outputs\": {\n          \"hls\": {\n            \"path\": \"/samplevideo/hls\"\n          },\n          \"mp4\": {\n            \"path\": \"/samplevideo/mp4\"\n          }\n        },\n        \"profiles\": [\n          {\n            \"bitrate\": 3000000,\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fpsDen\": 1,\n            \"gop\": \"string\",\n            \"profile\": \"H264Baseline\",\n            \"encoder\": \"H.264\"\n          },\n          {\n            \"bitrate\": 3000000,\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fpsDen\": 1,\n            \"gop\": \"string\",\n            \"profile\": \"H264Baseline\",\n            \"encoder\": \"H.264\"\n          }\n        ],\n        \"targetSegmentSizeSecs\": 10,\n        \"creatorId\": {\n          \"type\": \"unverified\",\n          \"value\": \"string\"\n        },\n        \"c2pa\": false\n      },\n      \"clip\": {\n        \"url\": \"https://asset-cdn.lp-playback.monster/hls/1bde4o2i6xycudoy/static360p0.mp4\",\n        \"clipStrategy\": {\n          \"startTime\": 1587667174725,\n          \"endTime\": 1587667174725,\n          \"playbackId\": \"eaw4nk06ts2d0mzb\"\n        },\n        \"catalystPipelineStrategy\": \"catalyst_ffmpeg\",\n        \"sessionId\": \"d32ae9e6-c459-4931-9898-e86e2f5e7e16\",\n        \"inputId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n      }\n    },\n    \"status\": {\n      \"phase\": \"pending\",\n      \"updatedAt\": 1587667174725,\n      \"progress\": 0.5,\n      \"errorMessage\": \"Failed to upload file\",\n      \"retries\": 3\n    },\n    \"output\": {\n      \"upload\": {\n        \"assetSpec\": {\n          \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"name\": \"filename.mp4\",\n          \"source\": {\n            \"type\": \"url\",\n            \"url\": \"string\",\n            \"gatewayUrl\": \"string\",\n            \"encryption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"video\",\n          \"playbackId\": \"eaw4nk06ts2d0mzb\",\n          \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n          \"playbackUrl\": \"https://livepeercdn.com/asset/ea03f37e-f861-4cdd-b495-0e60b6d753ad/index.m3u8\",\n          \"downloadUrl\": \"https://livepeercdn.com/asset/eaw4nk06ts2d0mzb/video/download.mp4\",\n          \"playbackPolicy\": {\n            \"type\": \"webhook\",\n            \"webhookId\": \"1bde4o2i6xycudoy\",\n            \"webhookContext\": {\n              \"streamerId\": \"my-custom-id\"\n            },\n            \"refreshInterval\": 600,\n            \"allowedOrigins\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"creatorId\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"profiles\": [\n            {\n              \"bitrate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quality\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fps\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fpsDen\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"gop\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"profile\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"encoder\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bitrate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quality\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fps\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fpsDen\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"gop\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"profile\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"encoder\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"storage\": {\n            \"ipfs\": {\n              \"spec\": {},\n              \"$ref\": \"\",\n              \"nftMetadata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": 1587667174725\n            },\n            \"status\": {\n              \"phase\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tasks\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"progress\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"errorMessage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"status\": {\n            \"phase\": \"deleted\",\n            \"updatedAt\": 1587667174725,\n            \"progress\": 9124.457651247825,\n            \"errorMessage\": \"string\"\n          },\n          \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n          \"createdAt\": 1587667174725,\n          \"createdByTokenName\": \"string\",\n          \"size\": 84934509,\n          \"hash\": [\n            {\n              \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n              \"algorithm\": \"sha256\"\n            },\n            {\n              \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n              \"algorithm\": \"sha256\"\n            }\n          ],\n          \"videoSpec\": {\n            \"format\": \"mp4\",\n            \"duration\": 23.8328,\n            \"bitrate\": 1000000,\n            \"tracks\": [\n              {\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"codec\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startTime\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"duration\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"bitrate\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"pixelFormat\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"fps\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"channels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"sampleRate\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"bitDepth\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"codec\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startTime\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"duration\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"bitrate\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"pixelFormat\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"fps\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"channels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"sampleRate\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"bitDepth\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        \"key_0\": 4438.24778634449,\n        \"key_1\": true,\n        \"key_2\": 2589\n      },\n      \"export\": {\n        \"ipfs\": {\n          \"videoFileCid\": \"Qmabc123xyz341\",\n          \"videoFileUrl\": \"ipfs://Qmabc123xyz341\",\n          \"videoFileGatewayUrl\": \"https://gateway.ipfs.io/ipfs/Qmabc123xyz341\",\n          \"nftMetadataCid\": \"Qmabc123xyz341\",\n          \"nftMetadataUrl\": \"ipfs://Qmabc123xyz341\",\n          \"nftMetadataGatewayUrl\": \"https://gateway.ipfs.io/ipfs/Qmabc123xyz341\"\n        }\n      },\n      \"exportData\": {\n        \"ipfs\": {\n          \"cid\": \"Qmabc123xyz341\"\n        }\n      }\n    }\n  },\n  {\n    \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"type\": \"upload\",\n    \"createdAt\": 1587667174725,\n    \"scheduledAt\": 1587667174725,\n    \"inputAssetId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"outputAssetId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"projectId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"requesterId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"params\": {\n      \"upload\": {\n        \"url\": \"https://cdn.livepeer.com/ABC123/filename.mp4\",\n        \"encryption\": null,\n        \"c2pa\": true,\n        \"profiles\": [\n          {\n            \"bitrate\": 3000000,\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fpsDen\": 1,\n            \"gop\": \"string\",\n            \"profile\": \"H264Baseline\",\n            \"encoder\": \"H.264\"\n          },\n          {\n            \"bitrate\": 3000000,\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fpsDen\": 1,\n            \"gop\": \"string\",\n            \"profile\": \"H264Baseline\",\n            \"encoder\": \"H.264\"\n          }\n        ],\n        \"targetSegmentSizeSecs\": 6\n      },\n      \"export\": {\n        \"custom\": {\n          \"url\": \"https://s3.amazonaws.com/my-bucket/path/filename.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=LLMMB\",\n          \"method\": \"POST\",\n          \"headers\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        }\n      },\n      \"exportData\": {\n        \"content\": {\n          \"data\": \"Hello, World!\"\n        },\n        \"ipfs\": {\n          \"$ref\": \"\",\n          \"pinata\": null\n        },\n        \"type\": \"text/plain\",\n        \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n      },\n      \"transcode-file\": {\n        \"input\": {\n          \"url\": \"https://cdn.livepeer.com/ABC123/filename.mp4\"\n        },\n        \"storage\": {\n          \"url\": \"s3+https://accessKeyId:secretAccessKey@s3Endpoint/bucket\"\n        },\n        \"outputs\": {\n          \"hls\": {\n            \"path\": \"/samplevideo/hls\"\n          },\n          \"mp4\": {\n            \"path\": \"/samplevideo/mp4\"\n          }\n        },\n        \"profiles\": [\n          {\n            \"bitrate\": 3000000,\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fpsDen\": 1,\n            \"gop\": \"string\",\n            \"profile\": \"H264Baseline\",\n            \"encoder\": \"H.264\"\n          },\n          {\n            \"bitrate\": 3000000,\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fpsDen\": 1,\n            \"gop\": \"string\",\n            \"profile\": \"H264Baseline\",\n            \"encoder\": \"H.264\"\n          }\n        ],\n        \"targetSegmentSizeSecs\": 10,\n        \"creatorId\": {\n          \"type\": \"unverified\",\n          \"value\": \"string\"\n        },\n        \"c2pa\": false\n      },\n      \"clip\": {\n        \"url\": \"https://asset-cdn.lp-playback.monster/hls/1bde4o2i6xycudoy/static360p0.mp4\",\n        \"clipStrategy\": {\n          \"startTime\": 1587667174725,\n          \"endTime\": 1587667174725,\n          \"playbackId\": \"eaw4nk06ts2d0mzb\"\n        },\n        \"catalystPipelineStrategy\": \"catalyst_ffmpeg\",\n        \"sessionId\": \"d32ae9e6-c459-4931-9898-e86e2f5e7e16\",\n        \"inputId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n      }\n    },\n    \"status\": {\n      \"phase\": \"pending\",\n      \"updatedAt\": 1587667174725,\n      \"progress\": 0.5,\n      \"errorMessage\": \"Failed to upload file\",\n      \"retries\": 3\n    },\n    \"output\": {\n      \"upload\": {\n        \"assetSpec\": {\n          \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"name\": \"filename.mp4\",\n          \"source\": {\n            \"type\": \"url\",\n            \"url\": \"string\",\n            \"gatewayUrl\": \"string\",\n            \"encryption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"video\",\n          \"playbackId\": \"eaw4nk06ts2d0mzb\",\n          \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n          \"playbackUrl\": \"https://livepeercdn.com/asset/ea03f37e-f861-4cdd-b495-0e60b6d753ad/index.m3u8\",\n          \"downloadUrl\": \"https://livepeercdn.com/asset/eaw4nk06ts2d0mzb/video/download.mp4\",\n          \"playbackPolicy\": {\n            \"type\": \"webhook\",\n            \"webhookId\": \"1bde4o2i6xycudoy\",\n            \"webhookContext\": {\n              \"streamerId\": \"my-custom-id\"\n            },\n            \"refreshInterval\": 600,\n            \"allowedOrigins\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"creatorId\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"profiles\": [\n            {\n              \"bitrate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quality\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fps\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fpsDen\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"gop\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"profile\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"encoder\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bitrate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"quality\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fps\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fpsDen\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"gop\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"profile\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"encoder\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"storage\": {\n            \"ipfs\": {\n              \"spec\": {},\n              \"$ref\": \"\",\n              \"nftMetadata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": 1587667174725\n            },\n            \"status\": {\n              \"phase\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tasks\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"progress\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"errorMessage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"status\": {\n            \"phase\": \"deleting\",\n            \"updatedAt\": 1587667174725,\n            \"progress\": 6834.879656348023,\n            \"errorMessage\": \"string\"\n          },\n          \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n          \"createdAt\": 1587667174725,\n          \"createdByTokenName\": \"string\",\n          \"size\": 84934509,\n          \"hash\": [\n            {\n              \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n              \"algorithm\": \"sha256\"\n            },\n            {\n              \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n              \"algorithm\": \"sha256\"\n            }\n          ],\n          \"videoSpec\": {\n            \"format\": \"mp4\",\n            \"duration\": 23.8328,\n            \"bitrate\": 1000000,\n            \"tracks\": [\n              {\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"codec\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startTime\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"duration\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"bitrate\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"pixelFormat\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"fps\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"channels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"sampleRate\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"bitDepth\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"codec\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startTime\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"duration\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"bitrate\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"pixelFormat\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"fps\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"channels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"sampleRate\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"bitDepth\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      },\n      \"export\": {\n        \"ipfs\": {\n          \"videoFileCid\": \"Qmabc123xyz341\",\n          \"videoFileUrl\": \"ipfs://Qmabc123xyz341\",\n          \"videoFileGatewayUrl\": \"https://gateway.ipfs.io/ipfs/Qmabc123xyz341\",\n          \"nftMetadataCid\": \"Qmabc123xyz341\",\n          \"nftMetadataUrl\": \"ipfs://Qmabc123xyz341\",\n          \"nftMetadataGatewayUrl\": \"https://gateway.ipfs.io/ipfs/Qmabc123xyz341\"\n        }\n      },\n      \"exportData\": {\n        \"ipfs\": {\n          \"cid\": \"Qmabc123xyz341\"\n        }\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee969b72-ab2b-48aa-bafa-10c8e91ce811",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "task"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee6900a5-590e-4e09-9743-ce7b78eae0d2",
+          "name": "Retrieve a Task",
+          "request": {
+            "name": "Retrieve a Task",
+            "description": {},
+            "url": {
+              "path": [
+                "task",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) ID of the task"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "057ab380-a53f-44a3-86c7-ec335e82a3b8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "task",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) ID of the task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n  \"type\": \"upload\",\n  \"createdAt\": 1587667174725,\n  \"scheduledAt\": 1587667174725,\n  \"inputAssetId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n  \"outputAssetId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n  \"projectId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n  \"requesterId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n  \"params\": {\n    \"upload\": {\n      \"url\": \"https://cdn.livepeer.com/ABC123/filename.mp4\",\n      \"encryption\": null,\n      \"c2pa\": true,\n      \"profiles\": [\n        {\n          \"bitrate\": 3000000,\n          \"width\": 1280,\n          \"name\": \"720p\",\n          \"height\": 720,\n          \"quality\": 23,\n          \"fps\": 30,\n          \"fpsDen\": 1,\n          \"gop\": \"string\",\n          \"profile\": \"H264Baseline\",\n          \"encoder\": \"H.264\"\n        },\n        {\n          \"bitrate\": 3000000,\n          \"width\": 1280,\n          \"name\": \"720p\",\n          \"height\": 720,\n          \"quality\": 23,\n          \"fps\": 30,\n          \"fpsDen\": 1,\n          \"gop\": \"string\",\n          \"profile\": \"H264Baseline\",\n          \"encoder\": \"H.264\"\n        }\n      ],\n      \"targetSegmentSizeSecs\": 6\n    },\n    \"export\": {\n      \"custom\": {\n        \"url\": \"https://s3.amazonaws.com/my-bucket/path/filename.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=LLMMB\",\n        \"method\": \"POST\",\n        \"headers\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      }\n    },\n    \"exportData\": {\n      \"content\": {\n        \"data\": \"Hello, World!\"\n      },\n      \"ipfs\": {\n        \"$ref\": \"\",\n        \"pinata\": null\n      },\n      \"type\": \"text/plain\",\n      \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n    },\n    \"transcode-file\": {\n      \"input\": {\n        \"url\": \"https://cdn.livepeer.com/ABC123/filename.mp4\"\n      },\n      \"storage\": {\n        \"url\": \"s3+https://accessKeyId:secretAccessKey@s3Endpoint/bucket\"\n      },\n      \"outputs\": {\n        \"hls\": {\n          \"path\": \"/samplevideo/hls\"\n        },\n        \"mp4\": {\n          \"path\": \"/samplevideo/mp4\"\n        }\n      },\n      \"profiles\": [\n        {\n          \"bitrate\": 3000000,\n          \"width\": 1280,\n          \"name\": \"720p\",\n          \"height\": 720,\n          \"quality\": 23,\n          \"fps\": 30,\n          \"fpsDen\": 1,\n          \"gop\": \"string\",\n          \"profile\": \"H264Baseline\",\n          \"encoder\": \"H.264\"\n        },\n        {\n          \"bitrate\": 3000000,\n          \"width\": 1280,\n          \"name\": \"720p\",\n          \"height\": 720,\n          \"quality\": 23,\n          \"fps\": 30,\n          \"fpsDen\": 1,\n          \"gop\": \"string\",\n          \"profile\": \"H264Baseline\",\n          \"encoder\": \"H.264\"\n        }\n      ],\n      \"targetSegmentSizeSecs\": 10,\n      \"creatorId\": {\n        \"type\": \"unverified\",\n        \"value\": \"string\"\n      },\n      \"c2pa\": false\n    },\n    \"clip\": {\n      \"url\": \"https://asset-cdn.lp-playback.monster/hls/1bde4o2i6xycudoy/static360p0.mp4\",\n      \"clipStrategy\": {\n        \"startTime\": 1587667174725,\n        \"endTime\": 1587667174725,\n        \"playbackId\": \"eaw4nk06ts2d0mzb\"\n      },\n      \"catalystPipelineStrategy\": \"catalyst_ffmpeg\",\n      \"sessionId\": \"d32ae9e6-c459-4931-9898-e86e2f5e7e16\",\n      \"inputId\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n    }\n  },\n  \"status\": {\n    \"phase\": \"pending\",\n    \"updatedAt\": 1587667174725,\n    \"progress\": 0.5,\n    \"errorMessage\": \"Failed to upload file\",\n    \"retries\": 3\n  },\n  \"output\": {\n    \"upload\": {\n      \"assetSpec\": {\n        \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n        \"name\": \"filename.mp4\",\n        \"source\": {\n          \"type\": \"url\",\n          \"url\": \"string\",\n          \"gatewayUrl\": \"string\",\n          \"encryption\": null\n        },\n        \"type\": \"video\",\n        \"playbackId\": \"eaw4nk06ts2d0mzb\",\n        \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n        \"playbackUrl\": \"https://livepeercdn.com/asset/ea03f37e-f861-4cdd-b495-0e60b6d753ad/index.m3u8\",\n        \"downloadUrl\": \"https://livepeercdn.com/asset/eaw4nk06ts2d0mzb/video/download.mp4\",\n        \"playbackPolicy\": {\n          \"type\": \"webhook\",\n          \"webhookId\": \"1bde4o2i6xycudoy\",\n          \"webhookContext\": {\n            \"streamerId\": \"my-custom-id\"\n          },\n          \"refreshInterval\": 600,\n          \"allowedOrigins\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"creatorId\": {\n          \"type\": \"unverified\",\n          \"value\": \"user123\"\n        },\n        \"profiles\": [\n          {\n            \"bitrate\": 3000000,\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fpsDen\": 1,\n            \"gop\": \"string\",\n            \"profile\": \"H264Baseline\",\n            \"encoder\": \"H.264\"\n          },\n          {\n            \"bitrate\": 3000000,\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fpsDen\": 1,\n            \"gop\": \"string\",\n            \"profile\": \"H264Baseline\",\n            \"encoder\": \"H.264\"\n          }\n        ],\n        \"storage\": {\n          \"ipfs\": {\n            \"spec\": {},\n            \"$ref\": \"\",\n            \"nftMetadata\": {\n              \"cid\": \"string\",\n              \"url\": \"string\",\n              \"gatewayUrl\": \"string\"\n            },\n            \"updatedAt\": 1587667174725\n          },\n          \"status\": {\n            \"phase\": \"ready\",\n            \"tasks\": {\n              \"pending\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n              \"last\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n              \"failed\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n            },\n            \"progress\": 0.5,\n            \"errorMessage\": \"Failed to update storage\"\n          }\n        },\n        \"status\": {\n          \"phase\": \"failed\",\n          \"updatedAt\": 1587667174725,\n          \"progress\": 9442.492221291714,\n          \"errorMessage\": \"string\"\n        },\n        \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n        \"createdAt\": 1587667174725,\n        \"createdByTokenName\": \"string\",\n        \"size\": 84934509,\n        \"hash\": [\n          {\n            \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n            \"algorithm\": \"sha256\"\n          },\n          {\n            \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n            \"algorithm\": \"sha256\"\n          }\n        ],\n        \"videoSpec\": {\n          \"format\": \"mp4\",\n          \"duration\": 23.8328,\n          \"bitrate\": 1000000,\n          \"tracks\": [\n            {\n              \"type\": \"video\",\n              \"codec\": \"aac\",\n              \"startTime\": 23.8238,\n              \"duration\": 23.8238,\n              \"bitrate\": 1000000,\n              \"width\": 1920,\n              \"height\": 1080,\n              \"pixelFormat\": \"yuv420p\",\n              \"fps\": 30,\n              \"channels\": 2,\n              \"sampleRate\": 44100,\n              \"bitDepth\": 16\n            },\n            {\n              \"type\": \"video\",\n              \"codec\": \"aac\",\n              \"startTime\": 23.8238,\n              \"duration\": 23.8238,\n              \"bitrate\": 1000000,\n              \"width\": 1920,\n              \"height\": 1080,\n              \"pixelFormat\": \"yuv420p\",\n              \"fps\": 30,\n              \"channels\": 2,\n              \"sampleRate\": 44100,\n              \"bitDepth\": 16\n            }\n          ]\n        }\n      }\n    },\n    \"export\": {\n      \"ipfs\": {\n        \"videoFileCid\": \"Qmabc123xyz341\",\n        \"videoFileUrl\": \"ipfs://Qmabc123xyz341\",\n        \"videoFileGatewayUrl\": \"https://gateway.ipfs.io/ipfs/Qmabc123xyz341\",\n        \"nftMetadataCid\": \"Qmabc123xyz341\",\n        \"nftMetadataUrl\": \"ipfs://Qmabc123xyz341\",\n        \"nftMetadataGatewayUrl\": \"https://gateway.ipfs.io/ipfs/Qmabc123xyz341\"\n      }\n    },\n    \"exportData\": {\n      \"ipfs\": {\n        \"cid\": \"Qmabc123xyz341\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75109c10-c207-457c-be35-c18a6f3de44f",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "task",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) ID of the task"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://livepeer.studio/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2a6dbede-2aa4-4918-b8ed-bb427334362a",
+    "name": "Livepeer API Reference accessControl task API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the Livepeer API reference docs. Here you will find all the\nendpoints exposed on the standard Livepeer API, learn how to use them and\nwhat they return.\n",
+      "type": "text/plain"
+    }
+  }
+}

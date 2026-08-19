@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer API Reference accessControl task API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "task",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/task"
+          },
+          "docs": "Retrieve Tasks"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/task/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the task"
+              }
+            ]
+          },
+          "docs": "Retrieve a Task"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

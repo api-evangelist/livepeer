@@ -1,0 +1,233 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer API Reference accessControl metrics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query realtime viewership",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/data/views/now",
+            "params": [
+              {
+                "name": "playbackId",
+                "value": "",
+                "type": "query",
+                "description": "The playback ID to filter the query results. This can be a canonical\nplayback ID from Livepeer assets or streams, or dStorage identifiers\nfor assets\n"
+              },
+              {
+                "name": "creatorId",
+                "value": "",
+                "type": "query",
+                "description": "The creator ID to filter the query results"
+              },
+              {
+                "name": "breakdownBy[]",
+                "value": "",
+                "type": "query",
+                "description": "The list of fields to break down the query results. Specify this\nquery-string multiple times to break down by multiple fields.\n"
+              }
+            ]
+          },
+          "docs": "Requires a private (non-CORS) API key to be used.\n"
+        },
+        {
+          "info": {
+            "name": "Query viewership metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/data/views/query",
+            "params": [
+              {
+                "name": "playbackId",
+                "value": "",
+                "type": "query",
+                "description": "The playback ID to filter the query results. This can be a canonical\nplayback ID from Livepeer assets or streams, or dStorage identifiers\nfor assets\n"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp for the query range (inclusive)"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp for the query range (exclusive)"
+              },
+              {
+                "name": "timeStep",
+                "value": "",
+                "type": "query",
+                "description": "The time step to aggregate viewership metrics by"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "query",
+                "description": "The asset ID to filter metrics for"
+              },
+              {
+                "name": "streamId",
+                "value": "",
+                "type": "query",
+                "description": "The stream ID to filter metrics for"
+              },
+              {
+                "name": "creatorId",
+                "value": "",
+                "type": "query",
+                "description": "The creator ID to filter the query results"
+              },
+              {
+                "name": "breakdownBy[]",
+                "value": "",
+                "type": "query",
+                "description": "The list of fields to break down the query results. Specify this\nquery-string multiple times to break down by multiple fields.\n"
+              }
+            ]
+          },
+          "docs": "Requires a private (non-CORS) API key to be used.\n"
+        },
+        {
+          "info": {
+            "name": "Query creator viewership metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/data/views/query/creator",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp for the query range (inclusive)"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp for the query range (exclusive)"
+              },
+              {
+                "name": "timeStep",
+                "value": "",
+                "type": "query",
+                "description": "The time step to aggregate viewership metrics by"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "query",
+                "description": "The asset ID to filter metrics for"
+              },
+              {
+                "name": "streamId",
+                "value": "",
+                "type": "query",
+                "description": "The stream ID to filter metrics for"
+              },
+              {
+                "name": "creatorId",
+                "value": "",
+                "type": "query",
+                "description": "The creator ID to filter the query results"
+              },
+              {
+                "name": "breakdownBy[]",
+                "value": "",
+                "type": "query",
+                "description": "The list of fields to break down the query results. Specify this\nquery-string multiple times to break down by multiple fields.\n"
+              }
+            ]
+          },
+          "docs": "Requires a proof of ownership to be sent in the request, which for now is just the assetId or streamId parameters (1 of those must be in the query-string).\n"
+        },
+        {
+          "info": {
+            "name": "Query public total views metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/data/views/query/total/:playbackId",
+            "params": [
+              {
+                "name": "playbackId",
+                "value": "",
+                "type": "path",
+                "description": "The playback ID to filter the query results. This can be a canonical\nplayback ID from Livepeer assets or streams, or dStorage identifiers\nfor assets\n"
+              }
+            ]
+          },
+          "docs": "Allows querying for the public metrics for viewership about a video.\nThis can be called from the frontend with a CORS key, or even\nunauthenticated.\n"
+        },
+        {
+          "info": {
+            "name": "Query usage metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/data/usage/query",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start millis timestamp for the query range (inclusive)\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End millis timestamp for the query range (exclusive)\n"
+              },
+              {
+                "name": "timeStep",
+                "value": "",
+                "type": "query",
+                "description": "The time step to aggregate viewership metrics by\n"
+              },
+              {
+                "name": "creatorId",
+                "value": "",
+                "type": "query",
+                "description": "The creator ID to filter the query results\n"
+              },
+              {
+                "name": "breakdownBy[]",
+                "value": "",
+                "type": "query",
+                "description": "The list of fields to break down the query results. Currently the\nonly supported breakdown is by `creatorId`.\n"
+              }
+            ]
+          },
+          "docs": "Query usage metrics"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

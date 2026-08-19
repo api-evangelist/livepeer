@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer API Reference accessControl transcode API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "transcode",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transcode a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://livepeer.studio/api/transcode",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "`POST /transcode` transcodes a video file and uploads the results to the\nspecified storage service.\n\\\n\\\nTranscoding is asynchronous so you will need to check the status of the\ntask in order to determine when transcoding is complete. The `id` field\nin the response is the unique ID for the transcoding `Task`. The task\nstatus can be queried using the [GET tasks\nendpoint](https://docs.livepeer.org/reference/api/get-tasks):\n\\\n\\\nWhen `status.phase` is `completed`,  transcoding will be complete and\nthe"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

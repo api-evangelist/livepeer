@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer AI Runner accessControl Ethereum API",
+    "version": "0.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ethereum",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transfer LPT tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dream-gateway.livepeer.cloud/transferTokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transfer LPT to another address"
+        },
+        {
+          "info": {
+            "name": "Sign message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dream-gateway.livepeer.cloud/signMessage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sign message with node's private key"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

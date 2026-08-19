@@ -1,0 +1,978 @@
+{
+  "item": [
+    {
+      "id": "3d5efeb2-500a-4bff-a4b3-a809a38ab8cd",
+      "name": "asset",
+      "description": {
+        "content": "Operations related to asset/vod api",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3dba700f-b310-4dd1-85d2-980800994130",
+          "name": "Retrieve assets",
+          "request": {
+            "name": "Retrieve assets",
+            "description": {},
+            "url": {
+              "path": [
+                "asset"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b0aa2b7-ffdd-4b32-a4f4-39258201f2e7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"name\": \"filename.mp4\",\n    \"source\": {\n      \"type\": \"url\",\n      \"url\": \"string\",\n      \"gatewayUrl\": \"string\",\n      \"encryption\": null\n    },\n    \"type\": \"video\",\n    \"playbackId\": \"eaw4nk06ts2d0mzb\",\n    \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n    \"playbackUrl\": \"https://livepeercdn.com/asset/ea03f37e-f861-4cdd-b495-0e60b6d753ad/index.m3u8\",\n    \"downloadUrl\": \"https://livepeercdn.com/asset/eaw4nk06ts2d0mzb/video/download.mp4\",\n    \"playbackPolicy\": {\n      \"type\": \"webhook\",\n      \"webhookId\": \"1bde4o2i6xycudoy\",\n      \"webhookContext\": {\n        \"streamerId\": \"my-custom-id\"\n      },\n      \"refreshInterval\": 600,\n      \"allowedOrigins\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"creatorId\": {\n      \"type\": \"unverified\",\n      \"value\": \"user123\"\n    },\n    \"profiles\": [\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      },\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      }\n    ],\n    \"storage\": {\n      \"ipfs\": {\n        \"spec\": {},\n        \"$ref\": \"\",\n        \"nftMetadata\": {\n          \"cid\": \"string\",\n          \"url\": \"string\",\n          \"gatewayUrl\": \"string\"\n        },\n        \"updatedAt\": 1587667174725\n      },\n      \"status\": {\n        \"phase\": \"ready\",\n        \"tasks\": {\n          \"pending\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"last\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"failed\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n        },\n        \"progress\": 0.5,\n        \"errorMessage\": \"Failed to update storage\"\n      }\n    },\n    \"status\": {\n      \"phase\": \"failed\",\n      \"updatedAt\": 1587667174725,\n      \"progress\": 7470.59589340616,\n      \"errorMessage\": \"string\"\n    },\n    \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"createdAt\": 1587667174725,\n    \"createdByTokenName\": \"string\",\n    \"size\": 84934509,\n    \"hash\": [\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      },\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      }\n    ],\n    \"videoSpec\": {\n      \"format\": \"mp4\",\n      \"duration\": 23.8328,\n      \"bitrate\": 1000000,\n      \"tracks\": [\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        },\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        }\n      ]\n    }\n  },\n  {\n    \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"name\": \"filename.mp4\",\n    \"source\": {\n      \"type\": \"url\",\n      \"url\": \"string\",\n      \"gatewayUrl\": \"string\",\n      \"encryption\": null\n    },\n    \"type\": \"video\",\n    \"playbackId\": \"eaw4nk06ts2d0mzb\",\n    \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n    \"playbackUrl\": \"https://livepeercdn.com/asset/ea03f37e-f861-4cdd-b495-0e60b6d753ad/index.m3u8\",\n    \"downloadUrl\": \"https://livepeercdn.com/asset/eaw4nk06ts2d0mzb/video/download.mp4\",\n    \"playbackPolicy\": {\n      \"type\": \"webhook\",\n      \"webhookId\": \"1bde4o2i6xycudoy\",\n      \"webhookContext\": {\n        \"streamerId\": \"my-custom-id\"\n      },\n      \"refreshInterval\": 600,\n      \"allowedOrigins\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"creatorId\": {\n      \"type\": \"unverified\",\n      \"value\": \"user123\"\n    },\n    \"profiles\": [\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      },\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      }\n    ],\n    \"storage\": {\n      \"ipfs\": {\n        \"spec\": {},\n        \"$ref\": \"\",\n        \"nftMetadata\": {\n          \"cid\": \"string\",\n          \"url\": \"string\",\n          \"gatewayUrl\": \"string\"\n        },\n        \"updatedAt\": 1587667174725\n      },\n      \"status\": {\n        \"phase\": \"ready\",\n        \"tasks\": {\n          \"pending\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"last\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"failed\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n        },\n        \"progress\": 0.5,\n        \"errorMessage\": \"Failed to update storage\"\n      }\n    },\n    \"status\": {\n      \"phase\": \"deleted\",\n      \"updatedAt\": 1587667174725,\n      \"progress\": 1549.1488649758778,\n      \"errorMessage\": \"string\"\n    },\n    \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"createdAt\": 1587667174725,\n    \"createdByTokenName\": \"string\",\n    \"size\": 84934509,\n    \"hash\": [\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      },\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      }\n    ],\n    \"videoSpec\": {\n      \"format\": \"mp4\",\n      \"duration\": 23.8328,\n      \"bitrate\": 1000000,\n      \"tracks\": [\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        },\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46076363-77a2-4a03-a478-ef7c3def4f24",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4627432-cdf7-4230-8bb2-7f5947cbb432",
+          "name": "Upload an asset",
+          "request": {
+            "name": "Upload an asset",
+            "description": {
+              "content": "To upload an asset, your first need to request for a direct upload URL\nand only then actually upload the contents of the asset.\n\\\n\\\nOnce you created a upload link, you have 2 options, resumable or direct\nupload. For a more reliable experience, you should use resumable uploads\nwhich will work better for users with unreliable or slow network\nconnections. If you want a simpler implementation though, you should\njust use a direct upload.\n\n\n## Direct Upload\nFor a direct upload, make a PUT request to the URL received in the url\nfield of the response above, with the raw video file as the request\nbody. response above:\n\n\n## Resumable Upload\nLivepeer supports resumable uploads via Tus. This section provides a\nsimple example of how to use tus-js-client to upload a video file.\n\\\n\\\nFrom the previous section, we generated a URL to upload a video file to\nLivepeer on POST /api/asset/request-upload. You should use the\ntusEndpoint field of the response to upload the video file and track the\nprogress:\n\n```\n# This assumes there is an `input` element of `type=\"file\"` with id\n`fileInput` in the HTML\n\n\nconst input = document.getElementById('fileInput');\n\nconst file = input.files[0];\n\nconst upload = new tus.Upload(file, {\n  endpoint: tusEndpoint, // URL from `tusEndpoint` field in the\n`/request-upload` response\n  metadata: {\n    filename,\n    filetype: 'video/mp4',\n  },\n  uploadSize: file.size,\n  onError(err) {\n    console.error('Error uploading file:', err);\n  },\n  onProgress(bytesUploaded, bytesTotal) {\n    const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);\n    console.log('Uploaded ' + percentage + '%');\n  },\n  onSuccess() {\n    console.log('Upload finished:', upload.url);\n  },\n});\n\nconst previousUploads = await upload.findPreviousUploads();\n\nif (previousUploads.length > 0) {\n  upload.resumeFromPreviousUpload(previousUploads[0]);\n}\n\nupload.start();\n\n```\n\n> Note: If you are using tus from node.js, you need to add a custom URL\nstorage to enable resuming from previous uploads. On the browser, this\nis enabled by default using local storage. In node.js, add urlStorage:\nnew tus.FileUrlStorage(\"path/to/tmp/file\"), to the UploadFile object\ndefinition above.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asset",
+                "request-upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"staticMp4\": \"<boolean>\",\n  \"playbackPolicy\": {\n    \"type\": \"<string>\",\n    \"webhookId\": \"<string>\",\n    \"webhookContext\": {\n      \"key_0\": true,\n      \"key_1\": 5645\n    },\n    \"refreshInterval\": \"<number>\",\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"creatorId\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"storage\": {\n    \"ipfs\": {\n      \"spec\": \"<null>\"\n    }\n  },\n  \"encryption\": {\n    \"encryptedKey\": \"<string>\"\n  },\n  \"c2pa\": \"<boolean>\",\n  \"profiles\": [\n    {\n      \"bitrate\": \"<integer>\",\n      \"width\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"height\": \"<integer>\",\n      \"quality\": \"<integer>\",\n      \"fps\": \"<integer>\",\n      \"fpsDen\": \"<integer>\",\n      \"gop\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"encoder\": \"<string>\"\n    },\n    {\n      \"bitrate\": \"<integer>\",\n      \"width\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"height\": \"<integer>\",\n      \"quality\": \"<integer>\",\n      \"fps\": \"<integer>\",\n      \"fpsDen\": \"<integer>\",\n      \"gop\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"encoder\": \"<string>\"\n    }\n  ],\n  \"targetSegmentSizeSecs\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6a294779-99b8-43e1-9666-6f0c5a62eae2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "request-upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"filename.mp4\",\n  \"staticMp4\": true,\n  \"playbackPolicy\": {\n    \"type\": \"webhook\",\n    \"webhookId\": \"1bde4o2i6xycudoy\",\n    \"webhookContext\": {\n      \"streamerId\": \"my-custom-id\"\n    },\n    \"refreshInterval\": 600,\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"creatorId\": {\n    \"type\": \"unverified\",\n    \"value\": \"string\"\n  },\n  \"storage\": {\n    \"ipfs\": {\n      \"spec\": \"<null>\"\n    }\n  },\n  \"encryption\": {\n    \"encryptedKey\": \"<string>\"\n  },\n  \"c2pa\": \"<boolean>\",\n  \"profiles\": [\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    },\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    }\n  ],\n  \"targetSegmentSizeSecs\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"https://origin.livepeer.com/api/asset/upload/direct?token=eyJhbGciOiJIUzI1NiJ9.eyJtc2ciOiJoZWxsbyBoYWNrZXIsIHRoZXJlJ3Mgbm90aGluZyBmb3IgeW91IGhlcmUg8J-YhiJ9.1YDjmXsqLcgNyMSzT4kXl_kIni46_EuGX_xfqmC7e0Q\",\n  \"tusEndpoint\": \"https://origin.livepeer.com/api/asset/upload/tus?token=eyJhbGciOiJIUzI1NiJ9.eyJtc2ciOiJoZWxsbyBoYWNrZXIsIHRoZXJlJ3Mgbm90aGluZyBmb3IgeW91IGhlcmUg8J-YhiJ9.1YDjmXsqLcgNyMSzT4kXl_kIni46_EuGX_xfqmC7e0Q\",\n  \"asset\": {\n    \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"name\": \"filename.mp4\",\n    \"source\": {\n      \"type\": \"url\",\n      \"url\": \"string\",\n      \"gatewayUrl\": \"string\",\n      \"encryption\": null\n    },\n    \"type\": \"video\",\n    \"playbackId\": \"eaw4nk06ts2d0mzb\",\n    \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n    \"playbackUrl\": \"https://livepeercdn.com/asset/ea03f37e-f861-4cdd-b495-0e60b6d753ad/index.m3u8\",\n    \"downloadUrl\": \"https://livepeercdn.com/asset/eaw4nk06ts2d0mzb/video/download.mp4\",\n    \"playbackPolicy\": {\n      \"type\": \"webhook\",\n      \"webhookId\": \"1bde4o2i6xycudoy\",\n      \"webhookContext\": {\n        \"streamerId\": \"my-custom-id\"\n      },\n      \"refreshInterval\": 600,\n      \"allowedOrigins\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"creatorId\": {\n      \"type\": \"unverified\",\n      \"value\": \"user123\"\n    },\n    \"profiles\": [\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      },\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      }\n    ],\n    \"storage\": {\n      \"ipfs\": {\n        \"spec\": {},\n        \"$ref\": \"\",\n        \"nftMetadata\": {\n          \"cid\": \"string\",\n          \"url\": \"string\",\n          \"gatewayUrl\": \"string\"\n        },\n        \"updatedAt\": 1587667174725\n      },\n      \"status\": {\n        \"phase\": \"ready\",\n        \"tasks\": {\n          \"pending\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"last\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"failed\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n        },\n        \"progress\": 0.5,\n        \"errorMessage\": \"Failed to update storage\"\n      }\n    },\n    \"status\": {\n      \"phase\": \"ready\",\n      \"updatedAt\": 1587667174725,\n      \"progress\": 8987.748524557297,\n      \"errorMessage\": \"string\"\n    },\n    \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"createdAt\": 1587667174725,\n    \"createdByTokenName\": \"string\",\n    \"size\": 84934509,\n    \"hash\": [\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      },\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      }\n    ],\n    \"videoSpec\": {\n      \"format\": \"mp4\",\n      \"duration\": 23.8328,\n      \"bitrate\": 1000000,\n      \"tracks\": [\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        },\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        }\n      ]\n    }\n  },\n  \"task\": {\n    \"id\": \"34d7618e-fd42-4798-acf5-19504616a11e\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6820b55c-7d9c-4703-85c6-d581497a62c1",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "request-upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"filename.mp4\",\n  \"staticMp4\": true,\n  \"playbackPolicy\": {\n    \"type\": \"webhook\",\n    \"webhookId\": \"1bde4o2i6xycudoy\",\n    \"webhookContext\": {\n      \"streamerId\": \"my-custom-id\"\n    },\n    \"refreshInterval\": 600,\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"creatorId\": {\n    \"type\": \"unverified\",\n    \"value\": \"string\"\n  },\n  \"storage\": {\n    \"ipfs\": {\n      \"spec\": \"<null>\"\n    }\n  },\n  \"encryption\": {\n    \"encryptedKey\": \"<string>\"\n  },\n  \"c2pa\": \"<boolean>\",\n  \"profiles\": [\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    },\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    }\n  ],\n  \"targetSegmentSizeSecs\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c9b3c8f-3947-4813-84c8-51aff6004c33",
+          "name": "Upload asset via URL",
+          "request": {
+            "name": "Upload asset via URL",
+            "description": {},
+            "url": {
+              "path": [
+                "asset",
+                "upload",
+                "url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"staticMp4\": \"<boolean>\",\n  \"playbackPolicy\": {\n    \"type\": \"<string>\",\n    \"webhookId\": \"<string>\",\n    \"webhookContext\": {\n      \"key_0\": \"string\"\n    },\n    \"refreshInterval\": \"<number>\",\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"creatorId\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"storage\": {\n    \"ipfs\": {\n      \"spec\": \"<null>\"\n    }\n  },\n  \"encryption\": {\n    \"encryptedKey\": \"<string>\"\n  },\n  \"c2pa\": \"<boolean>\",\n  \"profiles\": [\n    {\n      \"bitrate\": \"<integer>\",\n      \"width\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"height\": \"<integer>\",\n      \"quality\": \"<integer>\",\n      \"fps\": \"<integer>\",\n      \"fpsDen\": \"<integer>\",\n      \"gop\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"encoder\": \"<string>\"\n    },\n    {\n      \"bitrate\": \"<integer>\",\n      \"width\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"height\": \"<integer>\",\n      \"quality\": \"<integer>\",\n      \"fps\": \"<integer>\",\n      \"fpsDen\": \"<integer>\",\n      \"gop\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"encoder\": \"<string>\"\n    }\n  ],\n  \"targetSegmentSizeSecs\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b0f00e5-2ffc-4a36-b771-dd34ac18a1a2",
+              "name": "Upload in progress",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "upload",
+                    "url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"filename.mp4\",\n  \"url\": \"https://s3.amazonaws.com/my-bucket/path/filename.mp4\",\n  \"staticMp4\": true,\n  \"playbackPolicy\": {\n    \"type\": \"webhook\",\n    \"webhookId\": \"1bde4o2i6xycudoy\",\n    \"webhookContext\": {\n      \"streamerId\": \"my-custom-id\"\n    },\n    \"refreshInterval\": 600,\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"creatorId\": {\n    \"type\": \"unverified\",\n    \"value\": \"string\"\n  },\n  \"storage\": {\n    \"ipfs\": {\n      \"spec\": null\n    }\n  },\n  \"encryption\": {\n    \"encryptedKey\": \"string\"\n  },\n  \"c2pa\": true,\n  \"profiles\": [\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    },\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    }\n  ],\n  \"targetSegmentSizeSecs\": 3713.0896659378864\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"asset\": {\n    \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"name\": \"filename.mp4\",\n    \"source\": {\n      \"type\": \"url\",\n      \"url\": \"string\",\n      \"gatewayUrl\": \"string\",\n      \"encryption\": null\n    },\n    \"type\": \"video\",\n    \"playbackId\": \"eaw4nk06ts2d0mzb\",\n    \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n    \"playbackUrl\": \"https://livepeercdn.com/asset/ea03f37e-f861-4cdd-b495-0e60b6d753ad/index.m3u8\",\n    \"downloadUrl\": \"https://livepeercdn.com/asset/eaw4nk06ts2d0mzb/video/download.mp4\",\n    \"playbackPolicy\": {\n      \"type\": \"webhook\",\n      \"webhookId\": \"1bde4o2i6xycudoy\",\n      \"webhookContext\": {\n        \"streamerId\": \"my-custom-id\"\n      },\n      \"refreshInterval\": 600,\n      \"allowedOrigins\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"creatorId\": {\n      \"type\": \"unverified\",\n      \"value\": \"user123\"\n    },\n    \"profiles\": [\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      },\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      }\n    ],\n    \"storage\": {\n      \"ipfs\": {\n        \"spec\": {},\n        \"$ref\": \"\",\n        \"nftMetadata\": {\n          \"cid\": \"string\",\n          \"url\": \"string\",\n          \"gatewayUrl\": \"string\"\n        },\n        \"updatedAt\": 1587667174725\n      },\n      \"status\": {\n        \"phase\": \"ready\",\n        \"tasks\": {\n          \"pending\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"last\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"failed\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n        },\n        \"progress\": 0.5,\n        \"errorMessage\": \"Failed to update storage\"\n      }\n    },\n    \"status\": {\n      \"phase\": \"deleting\",\n      \"updatedAt\": 1587667174725,\n      \"progress\": 2453.154459939383,\n      \"errorMessage\": \"string\"\n    },\n    \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"createdAt\": 1587667174725,\n    \"createdByTokenName\": \"string\",\n    \"size\": 84934509,\n    \"hash\": [\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      },\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      }\n    ],\n    \"videoSpec\": {\n      \"format\": \"mp4\",\n      \"duration\": 23.8328,\n      \"bitrate\": 1000000,\n      \"tracks\": [\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        },\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        }\n      ]\n    }\n  },\n  \"task\": {\n    \"id\": \"34d7618e-fd42-4798-acf5-19504616a11e\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bc80e69-cba9-4d81-bfc7-3bdabbcc3aac",
+              "name": "Upload started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "upload",
+                    "url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"filename.mp4\",\n  \"url\": \"https://s3.amazonaws.com/my-bucket/path/filename.mp4\",\n  \"staticMp4\": true,\n  \"playbackPolicy\": {\n    \"type\": \"webhook\",\n    \"webhookId\": \"1bde4o2i6xycudoy\",\n    \"webhookContext\": {\n      \"streamerId\": \"my-custom-id\"\n    },\n    \"refreshInterval\": 600,\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"creatorId\": {\n    \"type\": \"unverified\",\n    \"value\": \"string\"\n  },\n  \"storage\": {\n    \"ipfs\": {\n      \"spec\": null\n    }\n  },\n  \"encryption\": {\n    \"encryptedKey\": \"string\"\n  },\n  \"c2pa\": true,\n  \"profiles\": [\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    },\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    }\n  ],\n  \"targetSegmentSizeSecs\": 3713.0896659378864\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"asset\": {\n    \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"name\": \"filename.mp4\",\n    \"source\": {\n      \"type\": \"url\",\n      \"url\": \"string\",\n      \"gatewayUrl\": \"string\",\n      \"encryption\": null\n    },\n    \"type\": \"video\",\n    \"playbackId\": \"eaw4nk06ts2d0mzb\",\n    \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n    \"playbackUrl\": \"https://livepeercdn.com/asset/ea03f37e-f861-4cdd-b495-0e60b6d753ad/index.m3u8\",\n    \"downloadUrl\": \"https://livepeercdn.com/asset/eaw4nk06ts2d0mzb/video/download.mp4\",\n    \"playbackPolicy\": {\n      \"type\": \"webhook\",\n      \"webhookId\": \"1bde4o2i6xycudoy\",\n      \"webhookContext\": {\n        \"streamerId\": \"my-custom-id\"\n      },\n      \"refreshInterval\": 600,\n      \"allowedOrigins\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"creatorId\": {\n      \"type\": \"unverified\",\n      \"value\": \"user123\"\n    },\n    \"profiles\": [\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      },\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      }\n    ],\n    \"storage\": {\n      \"ipfs\": {\n        \"spec\": {},\n        \"$ref\": \"\",\n        \"nftMetadata\": {\n          \"cid\": \"string\",\n          \"url\": \"string\",\n          \"gatewayUrl\": \"string\"\n        },\n        \"updatedAt\": 1587667174725\n      },\n      \"status\": {\n        \"phase\": \"ready\",\n        \"tasks\": {\n          \"pending\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"last\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"failed\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n        },\n        \"progress\": 0.5,\n        \"errorMessage\": \"Failed to update storage\"\n      }\n    },\n    \"status\": {\n      \"phase\": \"deleting\",\n      \"updatedAt\": 1587667174725,\n      \"progress\": 2453.154459939383,\n      \"errorMessage\": \"string\"\n    },\n    \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"createdAt\": 1587667174725,\n    \"createdByTokenName\": \"string\",\n    \"size\": 84934509,\n    \"hash\": [\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      },\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      }\n    ],\n    \"videoSpec\": {\n      \"format\": \"mp4\",\n      \"duration\": 23.8328,\n      \"bitrate\": 1000000,\n      \"tracks\": [\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        },\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        }\n      ]\n    }\n  },\n  \"task\": {\n    \"id\": \"34d7618e-fd42-4798-acf5-19504616a11e\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcbe973e-948a-4fca-bf09-ba11c74a3502",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "upload",
+                    "url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"filename.mp4\",\n  \"url\": \"https://s3.amazonaws.com/my-bucket/path/filename.mp4\",\n  \"staticMp4\": true,\n  \"playbackPolicy\": {\n    \"type\": \"webhook\",\n    \"webhookId\": \"1bde4o2i6xycudoy\",\n    \"webhookContext\": {\n      \"streamerId\": \"my-custom-id\"\n    },\n    \"refreshInterval\": 600,\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"creatorId\": {\n    \"type\": \"unverified\",\n    \"value\": \"string\"\n  },\n  \"storage\": {\n    \"ipfs\": {\n      \"spec\": null\n    }\n  },\n  \"encryption\": {\n    \"encryptedKey\": \"string\"\n  },\n  \"c2pa\": true,\n  \"profiles\": [\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    },\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    }\n  ],\n  \"targetSegmentSizeSecs\": 3713.0896659378864\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85822055-eff8-467a-86e1-c440fe9c3025",
+          "name": "Retrieves an asset",
+          "request": {
+            "name": "Retrieves an asset",
+            "description": {},
+            "url": {
+              "path": [
+                "asset",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) ID of the asset"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe4a7ed0-edb3-4c3e-852d-0d02e95d56b0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) ID of the asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n  \"name\": \"filename.mp4\",\n  \"source\": {\n    \"type\": \"url\",\n    \"url\": \"string\",\n    \"gatewayUrl\": \"string\",\n    \"encryption\": null\n  },\n  \"type\": \"video\",\n  \"playbackId\": \"eaw4nk06ts2d0mzb\",\n  \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n  \"playbackUrl\": \"https://livepeercdn.com/asset/ea03f37e-f861-4cdd-b495-0e60b6d753ad/index.m3u8\",\n  \"downloadUrl\": \"https://livepeercdn.com/asset/eaw4nk06ts2d0mzb/video/download.mp4\",\n  \"playbackPolicy\": {\n    \"type\": \"webhook\",\n    \"webhookId\": \"1bde4o2i6xycudoy\",\n    \"webhookContext\": {\n      \"streamerId\": \"my-custom-id\"\n    },\n    \"refreshInterval\": 600,\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"creatorId\": {\n    \"type\": \"unverified\",\n    \"value\": \"user123\"\n  },\n  \"profiles\": [\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    },\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    }\n  ],\n  \"storage\": {\n    \"ipfs\": {\n      \"spec\": {},\n      \"$ref\": \"\",\n      \"nftMetadata\": {\n        \"cid\": \"string\",\n        \"url\": \"string\",\n        \"gatewayUrl\": \"string\"\n      },\n      \"updatedAt\": 1587667174725\n    },\n    \"status\": {\n      \"phase\": \"ready\",\n      \"tasks\": {\n        \"pending\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n        \"last\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n        \"failed\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n      },\n      \"progress\": 0.5,\n      \"errorMessage\": \"Failed to update storage\"\n    }\n  },\n  \"status\": {\n    \"phase\": \"ready\",\n    \"updatedAt\": 1587667174725,\n    \"progress\": 8574.500377359633,\n    \"errorMessage\": \"string\"\n  },\n  \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n  \"createdAt\": 1587667174725,\n  \"createdByTokenName\": \"string\",\n  \"size\": 84934509,\n  \"hash\": [\n    {\n      \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n      \"algorithm\": \"sha256\"\n    },\n    {\n      \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n      \"algorithm\": \"sha256\"\n    }\n  ],\n  \"videoSpec\": {\n    \"format\": \"mp4\",\n    \"duration\": 23.8328,\n    \"bitrate\": 1000000,\n    \"tracks\": [\n      {\n        \"type\": \"video\",\n        \"codec\": \"aac\",\n        \"startTime\": 23.8238,\n        \"duration\": 23.8238,\n        \"bitrate\": 1000000,\n        \"width\": 1920,\n        \"height\": 1080,\n        \"pixelFormat\": \"yuv420p\",\n        \"fps\": 30,\n        \"channels\": 2,\n        \"sampleRate\": 44100,\n        \"bitDepth\": 16\n      },\n      {\n        \"type\": \"video\",\n        \"codec\": \"aac\",\n        \"startTime\": 23.8238,\n        \"duration\": 23.8238,\n        \"bitrate\": 1000000,\n        \"width\": 1920,\n        \"height\": 1080,\n        \"pixelFormat\": \"yuv420p\",\n        \"fps\": 30,\n        \"channels\": 2,\n        \"sampleRate\": 44100,\n        \"bitDepth\": 16\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65b8da40-928d-45d4-b664-4d973485a8ba",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) ID of the asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4cb6ea88-18fe-4b9b-854e-1e04fca38987",
+          "name": "Patch an asset",
+          "request": {
+            "name": "Patch an asset",
+            "description": {},
+            "url": {
+              "path": [
+                "asset",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) ID of the asset"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"creatorId\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"playbackPolicy\": {\n    \"type\": \"<string>\",\n    \"webhookId\": \"<string>\",\n    \"webhookContext\": {\n      \"key_0\": \"string\",\n      \"key_1\": true\n    },\n    \"refreshInterval\": \"<number>\",\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"storage\": {\n    \"ipfs\": {\n      \"spec\": \"<null>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0a010970-e20a-45f6-970b-649bdf2dba5f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) ID of the asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"filename.mp4\",\n  \"creatorId\": {\n    \"type\": \"unverified\",\n    \"value\": \"string\"\n  },\n  \"playbackPolicy\": {\n    \"type\": \"webhook\",\n    \"webhookId\": \"1bde4o2i6xycudoy\",\n    \"webhookContext\": {\n      \"streamerId\": \"my-custom-id\"\n    },\n    \"refreshInterval\": 600,\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"storage\": {\n    \"ipfs\": {\n      \"spec\": null\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n  \"name\": \"filename.mp4\",\n  \"source\": {\n    \"type\": \"url\",\n    \"url\": \"string\",\n    \"gatewayUrl\": \"string\",\n    \"encryption\": null\n  },\n  \"type\": \"video\",\n  \"playbackId\": \"eaw4nk06ts2d0mzb\",\n  \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n  \"playbackUrl\": \"https://livepeercdn.com/asset/ea03f37e-f861-4cdd-b495-0e60b6d753ad/index.m3u8\",\n  \"downloadUrl\": \"https://livepeercdn.com/asset/eaw4nk06ts2d0mzb/video/download.mp4\",\n  \"playbackPolicy\": {\n    \"type\": \"webhook\",\n    \"webhookId\": \"1bde4o2i6xycudoy\",\n    \"webhookContext\": {\n      \"streamerId\": \"my-custom-id\"\n    },\n    \"refreshInterval\": 600,\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"creatorId\": {\n    \"type\": \"unverified\",\n    \"value\": \"user123\"\n  },\n  \"profiles\": [\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    },\n    {\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"name\": \"720p\",\n      \"height\": 720,\n      \"quality\": 23,\n      \"fps\": 30,\n      \"fpsDen\": 1,\n      \"gop\": \"string\",\n      \"profile\": \"H264Baseline\",\n      \"encoder\": \"H.264\"\n    }\n  ],\n  \"storage\": {\n    \"ipfs\": {\n      \"spec\": {},\n      \"$ref\": \"\",\n      \"nftMetadata\": {\n        \"cid\": \"string\",\n        \"url\": \"string\",\n        \"gatewayUrl\": \"string\"\n      },\n      \"updatedAt\": 1587667174725\n    },\n    \"status\": {\n      \"phase\": \"ready\",\n      \"tasks\": {\n        \"pending\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n        \"last\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n        \"failed\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n      },\n      \"progress\": 0.5,\n      \"errorMessage\": \"Failed to update storage\"\n    }\n  },\n  \"status\": {\n    \"phase\": \"ready\",\n    \"updatedAt\": 1587667174725,\n    \"progress\": 8574.500377359633,\n    \"errorMessage\": \"string\"\n  },\n  \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n  \"createdAt\": 1587667174725,\n  \"createdByTokenName\": \"string\",\n  \"size\": 84934509,\n  \"hash\": [\n    {\n      \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n      \"algorithm\": \"sha256\"\n    },\n    {\n      \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n      \"algorithm\": \"sha256\"\n    }\n  ],\n  \"videoSpec\": {\n    \"format\": \"mp4\",\n    \"duration\": 23.8328,\n    \"bitrate\": 1000000,\n    \"tracks\": [\n      {\n        \"type\": \"video\",\n        \"codec\": \"aac\",\n        \"startTime\": 23.8238,\n        \"duration\": 23.8238,\n        \"bitrate\": 1000000,\n        \"width\": 1920,\n        \"height\": 1080,\n        \"pixelFormat\": \"yuv420p\",\n        \"fps\": 30,\n        \"channels\": 2,\n        \"sampleRate\": 44100,\n        \"bitDepth\": 16\n      },\n      {\n        \"type\": \"video\",\n        \"codec\": \"aac\",\n        \"startTime\": 23.8238,\n        \"duration\": 23.8238,\n        \"bitrate\": 1000000,\n        \"width\": 1920,\n        \"height\": 1080,\n        \"pixelFormat\": \"yuv420p\",\n        \"fps\": 30,\n        \"channels\": 2,\n        \"sampleRate\": 44100,\n        \"bitDepth\": 16\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0c5d05e-4492-4d1a-b27f-b53d652a212e",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) ID of the asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"filename.mp4\",\n  \"creatorId\": {\n    \"type\": \"unverified\",\n    \"value\": \"string\"\n  },\n  \"playbackPolicy\": {\n    \"type\": \"webhook\",\n    \"webhookId\": \"1bde4o2i6xycudoy\",\n    \"webhookContext\": {\n      \"streamerId\": \"my-custom-id\"\n    },\n    \"refreshInterval\": 600,\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"storage\": {\n    \"ipfs\": {\n      \"spec\": null\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0902894b-891f-4d99-8ebc-8925cc0137f8",
+          "name": "Delete an asset",
+          "request": {
+            "name": "Delete an asset",
+            "description": {},
+            "url": {
+              "path": [
+                "asset",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) ID of the asset"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68242d34-b670-4c68-8db4-164d3fdb6600",
+              "name": "Success (No content)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) ID of the asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cdadc840-f6fe-4d05-be9a-427d9ad23a1c",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) ID of the asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://livepeer.studio/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "18213ca8-f67d-4dee-844a-2ccfb3e67a7e",
+    "name": "Livepeer API Reference accessControl asset API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the Livepeer API reference docs. Here you will find all the\nendpoints exposed on the standard Livepeer API, learn how to use them and\nwhat they return.\n",
+      "type": "text/plain"
+    }
+  }
+}

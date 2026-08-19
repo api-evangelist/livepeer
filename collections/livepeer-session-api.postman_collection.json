@@ -1,0 +1,617 @@
+{
+  "item": [
+    {
+      "id": "ac130d3a-01fc-4a6f-8133-f57311bc0fb5",
+      "name": "session",
+      "description": {
+        "content": "Operations related to session api",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "16f6c733-0979-41bc-b8c8-c25f5db31447",
+          "name": "Retrieve clips of a session",
+          "request": {
+            "name": "Retrieve clips of a session",
+            "description": {},
+            "url": {
+              "path": [
+                "session",
+                ":id",
+                "clips"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the parent session"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a079dd6-ca42-458b-9678-2e0c459f1c27",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session",
+                    ":id",
+                    "clips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the parent session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"name\": \"filename.mp4\",\n    \"source\": {\n      \"type\": \"url\",\n      \"url\": \"string\",\n      \"gatewayUrl\": \"string\",\n      \"encryption\": null\n    },\n    \"type\": \"video\",\n    \"playbackId\": \"eaw4nk06ts2d0mzb\",\n    \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n    \"playbackUrl\": \"https://livepeercdn.com/asset/ea03f37e-f861-4cdd-b495-0e60b6d753ad/index.m3u8\",\n    \"downloadUrl\": \"https://livepeercdn.com/asset/eaw4nk06ts2d0mzb/video/download.mp4\",\n    \"playbackPolicy\": {\n      \"type\": \"webhook\",\n      \"webhookId\": \"1bde4o2i6xycudoy\",\n      \"webhookContext\": {\n        \"streamerId\": \"my-custom-id\"\n      },\n      \"refreshInterval\": 600,\n      \"allowedOrigins\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"creatorId\": {\n      \"type\": \"unverified\",\n      \"value\": \"user123\"\n    },\n    \"profiles\": [\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      },\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      }\n    ],\n    \"storage\": {\n      \"ipfs\": {\n        \"spec\": {},\n        \"$ref\": \"\",\n        \"nftMetadata\": {\n          \"cid\": \"string\",\n          \"url\": \"string\",\n          \"gatewayUrl\": \"string\"\n        },\n        \"updatedAt\": 1587667174725\n      },\n      \"status\": {\n        \"phase\": \"ready\",\n        \"tasks\": {\n          \"pending\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"last\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"failed\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n        },\n        \"progress\": 0.5,\n        \"errorMessage\": \"Failed to update storage\"\n      }\n    },\n    \"status\": {\n      \"phase\": \"failed\",\n      \"updatedAt\": 1587667174725,\n      \"progress\": 9741.669061849594,\n      \"errorMessage\": \"string\"\n    },\n    \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"createdAt\": 1587667174725,\n    \"createdByTokenName\": \"string\",\n    \"size\": 84934509,\n    \"hash\": [\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      },\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      }\n    ],\n    \"videoSpec\": {\n      \"format\": \"mp4\",\n      \"duration\": 23.8328,\n      \"bitrate\": 1000000,\n      \"tracks\": [\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        },\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        }\n      ]\n    }\n  },\n  {\n    \"id\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n    \"name\": \"filename.mp4\",\n    \"source\": {\n      \"type\": \"url\",\n      \"url\": \"string\",\n      \"gatewayUrl\": \"string\",\n      \"encryption\": null\n    },\n    \"type\": \"video\",\n    \"playbackId\": \"eaw4nk06ts2d0mzb\",\n    \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n    \"playbackUrl\": \"https://livepeercdn.com/asset/ea03f37e-f861-4cdd-b495-0e60b6d753ad/index.m3u8\",\n    \"downloadUrl\": \"https://livepeercdn.com/asset/eaw4nk06ts2d0mzb/video/download.mp4\",\n    \"playbackPolicy\": {\n      \"type\": \"webhook\",\n      \"webhookId\": \"1bde4o2i6xycudoy\",\n      \"webhookContext\": {\n        \"streamerId\": \"my-custom-id\"\n      },\n      \"refreshInterval\": 600,\n      \"allowedOrigins\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"creatorId\": {\n      \"type\": \"unverified\",\n      \"value\": \"user123\"\n    },\n    \"profiles\": [\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      },\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      }\n    ],\n    \"storage\": {\n      \"ipfs\": {\n        \"spec\": {},\n        \"$ref\": \"\",\n        \"nftMetadata\": {\n          \"cid\": \"string\",\n          \"url\": \"string\",\n          \"gatewayUrl\": \"string\"\n        },\n        \"updatedAt\": 1587667174725\n      },\n      \"status\": {\n        \"phase\": \"ready\",\n        \"tasks\": {\n          \"pending\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"last\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\",\n          \"failed\": \"09F8B46C-61A0-4254-9875-F71F4C605BC7\"\n        },\n        \"progress\": 0.5,\n        \"errorMessage\": \"Failed to update storage\"\n      }\n    },\n    \"status\": {\n      \"phase\": \"deleted\",\n      \"updatedAt\": 1587667174725,\n      \"progress\": 711.2148894775871,\n      \"errorMessage\": \"string\"\n    },\n    \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"createdAt\": 1587667174725,\n    \"createdByTokenName\": \"string\",\n    \"size\": 84934509,\n    \"hash\": [\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      },\n      {\n        \"hash\": \"9b560b28b85378a5004117539196ab24e21bbd75b0e9eb1a8bc7c5fd80dc5b57\",\n        \"algorithm\": \"sha256\"\n      }\n    ],\n    \"videoSpec\": {\n      \"format\": \"mp4\",\n      \"duration\": 23.8328,\n      \"bitrate\": 1000000,\n      \"tracks\": [\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        },\n        {\n          \"type\": \"video\",\n          \"codec\": \"aac\",\n          \"startTime\": 23.8238,\n          \"duration\": 23.8238,\n          \"bitrate\": 1000000,\n          \"width\": 1920,\n          \"height\": 1080,\n          \"pixelFormat\": \"yuv420p\",\n          \"fps\": 30,\n          \"channels\": 2,\n          \"sampleRate\": 44100,\n          \"bitDepth\": 16\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "930dd826-632c-47d9-b8f6-5d6f3352df5c",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session",
+                    ":id",
+                    "clips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the parent session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8617573d-be1c-493f-8cc9-f95c038da121",
+          "name": "Retrieve sessions",
+          "request": {
+            "name": "Retrieve sessions",
+            "description": {},
+            "url": {
+              "path": [
+                "session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7af336c2-0800-4bee-89e8-f7475a76fdcb",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"test_session\",\n    \"id\": \"de7818e7-610a-4057-8f6f-b785dc1e6f88\",\n    \"kind\": \"stream\",\n    \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n    \"lastSeen\": 1587667174725,\n    \"sourceSegments\": 1,\n    \"transcodedSegments\": 2,\n    \"sourceSegmentsDuration\": 1,\n    \"transcodedSegmentsDuration\": 2,\n    \"sourceBytes\": 1,\n    \"transcodedBytes\": 2,\n    \"ingestRate\": 1,\n    \"outgoingRate\": 2,\n    \"isHealthy\": null,\n    \"issues\": null,\n    \"createdAt\": 1587667174725,\n    \"parentId\": \"de7818e7-610a-4057-8f6f-b785dc1e6f88\",\n    \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"record\": false,\n    \"recordingStatus\": \"failed\",\n    \"recordingUrl\": \"string\",\n    \"mp4Url\": \"string\",\n    \"playbackId\": \"eaw4nk06ts2d0mzb\",\n    \"profiles\": [\n      {\n        \"name\": \"240p0\",\n        \"fps\": 0,\n        \"bitrate\": 250000,\n        \"width\": 426,\n        \"height\": 240\n      },\n      {\n        \"name\": \"360p0\",\n        \"fps\": 0,\n        \"bitrate\": 800000,\n        \"width\": 640,\n        \"height\": 360\n      },\n      {\n        \"name\": \"480p0\",\n        \"fps\": 0,\n        \"bitrate\": 1600000,\n        \"width\": 854,\n        \"height\": 480\n      },\n      {\n        \"name\": \"720p0\",\n        \"fps\": 0,\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"height\": 720\n      }\n    ],\n    \"recordingSpec\": {\n      \"profiles\": [\n        {\n          \"bitrate\": 3000000,\n          \"width\": 1280,\n          \"name\": \"720p\",\n          \"height\": 720,\n          \"quality\": 23,\n          \"fps\": 30,\n          \"fpsDen\": 1,\n          \"gop\": \"string\",\n          \"profile\": \"H264Baseline\",\n          \"encoder\": \"H.264\"\n        },\n        {\n          \"bitrate\": 3000000,\n          \"width\": 1280,\n          \"name\": \"720p\",\n          \"height\": 720,\n          \"quality\": 23,\n          \"fps\": 30,\n          \"fpsDen\": 1,\n          \"gop\": \"string\",\n          \"profile\": \"H264Baseline\",\n          \"encoder\": \"H.264\"\n        }\n      ]\n    }\n  },\n  {\n    \"name\": \"test_session\",\n    \"id\": \"de7818e7-610a-4057-8f6f-b785dc1e6f88\",\n    \"kind\": \"stream\",\n    \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n    \"lastSeen\": 1587667174725,\n    \"sourceSegments\": 1,\n    \"transcodedSegments\": 2,\n    \"sourceSegmentsDuration\": 1,\n    \"transcodedSegmentsDuration\": 2,\n    \"sourceBytes\": 1,\n    \"transcodedBytes\": 2,\n    \"ingestRate\": 1,\n    \"outgoingRate\": 2,\n    \"isHealthy\": null,\n    \"issues\": null,\n    \"createdAt\": 1587667174725,\n    \"parentId\": \"de7818e7-610a-4057-8f6f-b785dc1e6f88\",\n    \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"record\": false,\n    \"recordingStatus\": \"ready\",\n    \"recordingUrl\": \"string\",\n    \"mp4Url\": \"string\",\n    \"playbackId\": \"eaw4nk06ts2d0mzb\",\n    \"profiles\": [\n      {\n        \"name\": \"240p0\",\n        \"fps\": 0,\n        \"bitrate\": 250000,\n        \"width\": 426,\n        \"height\": 240\n      },\n      {\n        \"name\": \"360p0\",\n        \"fps\": 0,\n        \"bitrate\": 800000,\n        \"width\": 640,\n        \"height\": 360\n      },\n      {\n        \"name\": \"480p0\",\n        \"fps\": 0,\n        \"bitrate\": 1600000,\n        \"width\": 854,\n        \"height\": 480\n      },\n      {\n        \"name\": \"720p0\",\n        \"fps\": 0,\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"height\": 720\n      }\n    ],\n    \"recordingSpec\": {\n      \"profiles\": [\n        {\n          \"bitrate\": 3000000,\n          \"width\": 1280,\n          \"name\": \"720p\",\n          \"height\": 720,\n          \"quality\": 23,\n          \"fps\": 30,\n          \"fpsDen\": 1,\n          \"gop\": \"string\",\n          \"profile\": \"H264Baseline\",\n          \"encoder\": \"H.264\"\n        },\n        {\n          \"bitrate\": 3000000,\n          \"width\": 1280,\n          \"name\": \"720p\",\n          \"height\": 720,\n          \"quality\": 23,\n          \"fps\": 30,\n          \"fpsDen\": 1,\n          \"gop\": \"string\",\n          \"profile\": \"H264Baseline\",\n          \"encoder\": \"H.264\"\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc028b7f-9d4c-425f-ac01-30fab9d84856",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a4b65bc-b204-468e-923e-792700e1b547",
+          "name": "Retrieve a session",
+          "request": {
+            "name": "Retrieve a session",
+            "description": {},
+            "url": {
+              "path": [
+                "session",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the session"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96680483-d0af-4d70-82a9-b98d4a6b2bdd",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"test_session\",\n  \"id\": \"de7818e7-610a-4057-8f6f-b785dc1e6f88\",\n  \"kind\": \"stream\",\n  \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n  \"lastSeen\": 1587667174725,\n  \"sourceSegments\": 1,\n  \"transcodedSegments\": 2,\n  \"sourceSegmentsDuration\": 1,\n  \"transcodedSegmentsDuration\": 2,\n  \"sourceBytes\": 1,\n  \"transcodedBytes\": 2,\n  \"ingestRate\": 1,\n  \"outgoingRate\": 2,\n  \"isHealthy\": null,\n  \"issues\": null,\n  \"createdAt\": 1587667174725,\n  \"parentId\": \"de7818e7-610a-4057-8f6f-b785dc1e6f88\",\n  \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n  \"record\": false,\n  \"recordingStatus\": \"failed\",\n  \"recordingUrl\": \"string\",\n  \"mp4Url\": \"string\",\n  \"playbackId\": \"eaw4nk06ts2d0mzb\",\n  \"profiles\": [\n    {\n      \"name\": \"240p0\",\n      \"fps\": 0,\n      \"bitrate\": 250000,\n      \"width\": 426,\n      \"height\": 240\n    },\n    {\n      \"name\": \"360p0\",\n      \"fps\": 0,\n      \"bitrate\": 800000,\n      \"width\": 640,\n      \"height\": 360\n    },\n    {\n      \"name\": \"480p0\",\n      \"fps\": 0,\n      \"bitrate\": 1600000,\n      \"width\": 854,\n      \"height\": 480\n    },\n    {\n      \"name\": \"720p0\",\n      \"fps\": 0,\n      \"bitrate\": 3000000,\n      \"width\": 1280,\n      \"height\": 720\n    }\n  ],\n  \"recordingSpec\": {\n    \"profiles\": [\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      },\n      {\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"name\": \"720p\",\n        \"height\": 720,\n        \"quality\": 23,\n        \"fps\": 30,\n        \"fpsDen\": 1,\n        \"gop\": \"string\",\n        \"profile\": \"H264Baseline\",\n        \"encoder\": \"H.264\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1c8fb89-406f-46f6-8e0a-364317c09cf0",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e11ddd1-0c4b-467c-bc2d-d1baaf1ae70c",
+          "name": "Retrieve Recorded Sessions",
+          "request": {
+            "name": "Retrieve Recorded Sessions",
+            "description": {},
+            "url": {
+              "path": [
+                "stream",
+                ":parentId",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "record",
+                  "value": "<boolean>",
+                  "description": "Flag indicating if the response should only include recorded\nsessions\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "parentId",
+                  "description": "(Required) ID of the parent stream"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8aedaf2-6f11-4a34-8dd2-d300d92a0d10",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stream",
+                    ":parentId",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "parentId",
+                      "description": "(Required) ID of the parent stream"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"test_session\",\n    \"id\": \"de7818e7-610a-4057-8f6f-b785dc1e6f88\",\n    \"kind\": \"stream\",\n    \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n    \"lastSeen\": 1587667174725,\n    \"sourceSegments\": 1,\n    \"transcodedSegments\": 2,\n    \"sourceSegmentsDuration\": 1,\n    \"transcodedSegmentsDuration\": 2,\n    \"sourceBytes\": 1,\n    \"transcodedBytes\": 2,\n    \"ingestRate\": 1,\n    \"outgoingRate\": 2,\n    \"isHealthy\": null,\n    \"issues\": null,\n    \"createdAt\": 1587667174725,\n    \"parentId\": \"de7818e7-610a-4057-8f6f-b785dc1e6f88\",\n    \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"record\": false,\n    \"recordingStatus\": \"failed\",\n    \"recordingUrl\": \"string\",\n    \"mp4Url\": \"string\",\n    \"playbackId\": \"eaw4nk06ts2d0mzb\",\n    \"profiles\": [\n      {\n        \"name\": \"240p0\",\n        \"fps\": 0,\n        \"bitrate\": 250000,\n        \"width\": 426,\n        \"height\": 240\n      },\n      {\n        \"name\": \"360p0\",\n        \"fps\": 0,\n        \"bitrate\": 800000,\n        \"width\": 640,\n        \"height\": 360\n      },\n      {\n        \"name\": \"480p0\",\n        \"fps\": 0,\n        \"bitrate\": 1600000,\n        \"width\": 854,\n        \"height\": 480\n      },\n      {\n        \"name\": \"720p0\",\n        \"fps\": 0,\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"height\": 720\n      }\n    ],\n    \"recordingSpec\": {\n      \"profiles\": [\n        {\n          \"bitrate\": 3000000,\n          \"width\": 1280,\n          \"name\": \"720p\",\n          \"height\": 720,\n          \"quality\": 23,\n          \"fps\": 30,\n          \"fpsDen\": 1,\n          \"gop\": \"string\",\n          \"profile\": \"H264Baseline\",\n          \"encoder\": \"H.264\"\n        },\n        {\n          \"bitrate\": 3000000,\n          \"width\": 1280,\n          \"name\": \"720p\",\n          \"height\": 720,\n          \"quality\": 23,\n          \"fps\": 30,\n          \"fpsDen\": 1,\n          \"gop\": \"string\",\n          \"profile\": \"H264Baseline\",\n          \"encoder\": \"H.264\"\n        }\n      ]\n    }\n  },\n  {\n    \"name\": \"test_session\",\n    \"id\": \"de7818e7-610a-4057-8f6f-b785dc1e6f88\",\n    \"kind\": \"stream\",\n    \"userId\": \"66E2161C-7670-4D05-B71D-DA2D6979556F\",\n    \"lastSeen\": 1587667174725,\n    \"sourceSegments\": 1,\n    \"transcodedSegments\": 2,\n    \"sourceSegmentsDuration\": 1,\n    \"transcodedSegmentsDuration\": 2,\n    \"sourceBytes\": 1,\n    \"transcodedBytes\": 2,\n    \"ingestRate\": 1,\n    \"outgoingRate\": 2,\n    \"isHealthy\": null,\n    \"issues\": null,\n    \"createdAt\": 1587667174725,\n    \"parentId\": \"de7818e7-610a-4057-8f6f-b785dc1e6f88\",\n    \"projectId\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"record\": false,\n    \"recordingStatus\": \"ready\",\n    \"recordingUrl\": \"string\",\n    \"mp4Url\": \"string\",\n    \"playbackId\": \"eaw4nk06ts2d0mzb\",\n    \"profiles\": [\n      {\n        \"name\": \"240p0\",\n        \"fps\": 0,\n        \"bitrate\": 250000,\n        \"width\": 426,\n        \"height\": 240\n      },\n      {\n        \"name\": \"360p0\",\n        \"fps\": 0,\n        \"bitrate\": 800000,\n        \"width\": 640,\n        \"height\": 360\n      },\n      {\n        \"name\": \"480p0\",\n        \"fps\": 0,\n        \"bitrate\": 1600000,\n        \"width\": 854,\n        \"height\": 480\n      },\n      {\n        \"name\": \"720p0\",\n        \"fps\": 0,\n        \"bitrate\": 3000000,\n        \"width\": 1280,\n        \"height\": 720\n      }\n    ],\n    \"recordingSpec\": {\n      \"profiles\": [\n        {\n          \"bitrate\": 3000000,\n          \"width\": 1280,\n          \"name\": \"720p\",\n          \"height\": 720,\n          \"quality\": 23,\n          \"fps\": 30,\n          \"fpsDen\": 1,\n          \"gop\": \"string\",\n          \"profile\": \"H264Baseline\",\n          \"encoder\": \"H.264\"\n        },\n        {\n          \"bitrate\": 3000000,\n          \"width\": 1280,\n          \"name\": \"720p\",\n          \"height\": 720,\n          \"quality\": 23,\n          \"fps\": 30,\n          \"fpsDen\": 1,\n          \"gop\": \"string\",\n          \"profile\": \"H264Baseline\",\n          \"encoder\": \"H.264\"\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd942c5b-f614-460e-a2f8-444dc99e1260",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stream",
+                    ":parentId",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "record",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "parentId",
+                      "description": "(Required) ID of the parent stream"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://livepeer.studio/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2ae2029c-8b2c-4d07-93a8-5f02103bc651",
+    "name": "Livepeer API Reference accessControl session API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the Livepeer API reference docs. Here you will find all the\nendpoints exposed on the standard Livepeer API, learn how to use them and\nwhat they return.\n",
+      "type": "text/plain"
+    }
+  }
+}

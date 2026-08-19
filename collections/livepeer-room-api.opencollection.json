@@ -1,0 +1,206 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer API Reference accessControl room API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "room",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a room",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://livepeer.studio/api/room"
+          },
+          "docs": "Create a multiparticipant livestreaming room.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve a room",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/room/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a room"
+        },
+        {
+          "info": {
+            "name": "Delete a room",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://livepeer.studio/api/room/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a room"
+        },
+        {
+          "info": {
+            "name": "Start room RTMP egress",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://livepeer.studio/api/room/:id/egress",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a livestream for your room.\nThis allows you to leverage livestreaming features like recording and HLS output.\n"
+        },
+        {
+          "info": {
+            "name": "Stop room RTMP egress",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://livepeer.studio/api/room/:id/egress",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Stop room RTMP egress"
+        },
+        {
+          "info": {
+            "name": "Create a room user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://livepeer.studio/api/room/:id/user",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Call this endpoint to add a user to a room, specifying a display name at a minimum.\nThe response will contain a joining URL for Livepeer's default meeting app.\nAlternatively the joining token can be used with a custom app.\n"
+        },
+        {
+          "info": {
+            "name": "Get user details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/room/:id/user/:userId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get user details"
+        },
+        {
+          "info": {
+            "name": "Update a room user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://livepeer.studio/api/room/:id/user/:userId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update properties for a user."
+        },
+        {
+          "info": {
+            "name": "Remove a user from the room",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://livepeer.studio/api/room/:id/user/:userId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a user from the room"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

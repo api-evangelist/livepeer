@@ -1,0 +1,214 @@
+{
+  "item": [
+    {
+      "id": "e3b1886e-39c7-449e-aaf7-90026a31eac8",
+      "name": "Ethereum",
+      "description": {
+        "content": "Ethereum operations and token transfers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "839874d0-1a83-4675-9587-620a504e2f3d",
+          "name": "Transfer LPT tokens",
+          "request": {
+            "name": "Transfer LPT tokens",
+            "description": {
+              "content": "Transfer LPT to another address",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transferTokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"<string>\",\n  \"amount\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42d3314b-ae18-4ed6-9ba4-20e27ff81b85",
+              "name": "Transfer successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transferTokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"0x1234567890abcdef1234567890abcdef12345678\",\n  \"amount\": \"1000000000000000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txHash\": \"0x...\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0ff5893-7ad6-42cd-8810-20629c607d6a",
+          "name": "Sign message",
+          "request": {
+            "name": "Sign message",
+            "description": {
+              "content": "Sign message with node's private key",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "signMessage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6512efad-f15f-4a68-a59e-e17f3ae0d8a3",
+              "name": "Message signed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signMessage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello Livepeer\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"0x...\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dream-gateway.livepeer.cloud",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "13d28743-d0fb-43d0-a5a9-0928f1db8256",
+    "name": "Livepeer AI Runner accessControl Ethereum API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An application to run AI pipelines",
+      "type": "text/plain"
+    }
+  }
+}

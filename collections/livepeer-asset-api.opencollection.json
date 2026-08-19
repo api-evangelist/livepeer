@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer API Reference accessControl asset API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "asset",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/asset"
+          },
+          "docs": "Retrieve assets"
+        },
+        {
+          "info": {
+            "name": "Upload an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://livepeer.studio/api/asset/request-upload",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "To upload an asset, your first need to request for a direct upload URL\nand only then actually upload the contents of the asset.\n\\\n\\\nOnce you created a upload link, you have 2 options, resumable or direct\nupload. For a more reliable experience, you should use resumable uploads\nwhich will work better for users with unreliable or slow network\nconnections. If you want a simpler implementation though, you should\njust use a direct upload.\n\n\n## Direct Upload\nFor a direct upload, make a PUT request to t"
+        },
+        {
+          "info": {
+            "name": "Upload asset via URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://livepeer.studio/api/asset/upload/url",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload asset via URL"
+        },
+        {
+          "info": {
+            "name": "Retrieves an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/asset/:assetId",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the asset"
+              }
+            ]
+          },
+          "docs": "Retrieves an asset"
+        },
+        {
+          "info": {
+            "name": "Patch an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://livepeer.studio/api/asset/:assetId",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the asset"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch an asset"
+        },
+        {
+          "info": {
+            "name": "Delete an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://livepeer.studio/api/asset/:assetId",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the asset"
+              }
+            ]
+          },
+          "docs": "Delete an asset"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

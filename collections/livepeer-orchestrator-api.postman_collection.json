@@ -1,0 +1,193 @@
+{
+  "item": [
+    {
+      "id": "d3abc7a5-7416-429d-887e-d55a40288d9e",
+      "name": "Orchestrator",
+      "description": {
+        "content": "Orchestrator configuration and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b25cfcc-9d82-4afb-ae4a-ce50a820dc24",
+          "name": "Activate orchestrator",
+          "request": {
+            "name": "Activate orchestrator",
+            "description": {
+              "content": "Multi-step process to become an orchestrator",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activateOrchestrator"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blockRewardCut\": \"<string>\",\n  \"feeShare\": \"<string>\",\n  \"pricePerUnit\": \"<string>\",\n  \"serviceURI\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22202b70-d7aa-4c17-8b52-bba8f120e676",
+              "name": "Orchestrator activated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activateOrchestrator"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blockRewardCut\": \"10\",\n  \"feeShare\": \"5\",\n  \"pricePerUnit\": \"1000\",\n  \"serviceURI\": \"https://orchestrator.example.com:8935\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txHash\": \"0x...\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64add54a-914c-4b41-94bf-46587792cf4e",
+          "name": "Claim orchestrator rewards",
+          "request": {
+            "name": "Claim orchestrator rewards",
+            "description": {
+              "content": "Claim orchestrator rewards for current round",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reward"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77282b1f-54d2-4d4e-b242-9ba8f0c0da5a",
+              "name": "Reward claimed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reward"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"txHash\": \"0x...\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dream-gateway.livepeer.cloud",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0372e289-7f23-47f2-ba65-d4fa6227ee6a",
+    "name": "Livepeer AI Runner accessControl Orchestrator API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An application to run AI pipelines",
+      "type": "text/plain"
+    }
+  }
+}

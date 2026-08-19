@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer AI Runner accessControl Staking API",
+    "version": "0.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Staking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bond tokens to an orchestrator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dream-gateway.livepeer.cloud/bond",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delegate LPT tokens to an orchestrator"
+        },
+        {
+          "info": {
+            "name": "Unbond tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dream-gateway.livepeer.cloud/unbond",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove delegated tokens (starts unbonding period)"
+        },
+        {
+          "info": {
+            "name": "Rebond tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dream-gateway.livepeer.cloud/rebond",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rebond tokens in unbonding state"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer AI Runner accessControl Gateway API",
+    "version": "0.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gateway",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Set broadcast configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dream-gateway.livepeer.cloud/setBroadcastConfig",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure transcoding options and max price"
+        },
+        {
+          "info": {
+            "name": "Set max price per AI capability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dream-gateway.livepeer.cloud/setMaxPriceForCapability",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set pricing for specific AI pipelines and models"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

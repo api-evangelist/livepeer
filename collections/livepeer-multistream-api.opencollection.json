@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer API Reference accessControl multistream API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "multistream",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Multistream Targets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/multistream/target"
+          },
+          "docs": "Retrieve Multistream Targets"
+        },
+        {
+          "info": {
+            "name": "Create a multistream target",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://livepeer.studio/api/multistream/target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a multistream target"
+        },
+        {
+          "info": {
+            "name": "Retrieve a multistream target",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/multistream/target/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the multistream target"
+              }
+            ]
+          },
+          "docs": "Retrieve a multistream target"
+        },
+        {
+          "info": {
+            "name": "Update Multistream Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://livepeer.studio/api/multistream/target/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the multistream target"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Multistream Target"
+        },
+        {
+          "info": {
+            "name": "Delete a multistream target",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://livepeer.studio/api/multistream/target/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the multistream target"
+              }
+            ]
+          },
+          "docs": "Make sure to remove any references to the target on existing\nstreams before actually deleting it from the API.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

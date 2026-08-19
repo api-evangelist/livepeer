@@ -1,0 +1,238 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer API Reference accessControl stream API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "stream",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/stream",
+            "params": [
+              {
+                "name": "streamsonly",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve streams"
+        },
+        {
+          "info": {
+            "name": "Create a stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://livepeer.studio/api/stream",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The only parameter you are required to set is the name of your stream,\nbut we also highly recommend that you define transcoding profiles\nparameter that suits your specific broadcasting configuration.\n\\\n\\\nIf you do not define transcoding rendition profiles when creating the\nstream, a default set of profiles will be used. These profiles include\n240p,  360p, 480p and 720p.\n\\\n\\\nThe playback policy is set to public by default for new streams. It can\nalso be added upon the creation of a new stream by "
+        },
+        {
+          "info": {
+            "name": "Retrieve a stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/stream/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the stream"
+              }
+            ]
+          },
+          "docs": "Retrieve a stream"
+        },
+        {
+          "info": {
+            "name": "Update a stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://livepeer.studio/api/stream/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the stream"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a stream"
+        },
+        {
+          "info": {
+            "name": "Delete a stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://livepeer.studio/api/stream/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the stream"
+              }
+            ]
+          },
+          "docs": "This will also suspend any active stream sessions, so make sure to wait\nuntil the stream has finished. To explicitly interrupt an active\nsession, consider instead updating the suspended field in the stream\nusing the PATCH stream API.\n"
+        },
+        {
+          "info": {
+            "name": "Terminates a live stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://livepeer.studio/api/stream/:id/terminate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the stream"
+              }
+            ]
+          },
+          "docs": "`DELETE /stream/{id}/terminate` can be used to terminate an ongoing\nsession on a live stream. Unlike suspending the stream, it allows the\nstreamer to restart streaming even immediately, but it will force\nterminate the current session and stop the recording.\n\\\n\\\nA 204 No Content status response indicates the stream was successfully\nterminated.\n"
+        },
+        {
+          "info": {
+            "name": "Start ingest for a pull stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://livepeer.studio/api/stream/:id/start-pull",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the stream"
+              }
+            ]
+          },
+          "docs": "`POST /stream/{id}/start-pull` can be used to start ingest for a stream\nconfigured with a pull source. If the stream has recording configured,\nit will also start recording.\n\\\n\\\nA 204 No Content status response indicates the stream was successfully\nstarted.\n"
+        },
+        {
+          "info": {
+            "name": "Create a clip",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://livepeer.studio/api/clip",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a clip"
+        },
+        {
+          "info": {
+            "name": "Retrieve clips of a livestream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://livepeer.studio/api/stream/:id/clips",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the parent stream or playbackId of parent stream"
+              }
+            ]
+          },
+          "docs": "Retrieve clips of a livestream"
+        },
+        {
+          "info": {
+            "name": "Add a multistream target",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://livepeer.studio/api/stream/:id/create-multistream-target",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the parent stream"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a multistream target"
+        },
+        {
+          "info": {
+            "name": "Remove a multistream target",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://livepeer.studio/api/stream/:id/multistream/:targetId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the parent stream"
+              },
+              {
+                "name": "targetId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the multistream target"
+              }
+            ]
+          },
+          "docs": "Remove a multistream target"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

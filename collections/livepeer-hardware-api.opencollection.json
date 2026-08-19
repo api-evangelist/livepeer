@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer AI Runner accessControl Hardware API",
+    "version": "0.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hardware",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Hardware Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dream-gateway.livepeer.cloud/hardware/info"
+          },
+          "docs": "Hardware Info"
+        },
+        {
+          "info": {
+            "name": "Hardware Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dream-gateway.livepeer.cloud/hardware/stats"
+          },
+          "docs": "Hardware Stats"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

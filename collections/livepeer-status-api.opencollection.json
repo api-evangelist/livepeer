@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Livepeer AI Runner accessControl Status API",
+    "version": "0.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get node status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dream-gateway.livepeer.cloud/status"
+          },
+          "docs": "Display node information, balances, and configuration"
+        },
+        {
+          "info": {
+            "name": "View protocol parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dream-gateway.livepeer.cloud/protocolParameters"
+          },
+          "docs": "Show protocol state and parameters"
+        },
+        {
+          "info": {
+            "name": "List registered orchestrators",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dream-gateway.livepeer.cloud/registeredOrchestrators"
+          },
+          "docs": "Display available orchestrators on the network"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
