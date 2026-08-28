@@ -12,8 +12,8 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: livepeerStudio
-  url: ../openapi/livepeer-studio-openapi.yml
+- name: streamApi
+  url: ../openapi/livepeer-stream-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-multistream-restream

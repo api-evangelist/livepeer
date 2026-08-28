@@ -12,8 +12,14 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: livepeerStudio
-  url: ../openapi/livepeer-studio-openapi.yml
+- name: assetApi
+  url: ../openapi/livepeer-asset-api-openapi.yml
+  type: openapi
+- name: streamApi
+  url: ../openapi/livepeer-stream-api-openapi.yml
+  type: openapi
+- name: taskApi
+  url: ../openapi/livepeer-task-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: clip-livestream

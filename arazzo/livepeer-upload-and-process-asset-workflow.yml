@@ -13,8 +13,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: livepeerStudio
-  url: ../openapi/livepeer-studio-openapi.yml
+- name: assetApi
+  url: ../openapi/livepeer-asset-api-openapi.yml
+  type: openapi
+- name: playbackApi
+  url: ../openapi/livepeer-playback-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: upload-and-process-asset

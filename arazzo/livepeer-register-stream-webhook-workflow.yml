@@ -11,8 +11,11 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: livepeerStudio
-  url: ../openapi/livepeer-studio-openapi.yml
+- name: streamApi
+  url: ../openapi/livepeer-stream-api-openapi.yml
+  type: openapi
+- name: webhookApi
+  url: ../openapi/livepeer-webhook-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: register-stream-webhook

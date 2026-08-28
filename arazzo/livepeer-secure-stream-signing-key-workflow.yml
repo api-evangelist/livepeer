@@ -12,8 +12,14 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: livepeerStudio
-  url: ../openapi/livepeer-studio-openapi.yml
+- name: accesscontrolApi
+  url: ../openapi/livepeer-accesscontrol-api-openapi.yml
+  type: openapi
+- name: playbackApi
+  url: ../openapi/livepeer-playback-api-openapi.yml
+  type: openapi
+- name: streamApi
+  url: ../openapi/livepeer-stream-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: secure-stream-signing-key

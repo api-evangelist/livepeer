@@ -11,8 +11,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: livepeerStudio
-  url: ../openapi/livepeer-studio-openapi.yml
+- name: playbackApi
+  url: ../openapi/livepeer-playback-api-openapi.yml
+  type: openapi
+- name: sessionApi
+  url: ../openapi/livepeer-session-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: inspect-session-recording
