@@ -9,6 +9,19 @@ description: Livepeer is a decentralized video infrastructure network. Independe
   transcoding jobs, sessions, playback, signing keys, AI generation (text-to-image, image-to-image, image-to-video,
   upscale, audio-to-text), and webhooks. Official SDKs are published for JavaScript/TypeScript, Python,
   Go, and Ruby, with React Player and React Broadcast components for client-side playback and ingest.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
