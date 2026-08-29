@@ -1,13 +1,32 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Livepeer AI Runner accessControl Staking API
-  description: An application to run AI pipelines
-  version: 0.0.0
+  title: Livepeer CLI Local HTTP Staking API
+  description: 'Local control-plane HTTP endpoints exposed by the Livepeer node.
+
+
+    The CLI HTTP API provides programmatic access to node management functions
+
+    including status monitoring, staking operations, orchestrator configuration,
+
+    and broadcast settings.
+
+
+    **Default Ports:**
+
+    - Gateway: http://localhost:5935
+
+    - Orchestrator: http://localhost:7935
+
+    '
+  version: 1.0.0
+  contact:
+    name: Livepeer Documentation
+    url: https://docs.livepeer.org
 servers:
-- url: https://dream-gateway.livepeer.cloud
-  description: Livepeer Cloud Community Gateway
-- url: https://livepeer.studio/api/beta/generate
-  description: Livepeer Studio Gateway
+- url: http://localhost:5935
+  description: Gateway CLI API (default)
+- url: http://localhost:7935
+  description: Orchestrator CLI API
 tags:
 - name: Staking
   description: Token bonding and delegation operations
@@ -109,7 +128,3 @@ components:
           type: string
           description: Transaction status
           example: success
-  securitySchemes:
-    HTTPBearer:
-      type: http
-      scheme: bearer

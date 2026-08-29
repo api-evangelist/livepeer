@@ -1,13 +1,32 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Livepeer AI Runner accessControl Status API
-  description: An application to run AI pipelines
-  version: 0.0.0
+  title: Livepeer CLI Local HTTP Status API
+  description: 'Local control-plane HTTP endpoints exposed by the Livepeer node.
+
+
+    The CLI HTTP API provides programmatic access to node management functions
+
+    including status monitoring, staking operations, orchestrator configuration,
+
+    and broadcast settings.
+
+
+    **Default Ports:**
+
+    - Gateway: http://localhost:5935
+
+    - Orchestrator: http://localhost:7935
+
+    '
+  version: 1.0.0
+  contact:
+    name: Livepeer Documentation
+    url: https://docs.livepeer.org
 servers:
-- url: https://dream-gateway.livepeer.cloud
-  description: Livepeer Cloud Community Gateway
-- url: https://livepeer.studio/api/beta/generate
-  description: Livepeer Studio Gateway
+- url: http://localhost:5935
+  description: Gateway CLI API (default)
+- url: http://localhost:7935
+  description: Orchestrator CLI API
 tags:
 - name: Status
   description: Node status and information
@@ -58,6 +77,30 @@ paths:
                   $ref: '#/components/schemas/Orchestrator'
 components:
   schemas:
+    NodeStatus:
+      type: object
+      properties:
+        node:
+          type: object
+          properties:
+            version:
+              type: string
+              example: 0.7.0
+            chainId:
+              type: integer
+              example: 42161
+        account:
+          type: object
+          properties:
+            address:
+              type: string
+              example: 0x...
+            ethBalance:
+              type: string
+              example: '1000000000000000000'
+            lptBalance:
+              type: string
+              example: '1000000000000000000'
     Orchestrator:
       type: object
       properties:
@@ -83,31 +126,3 @@ components:
           type: boolean
         currentRound:
           type: string
-    NodeStatus:
-      type: object
-      properties:
-        node:
-          type: object
-          properties:
-            version:
-              type: string
-              example: 0.7.0
-            chainId:
-              type: integer
-              example: 42161
-        account:
-          type: object
-          properties:
-            address:
-              type: string
-              example: 0x...
-            ethBalance:
-              type: string
-              example: '1000000000000000000'
-            lptBalance:
-              type: string
-              example: '1000000000000000000'
-  securitySchemes:
-    HTTPBearer:
-      type: http
-      scheme: bearer

@@ -1,14 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Livepeer API Reference accessControl API
-  description: 'Welcome to the Livepeer API reference docs. Here you will find all the
-
-    endpoints exposed on the standard Livepeer API, learn how to use them and
-
-    what they return.
-
-    '
+  title: Livepeer Access Control API
   version: 1.0.0
+  description: 'Operations tagged accessControl across 2 of this provider''s published API definitions: livepeer-openapi.yml, livepeer-studio-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://livepeer.studio/api
 security:
@@ -85,6 +79,8 @@ paths:
       - lang: python
         label: getSigningKeys
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.access_control.get_all()\n\nif res.data is not None:\n    # handle response\n    pass"
+    servers:
+    - url: https://livepeer.studio/api
   /access-control/signing-key/{keyId}:
     delete:
       operationId: deleteSigningKey
@@ -199,6 +195,8 @@ paths:
       - lang: python
         label: updateSigningKey
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.access_control.update(key_id=\"<value>\", request_body={})\n\nif res is not None:\n    # handle response\n    pass"
+    servers:
+    - url: https://livepeer.studio/api
 components:
   schemas:
     signing-key:
@@ -259,3 +257,6 @@ components:
     HTTPBearer:
       type: http
       scheme: bearer
+x-refined-from:
+- livepeer-openapi.yml
+- livepeer-studio-openapi.yml

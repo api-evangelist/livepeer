@@ -1,14 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Livepeer API Reference accessControl asset API
-  description: 'Welcome to the Livepeer API reference docs. Here you will find all the
-
-    endpoints exposed on the standard Livepeer API, learn how to use them and
-
-    what they return.
-
-    '
+  title: Livepeer Asset API
   version: 1.0.0
+  description: 'Operations tagged asset across 2 of this provider''s published API definitions: livepeer-openapi.yml, livepeer-studio-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://livepeer.studio/api
 security:
@@ -50,6 +44,8 @@ paths:
       - lang: python
         label: getAssets
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.asset.get_all()\n\nif res.data is not None:\n    # handle response\n    pass"
+    servers:
+    - url: https://livepeer.studio/api
   /asset/request-upload:
     post:
       operationId: requestUpload
@@ -114,6 +110,8 @@ paths:
       - lang: python
         label: requestUpload
         source: "from livepeer import Livepeer\nfrom livepeer.models import components\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.asset.create(request={\n    \"name\": \"filename.mp4\",\n    \"static_mp4\": True,\n    \"playback_policy\": {\n        \"type\": components.Type.WEBHOOK,\n        \"webhook_id\": \"1bde4o2i6xycudoy\",\n        \"webhook_context\": {\n            \"streamerId\": \"my-custom-id\",\n        },\n        \"refresh_interval\": 600,\n    },\n    \"profiles\": [\n        {\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"bitrate\": 3000000,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fps_den\": 1,\n            \"gop\": \"2\",\n            \"profile\": components.TranscodeProfileProfile.H264_BASELINE,\n            \"encoder\": components.TranscodeProfileEncoder.H_264,\n        },\n    ],\n})\n\nif res.data is not None:\n    # handle response\n    pass"
+    servers:
+    - url: https://livepeer.studio/api
   /asset/upload/url:
     post:
       operationId: uploadAsset
@@ -190,6 +188,8 @@ paths:
       - lang: python
         label: uploadAsset
         source: "from livepeer import Livepeer\nfrom livepeer.models import components\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.asset.create_via_url(request={\n    \"name\": \"filename.mp4\",\n    \"static_mp4\": True,\n    \"playback_policy\": {\n        \"type\": components.Type.WEBHOOK,\n        \"webhook_id\": \"1bde4o2i6xycudoy\",\n        \"webhook_context\": {\n            \"streamerId\": \"my-custom-id\",\n        },\n        \"refresh_interval\": 600,\n    },\n    \"url\": \"https://s3.amazonaws.com/my-bucket/path/filename.mp4\",\n    \"profiles\": [\n        {\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"bitrate\": 3000000,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fps_den\": 1,\n            \"gop\": \"2\",\n            \"profile\": components.TranscodeProfileProfile.H264_BASELINE,\n            \"encoder\": components.TranscodeProfileEncoder.H_264,\n        },\n    ],\n})\n\nif res.two_hundred_application_json_data is not None:\n    # handle response\n    pass"
+    servers:
+    - url: https://livepeer.studio/api
   /asset/{assetId}:
     get:
       operationId: getAsset
@@ -303,47 +303,38 @@ paths:
       - lang: python
         label: deleteAsset
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.asset.delete(asset_id=\"<value>\")\n\nif res is not None:\n    # handle response\n    pass"
+    servers:
+    - url: https://livepeer.studio/api
 components:
   schemas:
-    playback-policy:
-      type:
-      - object
-      - 'null'
-      description: Whether the playback policy for an asset or stream is public or signed
-      additionalProperties: false
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - public
-          - jwt
-          - webhook
-          example: webhook
-        webhookId:
-          type: string
-          description: ID of the webhook to use for playback policy
-          example: 1bde4o2i6xycudoy
-        webhookContext:
-          type: object
-          description: User-defined webhook context
-          additionalProperties: true
-          example:
-            streamerId: my-custom-id
-        refreshInterval:
-          type: number
-          description: 'Interval (in seconds) at which the playback policy should be
-
-            refreshed (default 600 seconds)
-
-            '
-          example: 600
-        allowedOrigins:
-          type: array
-          description: List of allowed origins for CORS playback (<scheme>://<hostname>:<port>, <scheme>://<hostname>)
-          items:
+    input-creator-id:
+      oneOf:
+      - type: object
+        additionalProperties: false
+        required:
+        - type
+        - value
+        properties:
+          type:
             type: string
+            enum:
+            - unverified
+          value:
+            type: string
+      - type: string
+        description: Helper syntax to specify an unverified creator ID, fully managed by the developer.
+    asset-patch-payload:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/asset/properties/name'
+        creatorId:
+          $ref: '#/components/schemas/input-creator-id'
+        playbackPolicy:
+          $ref: '#/components/schemas/playback-policy'
+        storage:
+          $ref: '#/components/schemas/new-asset-payload/properties/storage'
     new-asset-payload:
       additionalProperties: false
       required:
@@ -407,55 +398,6 @@ components:
         targetSegmentSizeSecs:
           type: number
           description: How many seconds the duration of each output segment should be
-    storage-status:
-      readOnly: true
-      additionalProperties: false
-      required:
-      - phase
-      - tasks
-      properties:
-        phase:
-          type: string
-          description: Phase of the asset storage
-          enum:
-          - waiting
-          - processing
-          - ready
-          - failed
-          - reverted
-          example: ready
-        progress:
-          type: number
-          description: Current progress of the task updating the storage.
-          example: 0.5
-        errorMessage:
-          type: string
-          description: Error message if the last storage changed failed.
-          example: Failed to update storage
-        tasks:
-          type: object
-          additionalProperties: false
-          properties:
-            pending:
-              type: string
-              description: 'ID of any currently running task that is exporting this
-
-                asset to IPFS.
-
-                '
-              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-            last:
-              type: string
-              description: 'ID of the last task to run successfully, that created
-
-                the currently saved data.
-
-                '
-              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-            failed:
-              type: string
-              description: ID of the last task to fail execution.
-              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
     asset:
       type: object
       additionalProperties: false
@@ -781,46 +723,6 @@ components:
                     type: number
                     description: Bit depth of the track - only for audio tracks
                     example: 16
-    asset-patch-payload:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/asset/properties/name'
-        creatorId:
-          $ref: '#/components/schemas/input-creator-id'
-        playbackPolicy:
-          $ref: '#/components/schemas/playback-policy'
-        storage:
-          $ref: '#/components/schemas/new-asset-payload/properties/storage'
-    ipfs-file-info:
-      type: object
-      required:
-      - cid
-      additionalProperties: false
-      properties:
-        cid:
-          type: string
-          description: CID of the file on IPFS
-        url:
-          readOnly: true
-          type: string
-          description: URL with IPFS scheme for the file
-        gatewayUrl:
-          readOnly: true
-          type: string
-          description: URL to access file via HTTP through an IPFS gateway
-    error:
-      type: object
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example:
-            - id not provided
-            - Account not found
     transcode-profile:
       type: object
       description: Transcode API profile
@@ -880,6 +782,56 @@ components:
           - VP8
           - VP9
           example: H.264
+    playback-policy:
+      type:
+      - object
+      - 'null'
+      description: Whether the playback policy for an asset or stream is public or signed
+      additionalProperties: false
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - public
+          - jwt
+          - webhook
+          example: webhook
+        webhookId:
+          type: string
+          description: ID of the webhook to use for playback policy
+          example: 1bde4o2i6xycudoy
+        webhookContext:
+          type: object
+          description: User-defined webhook context
+          additionalProperties: true
+          example:
+            streamerId: my-custom-id
+        refreshInterval:
+          type: number
+          description: 'Interval (in seconds) at which the playback policy should be
+
+            refreshed (default 600 seconds)
+
+            '
+          example: 600
+        allowedOrigins:
+          type: array
+          description: List of allowed origins for CORS playback (<scheme>://<hostname>:<port>, <scheme>://<hostname>)
+          items:
+            type: string
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
     creator-id:
       oneOf:
       - type: object
@@ -897,22 +849,72 @@ components:
             type: string
             description: Developer-managed ID of the user who created the resource.
             example: user123
-    input-creator-id:
-      oneOf:
-      - type: object
-        additionalProperties: false
-        required:
-        - type
-        - value
-        properties:
-          type:
-            type: string
-            enum:
-            - unverified
-          value:
-            type: string
-      - type: string
-        description: Helper syntax to specify an unverified creator ID, fully managed by the developer.
+    storage-status:
+      readOnly: true
+      additionalProperties: false
+      required:
+      - phase
+      - tasks
+      properties:
+        phase:
+          type: string
+          description: Phase of the asset storage
+          enum:
+          - waiting
+          - processing
+          - ready
+          - failed
+          - reverted
+          example: ready
+        progress:
+          type: number
+          description: Current progress of the task updating the storage.
+          example: 0.5
+        errorMessage:
+          type: string
+          description: Error message if the last storage changed failed.
+          example: Failed to update storage
+        tasks:
+          type: object
+          additionalProperties: false
+          properties:
+            pending:
+              type: string
+              description: 'ID of any currently running task that is exporting this
+
+                asset to IPFS.
+
+                '
+              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+            last:
+              type: string
+              description: 'ID of the last task to run successfully, that created
+
+                the currently saved data.
+
+                '
+              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+            failed:
+              type: string
+              description: ID of the last task to fail execution.
+              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+    ipfs-file-info:
+      type: object
+      required:
+      - cid
+      additionalProperties: false
+      properties:
+        cid:
+          type: string
+          description: CID of the file on IPFS
+        url:
+          readOnly: true
+          type: string
+          description: URL with IPFS scheme for the file
+        gatewayUrl:
+          readOnly: true
+          type: string
+          description: URL to access file via HTTP through an IPFS gateway
     new-asset-from-url-payload:
       additionalProperties: false
       required:
@@ -957,3 +959,6 @@ components:
     HTTPBearer:
       type: http
       scheme: bearer
+x-refined-from:
+- livepeer-openapi.yml
+- livepeer-studio-openapi.yml

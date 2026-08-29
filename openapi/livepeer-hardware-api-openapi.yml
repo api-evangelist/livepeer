@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Livepeer AI Runner accessControl Hardware API
+  title: Livepeer AI Runner Hardware API
   description: An application to run AI pipelines
   version: 0.0.0
 servers:
@@ -39,6 +39,26 @@ paths:
       - Hardware
 components:
   schemas:
+    HardwareStats:
+      properties:
+        pipeline:
+          type: string
+          title: Pipeline
+        model_id:
+          type: string
+          title: Model Id
+        gpu_stats:
+          additionalProperties:
+            $ref: '#/components/schemas/GPUUtilizationInfo'
+          type: object
+          title: Gpu Stats
+      type: object
+      required:
+      - pipeline
+      - model_id
+      - gpu_stats
+      title: HardwareStats
+      description: Response model for real-time GPU statistics.
     GPUComputeInfo:
       properties:
         id:
@@ -119,26 +139,6 @@ components:
       - utilization_memory
       title: GPUUtilizationInfo
       description: Model for GPU utilization statistics.
-    HardwareStats:
-      properties:
-        pipeline:
-          type: string
-          title: Pipeline
-        model_id:
-          type: string
-          title: Model Id
-        gpu_stats:
-          additionalProperties:
-            $ref: '#/components/schemas/GPUUtilizationInfo'
-          type: object
-          title: Gpu Stats
-      type: object
-      required:
-      - pipeline
-      - model_id
-      - gpu_stats
-      title: HardwareStats
-      description: Response model for real-time GPU statistics.
   securitySchemes:
     HTTPBearer:
       type: http

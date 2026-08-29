@@ -1,23 +1,18 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Livepeer API Reference accessControl generate API
-  description: 'Welcome to the Livepeer API reference docs. Here you will find all the
-
-    endpoints exposed on the standard Livepeer API, learn how to use them and
-
-    what they return.
-
-    '
-  version: 1.0.0
+  title: Livepeer Generate API
+  version: '1.0'
+  description: 'Operations tagged generate across 4 of this provider''s published API definitions: livepeer-ai-worker-openapi.yml, livepeer-gateway-openapi.yml, livepeer-openapi.yml, livepeer-studio-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
+- url: https://dream-gateway.livepeer.cloud
+  description: Livepeer Cloud Community Gateway
+- url: https://livepeer.studio/api/beta/generate
+  description: Livepeer Studio Gateway
 - url: https://livepeer.studio/api
-security:
-- apiKey: []
 tags:
 - name: generate
-  description: Operations related to AI generate api
 paths:
-  /api/generate/text-to-image:
+  /text-to-image:
     post:
       tags:
       - generate
@@ -29,6 +24,553 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TextToImageParams'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+                x-speakeasy-name-override: data
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-speakeasy-name-override: textToImage
+    servers:
+    - url: https://dream-gateway.livepeer.cloud
+      description: Livepeer Cloud Community Gateway
+    - url: https://livepeer.studio/api/beta/generate
+      description: Livepeer Studio Gateway
+  /image-to-image:
+    post:
+      tags:
+      - generate
+      summary: Image To Image
+      description: Apply image transformations to a provided image.
+      operationId: genImageToImage
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_genImageToImage'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+                x-speakeasy-name-override: data
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-speakeasy-name-override: imageToImage
+    servers:
+    - url: https://dream-gateway.livepeer.cloud
+      description: Livepeer Cloud Community Gateway
+    - url: https://livepeer.studio/api/beta/generate
+      description: Livepeer Studio Gateway
+  /image-to-video:
+    post:
+      tags:
+      - generate
+      summary: Image To Video
+      description: Generate a video from a provided image.
+      operationId: genImageToVideo
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_genImageToVideo'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoResponse'
+                x-speakeasy-name-override: data
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-speakeasy-name-override: imageToVideo
+    servers:
+    - url: https://dream-gateway.livepeer.cloud
+      description: Livepeer Cloud Community Gateway
+    - url: https://livepeer.studio/api/beta/generate
+      description: Livepeer Studio Gateway
+  /upscale:
+    post:
+      tags:
+      - generate
+      summary: Upscale
+      description: Upscale an image by increasing its resolution.
+      operationId: genUpscale
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_genUpscale'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+                x-speakeasy-name-override: data
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-speakeasy-name-override: upscale
+    servers:
+    - url: https://dream-gateway.livepeer.cloud
+      description: Livepeer Cloud Community Gateway
+    - url: https://livepeer.studio/api/beta/generate
+      description: Livepeer Studio Gateway
+  /audio-to-text:
+    post:
+      tags:
+      - generate
+      summary: Audio To Text
+      description: Transcribe audio files to text.
+      operationId: genAudioToText
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_genAudioToText'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TextResponse'
+                x-speakeasy-name-override: data
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '413':
+          description: Request Entity Too Large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-speakeasy-name-override: audioToText
+    servers:
+    - url: https://dream-gateway.livepeer.cloud
+      description: Livepeer Cloud Community Gateway
+    - url: https://livepeer.studio/api/beta/generate
+      description: Livepeer Studio Gateway
+  /segment-anything-2:
+    post:
+      tags:
+      - generate
+      summary: Segment Anything 2
+      description: Segment objects in an image.
+      operationId: genSegmentAnything2
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_genSegmentAnything2'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MasksResponse'
+                x-speakeasy-name-override: data
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-speakeasy-name-override: segmentAnything2
+    servers:
+    - url: https://dream-gateway.livepeer.cloud
+      description: Livepeer Cloud Community Gateway
+    - url: https://livepeer.studio/api/beta/generate
+      description: Livepeer Studio Gateway
+  /llm:
+    post:
+      tags:
+      - generate
+      summary: LLM
+      description: Generate text using a language model.
+      operationId: genLLM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LLMRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LLMResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-speakeasy-name-override: llm
+    servers:
+    - url: https://dream-gateway.livepeer.cloud
+      description: Livepeer Cloud Community Gateway
+    - url: https://livepeer.studio/api/beta/generate
+      description: Livepeer Studio Gateway
+  /image-to-text:
+    post:
+      tags:
+      - generate
+      summary: Image To Text
+      description: Transform image files to text.
+      operationId: genImageToText
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_genImageToText'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageToTextResponse'
+                x-speakeasy-name-override: data
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '413':
+          description: Request Entity Too Large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-speakeasy-name-override: imageToText
+    servers:
+    - url: https://dream-gateway.livepeer.cloud
+      description: Livepeer Cloud Community Gateway
+    - url: https://livepeer.studio/api/beta/generate
+      description: Livepeer Studio Gateway
+  /live-video-to-video:
+    post:
+      tags:
+      - generate
+      summary: Live Video To Video
+      description: Apply transformations to a live video streamed to the returned endpoints.
+      operationId: genLiveVideoToVideo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LiveVideoToVideoParams'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveVideoToVideoResponse'
+                x-speakeasy-name-override: data
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-speakeasy-name-override: liveVideoToVideo
+    servers:
+    - url: https://dream-gateway.livepeer.cloud
+      description: Livepeer Cloud Community Gateway
+    - url: https://livepeer.studio/api/beta/generate
+      description: Livepeer Studio Gateway
+  /text-to-speech:
+    post:
+      tags:
+      - generate
+      summary: Text To Speech
+      description: Generate a text-to-speech audio file based on the provided text input and speaker description.
+      operationId: genTextToSpeech
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextToSpeechParams'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioResponse'
+                x-speakeasy-name-override: data
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-speakeasy-name-override: textToSpeech
+    servers:
+    - url: https://dream-gateway.livepeer.cloud
+      description: Livepeer Cloud Community Gateway
+    - url: https://livepeer.studio/api/beta/generate
+      description: Livepeer Studio Gateway
+  /api/generate/text-to-image:
+    post:
+      tags:
+      - generate
+      summary: Text To Image
+      description: Generate images from text prompts.
+      operationId: genTextToImage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextToImageParams_3'
         required: true
       responses:
         default:
@@ -81,6 +623,10 @@ paths:
       - lang: typescript
         label: genTextToImage
         source: "import { Livepeer } from \"livepeer\";\n\nconst livepeer = new Livepeer({\n  apiKey: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.textToImage({\n    prompt: \"<value>\",\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+      security:
+      - apiKey: []
+    servers:
+    - url: https://livepeer.studio/api
   /api/generate/image-to-image:
     post:
       tags:
@@ -92,7 +638,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Body_genImageToImage'
+              $ref: '#/components/schemas/Body_genImageToImage_3'
         required: true
       responses:
         default:
@@ -145,6 +691,10 @@ paths:
       - lang: typescript
         label: genImageToImage
         source: "import { Livepeer } from \"livepeer\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeer = new Livepeer({\n  apiKey: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.imageToImage({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"example.file\"),\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+      security:
+      - apiKey: []
+    servers:
+    - url: https://livepeer.studio/api
   /api/generate/image-to-video:
     post:
       tags:
@@ -156,7 +706,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Body_genImageToVideo'
+              $ref: '#/components/schemas/Body_genImageToVideo_3'
         required: true
       responses:
         default:
@@ -170,7 +720,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VideoResponse'
+                $ref: '#/components/schemas/VideoResponse_3'
                 x-speakeasy-name-override: data
         '400':
           description: Bad Request
@@ -209,6 +759,10 @@ paths:
       - lang: typescript
         label: genImageToVideo
         source: "import { Livepeer } from \"livepeer\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeer = new Livepeer({\n  apiKey: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.imageToVideo({\n    image: await openAsBlob(\"example.file\"),\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+      security:
+      - apiKey: []
+    servers:
+    - url: https://livepeer.studio/api
   /api/generate/upscale:
     post:
       tags:
@@ -220,7 +774,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Body_genUpscale'
+              $ref: '#/components/schemas/Body_genUpscale_3'
         required: true
       responses:
         default:
@@ -273,6 +827,10 @@ paths:
       - lang: typescript
         label: genUpscale
         source: "import { Livepeer } from \"livepeer\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeer = new Livepeer({\n  apiKey: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.upscale({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"example.file\"),\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+      security:
+      - apiKey: []
+    servers:
+    - url: https://livepeer.studio/api
   /api/generate/audio-to-text:
     post:
       tags:
@@ -284,7 +842,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Body_genAudioToText'
+              $ref: '#/components/schemas/Body_genAudioToText_3'
         required: true
       responses:
         default:
@@ -353,6 +911,10 @@ paths:
       - lang: typescript
         label: genAudioToText
         source: "import { Livepeer } from \"livepeer\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeer = new Livepeer({\n  apiKey: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.audioToText({\n    audio: await openAsBlob(\"example.file\"),\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+      security:
+      - apiKey: []
+    servers:
+    - url: https://livepeer.studio/api
   /api/generate/segment-anything-2:
     post:
       tags:
@@ -364,7 +926,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Body_genSegmentAnything2'
+              $ref: '#/components/schemas/Body_genSegmentAnything2_3'
         required: true
       responses:
         default:
@@ -417,6 +979,10 @@ paths:
       - lang: typescript
         label: genSegmentAnything2
         source: "import { Livepeer } from \"livepeer\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeer = new Livepeer({\n  apiKey: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.segmentAnything2({\n    image: await openAsBlob(\"example.file\"),\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+      security:
+      - apiKey: []
+    servers:
+    - url: https://livepeer.studio/api
   /api/generate/llm:
     post:
       tags:
@@ -442,7 +1008,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LLMResponse'
+                $ref: '#/components/schemas/LLMResponse_2'
         '400':
           description: Bad Request
           content:
@@ -480,42 +1046,87 @@ paths:
       - lang: typescript
         label: genLLM
         source: "import { Livepeer } from \"livepeer\";\n\nconst livepeer = new Livepeer({\n  apiKey: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.llm({\n    prompt: \"<value>\",\n  });\n\n  // Handle the result\n  console.log(result);\n}\n\nrun();"
+      security:
+      - apiKey: []
+    servers:
+    - url: https://livepeer.studio/api
 components:
   schemas:
-    LLMResponse:
+    Media:
       properties:
-        response:
+        url:
           type: string
-          title: Response
-        tokens_used:
+          title: Url
+          description: The URL where the media can be accessed.
+        seed:
           type: integer
-          title: Tokens Used
+          title: Seed
+          description: The seed used to generate the media.
+        nsfw:
+          type: boolean
+          title: Nsfw
+          description: Whether the media was flagged as NSFW.
       type: object
       required:
-      - response
-      - tokens_used
-      title: LLMResponse
-    ValidationError:
+      - url
+      - seed
+      - nsfw
+      title: Media
+      description: A media object containing information about the generated media.
+    LiveVideoToVideoParams:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        subscribe_url:
           type: string
-          title: Message
-        type:
+          title: Subscribe Url
+          description: Source URL of the incoming stream to subscribe to.
+        publish_url:
           type: string
-          title: Error Type
+          title: Publish Url
+          description: Destination URL of the outgoing stream to publish.
+        control_url:
+          type: string
+          title: Control Url
+          description: URL for subscribing via Trickle protocol for updates in the live video-to-video generation params.
+          default: ''
+        events_url:
+          type: string
+          title: Events Url
+          description: URL for publishing events via Trickle protocol for pipeline status and logs.
+          default: ''
+        model_id:
+          type: string
+          title: Model Id
+          description: Name of the pipeline to run in the live video to video job. Notice that this is named model_id for consistency with other routes, but it does not refer to a Hugging Face model ID. The exact model(s) depends on the pipeline implementation and might be configurable via the `params` argument.
+          default: ''
+        params:
+          type: object
+          title: Params
+          description: Initial parameters for the pipeline.
+          default: {}
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - subscribe_url
+      - publish_url
+      title: LiveVideoToVideoParams
+    TextToSpeechParams:
+      properties:
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for text to speech generation.
+          default: ''
+        text:
+          type: string
+          title: Text
+          description: Text input for speech generation.
+          default: ''
+        description:
+          type: string
+          title: Description
+          description: Description of speaker to steer text to speech generation.
+          default: A male speaker delivers a slightly expressive and animated speech with a moderate speed and pitch.
+      type: object
+      title: TextToSpeechParams
     HTTPError:
       properties:
         detail:
@@ -540,6 +1151,308 @@ components:
       - images
       title: ImageResponse
       description: Response model for image generation.
+    LLMRequest:
+      properties:
+        messages:
+          items:
+            $ref: '#/components/schemas/LLMMessage'
+          type: array
+          title: Messages
+        model:
+          type: string
+          title: Model
+          default: ''
+        temperature:
+          type: number
+          title: Temperature
+          default: 0.7
+        max_tokens:
+          type: integer
+          title: Max Tokens
+          default: 256
+        top_p:
+          type: number
+          title: Top P
+          default: 1.0
+        top_k:
+          type: integer
+          title: Top K
+          default: -1
+        stream:
+          type: boolean
+          title: Stream
+          default: false
+      type: object
+      required:
+      - messages
+      title: LLMRequest
+    TextResponse:
+      properties:
+        text:
+          type: string
+          title: Text
+          description: The generated text.
+        chunks:
+          items:
+            $ref: '#/components/schemas/Chunk'
+          type: array
+          title: Chunks
+          description: The generated text chunks.
+      type: object
+      required:
+      - text
+      - chunks
+      title: TextResponse
+      description: Response model for text generation.
+    LLMResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        model:
+          type: string
+          title: Model
+        created:
+          type: integer
+          title: Created
+        usage:
+          $ref: '#/components/schemas/LLMTokenUsage'
+        choices:
+          items:
+            $ref: '#/components/schemas/LLMChoice'
+          type: array
+          title: Choices
+      type: object
+      required:
+      - id
+      - model
+      - created
+      - usage
+      - choices
+      title: LLMResponse
+    Body_genSegmentAnything2:
+      properties:
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Image to segment.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for image generation.
+          default: ''
+        point_coords:
+          type: string
+          title: Point Coords
+          description: Nx2 array of point prompts to the model, where each point is in (X,Y) in pixels.
+        point_labels:
+          type: string
+          title: Point Labels
+          description: Labels for the point prompts, where 1 indicates a foreground point and 0 indicates a background point.
+        box:
+          type: string
+          title: Box
+          description: A length 4 array given as a box prompt to the model, in XYXY format.
+        mask_input:
+          type: string
+          title: Mask Input
+          description: A low-resolution mask input to the model, typically from a previous prediction iteration, with the form 1xHxW (H=W=256 for SAM).
+        multimask_output:
+          type: boolean
+          title: Multimask Output
+          description: If true, the model will return three masks for ambiguous input prompts, often producing better masks than a single prediction.
+          default: true
+        return_logits:
+          type: boolean
+          title: Return Logits
+          description: If true, returns un-thresholded mask logits instead of a binary mask.
+          default: true
+        normalize_coords:
+          type: boolean
+          title: Normalize Coords
+          description: If true, the point coordinates will be normalized to the range [0,1], with point_coords expected to be with respect to image dimensions.
+          default: true
+      type: object
+      required:
+      - image
+      title: Body_genSegmentAnything2
+    Chunk:
+      properties:
+        timestamp:
+          items: {}
+          type: array
+          title: Timestamp
+          description: The timestamp of the chunk.
+        text:
+          type: string
+          title: Text
+          description: The text of the chunk.
+      type: object
+      required:
+      - timestamp
+      - text
+      title: Chunk
+      description: A chunk of text with a timestamp.
+    ImageToTextResponse:
+      properties:
+        text:
+          type: string
+          title: Text
+          description: The generated text.
+      type: object
+      required:
+      - text
+      title: ImageToTextResponse
+      description: Response model for text generation.
+    MediaURL:
+      properties:
+        url:
+          type: string
+          title: Url
+          description: The URL where the media can be accessed.
+      type: object
+      required:
+      - url
+      title: MediaURL
+      description: A URL from which media can be accessed.
+    LLMTokenUsage:
+      properties:
+        prompt_tokens:
+          type: integer
+          title: Prompt Tokens
+        completion_tokens:
+          type: integer
+          title: Completion Tokens
+        total_tokens:
+          type: integer
+          title: Total Tokens
+      type: object
+      required:
+      - prompt_tokens
+      - completion_tokens
+      - total_tokens
+      title: LLMTokenUsage
+    AudioResponse:
+      properties:
+        audio:
+          allOf:
+          - $ref: '#/components/schemas/MediaURL'
+          description: The generated audio.
+      type: object
+      required:
+      - audio
+      title: AudioResponse
+      description: Response model for audio generation.
+    APIError:
+      properties:
+        msg:
+          type: string
+          title: Msg
+          description: The error message.
+      type: object
+      required:
+      - msg
+      title: APIError
+      description: API error response model.
+    TextToImageParams:
+      properties:
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for image generation.
+          default: ''
+        loras:
+          type: string
+          title: Loras
+          description: 'A LoRA (Low-Rank Adaptation) model and its corresponding weight for image generation. Example: { "latent-consistency/lcm-lora-sdxl": 1.0, "nerijs/pixel-art-xl": 1.2}.'
+          default: ''
+        prompt:
+          type: string
+          title: Prompt
+          description: Text prompt(s) to guide image generation. Separate multiple prompts with '|' if supported by the model.
+        height:
+          type: integer
+          title: Height
+          description: The height in pixels of the generated image.
+          default: 576
+        width:
+          type: integer
+          title: Width
+          description: The width in pixels of the generated image.
+          default: 1024
+        guidance_scale:
+          type: number
+          title: Guidance Scale
+          description: Encourages model to generate images closely linked to the text prompt (higher values may reduce image quality).
+          default: 7.5
+        negative_prompt:
+          type: string
+          title: Negative Prompt
+          description: Text prompt(s) to guide what to exclude from image generation. Ignored if guidance_scale < 1.
+          default: ''
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 50
+        num_images_per_prompt:
+          type: integer
+          title: Num Images Per Prompt
+          description: Number of images to generate per prompt.
+          default: 1
+      type: object
+      required:
+      - prompt
+      title: TextToImageParams
+    Body_genAudioToText:
+      properties:
+        audio:
+          type: string
+          format: binary
+          title: Audio
+          description: Uploaded audio file to be transcribed.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for transcription.
+          default: ''
+        return_timestamps:
+          type: string
+          title: Return Timestamps
+          description: 'Return timestamps for the transcribed text. Supported values: ''sentence'', ''word'', or a string boolean (''true'' or ''false''). Default is ''true'' (''sentence''). ''false'' means no timestamps. ''word'' means word-based timestamps.'
+          default: 'true'
+        metadata:
+          type: string
+          title: Metadata
+          description: Additional job information to be passed to the pipeline.
+          default: '{}'
+      type: object
+      required:
+      - audio
+      title: Body_genAudioToText
+    LLMMessage:
+      properties:
+        role:
+          type: string
+          title: Role
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - role
+      - content
+      title: LLMMessage
     MasksResponse:
       properties:
         masks:
@@ -561,40 +1474,156 @@ components:
       - logits
       title: MasksResponse
       description: Response model for object segmentation.
-    VideoResponse:
+    Body_genImageToText:
       properties:
-        images:
-          items:
-            $ref: '#/components/schemas/Media'
-          type: array
-          title: Images
-          description: The generated images.
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Uploaded image to transform with the pipeline.
+        prompt:
+          type: string
+          title: Prompt
+          description: Text prompt(s) to guide transformation.
+          default: ''
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for transformation.
+          default: ''
       type: object
       required:
-      - images
-      title: VideoResponse
-      description: Response model for image generation.
-    Media:
+      - image
+      title: Body_genImageToText
+    HTTPValidationError:
       properties:
-        url:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          title: Url
-          description: The URL where the media can be accessed.
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    Body_genImageToImage:
+      properties:
+        prompt:
+          type: string
+          title: Prompt
+          description: Text prompt(s) to guide image generation.
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Uploaded image to modify with the pipeline.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for image generation.
+          default: ''
+        loras:
+          type: string
+          title: Loras
+          description: 'A LoRA (Low-Rank Adaptation) model and its corresponding weight for image generation. Example: { "latent-consistency/lcm-lora-sdxl": 1.0, "nerijs/pixel-art-xl": 1.2}.'
+          default: ''
+        strength:
+          type: number
+          title: Strength
+          description: Degree of transformation applied to the reference image (0 to 1).
+          default: 0.8
+        guidance_scale:
+          type: number
+          title: Guidance Scale
+          description: Encourages model to generate images closely linked to the text prompt (higher values may reduce image quality).
+          default: 7.5
+        image_guidance_scale:
+          type: number
+          title: Image Guidance Scale
+          description: Degree to which the generated image is pushed towards the initial image.
+          default: 1.5
+        negative_prompt:
+          type: string
+          title: Negative Prompt
+          description: Text prompt(s) to guide what to exclude from image generation. Ignored if guidance_scale < 1.
+          default: ''
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
         seed:
           type: integer
           title: Seed
-          description: The seed used to generate the media.
-        nsfw:
-          type: boolean
-          title: Nsfw
-          description: Whether the media was flagged as NSFW.
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 100
+        num_images_per_prompt:
+          type: integer
+          title: Num Images Per Prompt
+          description: Number of images to generate per prompt.
+          default: 1
       type: object
       required:
-      - url
-      - seed
-      - nsfw
-      title: Media
-      description: A media object containing information about the generated media.
+      - prompt
+      - image
+      title: Body_genImageToImage
+    LLMChoice:
+      properties:
+        index:
+          type: integer
+          title: Index
+        finish_reason:
+          type: string
+          title: Finish Reason
+          default: ''
+        delta:
+          allOf:
+          - $ref: '#/components/schemas/LLMMessage'
+        message:
+          allOf:
+          - $ref: '#/components/schemas/LLMMessage'
+      type: object
+      required:
+      - index
+      title: LLMChoice
+    VideoResponse:
+      properties:
+        frames:
+          items:
+            items:
+              $ref: '#/components/schemas/Media'
+            type: array
+          type: array
+          title: Frames
+          description: The generated video frames.
+      type: object
+      required:
+      - frames
+      title: VideoResponse
+      description: Response model for video generation.
     Body_genUpscale:
       properties:
         prompt:
@@ -610,7 +1639,7 @@ components:
           type: string
           title: Model Id
           description: Hugging Face model ID used for upscaled image generation.
-          default: stabilityai/stable-diffusion-x4-upscaler
+          default: ''
         safety_check:
           type: boolean
           title: Safety Check
@@ -630,8 +1659,537 @@ components:
       - prompt
       - image
       title: Body_genUpscale
+    LiveVideoToVideoResponse:
+      properties:
+        subscribe_url:
+          type: string
+          title: Subscribe Url
+          description: Source URL of the incoming stream to subscribe to
+        publish_url:
+          type: string
+          title: Publish Url
+          description: Destination URL of the outgoing stream to publish to
+        control_url:
+          type: string
+          title: Control Url
+          description: URL for updating the live video-to-video generation
+          default: ''
+        events_url:
+          type: string
+          title: Events Url
+          description: URL for subscribing to events for pipeline status and logs
+          default: ''
+      type: object
+      required:
+      - subscribe_url
+      - publish_url
+      title: LiveVideoToVideoResponse
+      description: Response model for live video-to-video generation.
+    Body_genImageToVideo:
+      properties:
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Uploaded image to generate a video from.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for video generation.
+          default: ''
+        height:
+          type: integer
+          title: Height
+          description: The height in pixels of the generated video.
+          default: 576
+        width:
+          type: integer
+          title: Width
+          description: The width in pixels of the generated video.
+          default: 1024
+        fps:
+          type: integer
+          title: Fps
+          description: The frames per second of the generated video.
+          default: 6
+        motion_bucket_id:
+          type: integer
+          title: Motion Bucket Id
+          description: Used for conditioning the amount of motion for the generation. The higher the number the more motion will be in the video.
+          default: 127
+        noise_aug_strength:
+          type: number
+          title: Noise Aug Strength
+          description: Amount of noise added to the conditioning image. Higher values reduce resemblance to the conditioning image and increase motion.
+          default: 0.02
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 25
+      type: object
+      required:
+      - image
+      title: Body_genImageToVideo
+    LiveVideoToVideoParams_2:
+      properties:
+        subscribe_url:
+          type: string
+          title: Subscribe Url
+          description: Source URL of the incoming stream to subscribe to.
+        publish_url:
+          type: string
+          title: Publish Url
+          description: Destination URL of the outgoing stream to publish.
+        control_url:
+          type: string
+          title: Control Url
+          description: URL for subscribing via Trickle protocol for updates in the live video-to-video generation params.
+          default: ''
+        events_url:
+          type: string
+          title: Events Url
+          description: URL for publishing events via Trickle protocol for pipeline status and logs.
+          default: ''
+        model_id:
+          type: string
+          title: Model Id
+          description: Name of the pipeline to run in the live video to video job. Notice that this is named model_id for consistency with other routes, but it does not refer to a Hugging Face model ID. The exact model(s) depends on the pipeline implementation and might be configurable via the `params` argument.
+          default: ''
+        params:
+          type: object
+          title: Params
+          description: Initial parameters for the pipeline.
+          default: {}
+      type: object
+      required:
+      - subscribe_url
+      - publish_url
+      - model_id
+      title: LiveVideoToVideoParams
+    TextToSpeechParams_2:
+      properties:
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for text to speech generation.
+          default: ''
+        text:
+          type: string
+          title: Text
+          description: Text input for speech generation.
+          default: ''
+        description:
+          type: string
+          title: Description
+          description: Description of speaker to steer text to speech generation.
+          default: A male speaker delivers a slightly expressive and animated speech with a moderate speed and pitch.
+      type: object
+      title: TextToSpeechParams
+      required:
+      - model_id
+    Body_genSegmentAnything2_2:
+      properties:
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Image to segment.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for image generation.
+          default: ''
+        point_coords:
+          type: string
+          title: Point Coords
+          description: Nx2 array of point prompts to the model, where each point is in (X,Y) in pixels.
+        point_labels:
+          type: string
+          title: Point Labels
+          description: Labels for the point prompts, where 1 indicates a foreground point and 0 indicates a background point.
+        box:
+          type: string
+          title: Box
+          description: A length 4 array given as a box prompt to the model, in XYXY format.
+        mask_input:
+          type: string
+          title: Mask Input
+          description: A low-resolution mask input to the model, typically from a previous prediction iteration, with the form 1xHxW (H=W=256 for SAM).
+        multimask_output:
+          type: boolean
+          title: Multimask Output
+          description: If true, the model will return three masks for ambiguous input prompts, often producing better masks than a single prediction.
+          default: true
+        return_logits:
+          type: boolean
+          title: Return Logits
+          description: If true, returns un-thresholded mask logits instead of a binary mask.
+          default: true
+        normalize_coords:
+          type: boolean
+          title: Normalize Coords
+          description: If true, the point coordinates will be normalized to the range [0,1], with point_coords expected to be with respect to image dimensions.
+          default: true
+      type: object
+      required:
+      - image
+      - model_id
+      title: Body_genSegmentAnything2
+    TextToImageParams_2:
+      properties:
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for image generation.
+          default: ''
+        loras:
+          type: string
+          title: Loras
+          description: 'A LoRA (Low-Rank Adaptation) model and its corresponding weight for image generation. Example: { "latent-consistency/lcm-lora-sdxl": 1.0, "nerijs/pixel-art-xl": 1.2}.'
+          default: ''
+        prompt:
+          type: string
+          title: Prompt
+          description: Text prompt(s) to guide image generation. Separate multiple prompts with '|' if supported by the model.
+        height:
+          type: integer
+          title: Height
+          description: The height in pixels of the generated image.
+          default: 576
+        width:
+          type: integer
+          title: Width
+          description: The width in pixels of the generated image.
+          default: 1024
+        guidance_scale:
+          type: number
+          title: Guidance Scale
+          description: Encourages model to generate images closely linked to the text prompt (higher values may reduce image quality).
+          default: 7.5
+        negative_prompt:
+          type: string
+          title: Negative Prompt
+          description: Text prompt(s) to guide what to exclude from image generation. Ignored if guidance_scale < 1.
+          default: ''
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 50
+        num_images_per_prompt:
+          type: integer
+          title: Num Images Per Prompt
+          description: Number of images to generate per prompt.
+          default: 1
+      type: object
+      required:
+      - prompt
+      - model_id
+      title: TextToImageParams
+    Body_genAudioToText_2:
+      properties:
+        audio:
+          type: string
+          format: binary
+          title: Audio
+          description: Uploaded audio file to be transcribed.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for transcription.
+          default: ''
+        return_timestamps:
+          type: string
+          title: Return Timestamps
+          description: 'Return timestamps for the transcribed text. Supported values: ''sentence'', ''word'', or a string boolean (''true'' or ''false''). Default is ''true'' (''sentence''). ''false'' means no timestamps. ''word'' means word-based timestamps.'
+          default: 'true'
+      type: object
+      required:
+      - audio
+      - model_id
+      title: Body_genAudioToText
+    Body_genImageToText_2:
+      properties:
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Uploaded image to transform with the pipeline.
+        prompt:
+          type: string
+          title: Prompt
+          description: Text prompt(s) to guide transformation.
+          default: ''
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for transformation.
+          default: ''
+      type: object
+      required:
+      - image
+      - model_id
+      title: Body_genImageToText
+    Body_genImageToImage_2:
+      properties:
+        prompt:
+          type: string
+          title: Prompt
+          description: Text prompt(s) to guide image generation.
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Uploaded image to modify with the pipeline.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for image generation.
+          default: ''
+        loras:
+          type: string
+          title: Loras
+          description: 'A LoRA (Low-Rank Adaptation) model and its corresponding weight for image generation. Example: { "latent-consistency/lcm-lora-sdxl": 1.0, "nerijs/pixel-art-xl": 1.2}.'
+          default: ''
+        strength:
+          type: number
+          title: Strength
+          description: Degree of transformation applied to the reference image (0 to 1).
+          default: 0.8
+        guidance_scale:
+          type: number
+          title: Guidance Scale
+          description: Encourages model to generate images closely linked to the text prompt (higher values may reduce image quality).
+          default: 7.5
+        image_guidance_scale:
+          type: number
+          title: Image Guidance Scale
+          description: Degree to which the generated image is pushed towards the initial image.
+          default: 1.5
+        negative_prompt:
+          type: string
+          title: Negative Prompt
+          description: Text prompt(s) to guide what to exclude from image generation. Ignored if guidance_scale < 1.
+          default: ''
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 100
+        num_images_per_prompt:
+          type: integer
+          title: Num Images Per Prompt
+          description: Number of images to generate per prompt.
+          default: 1
+      type: object
+      required:
+      - prompt
+      - image
+      - model_id
+      title: Body_genImageToImage
+    VideoResponse_2:
+      properties:
+        images:
+          items:
+            $ref: '#/components/schemas/Media'
+          type: array
+          title: Images
+          description: The generated images.
+      type: object
+      required:
+      - images
+      title: VideoResponse
+      description: Response model for image generation.
+    Body_genUpscale_2:
+      properties:
+        prompt:
+          type: string
+          title: Prompt
+          description: Text prompt(s) to guide upscaled image generation.
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Uploaded image to modify with the pipeline.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for upscaled image generation.
+          default: ''
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 75
+      type: object
+      required:
+      - prompt
+      - image
+      - model_id
+      title: Body_genUpscale
+    Body_genImageToVideo_2:
+      properties:
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Uploaded image to generate a video from.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for video generation.
+          default: ''
+        height:
+          type: integer
+          title: Height
+          description: The height in pixels of the generated video.
+          default: 576
+        width:
+          type: integer
+          title: Width
+          description: The width in pixels of the generated video.
+          default: 1024
+        fps:
+          type: integer
+          title: Fps
+          description: The frames per second of the generated video.
+          default: 6
+        motion_bucket_id:
+          type: integer
+          title: Motion Bucket Id
+          description: Used for conditioning the amount of motion for the generation. The higher the number the more motion will be in the video.
+          default: 127
+        noise_aug_strength:
+          type: number
+          title: Noise Aug Strength
+          description: Amount of noise added to the conditioning image. Higher values reduce resemblance to the conditioning image and increase motion.
+          default: 0.02
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 25
+      type: object
+      required:
+      - image
+      - model_id
+      title: Body_genImageToVideo
+    studio-api-error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+    LLMResponse_2:
+      properties:
+        response:
+          type: string
+          title: Response
+        tokens_used:
+          type: integer
+          title: Tokens Used
+      type: object
+      required:
+      - response
+      - tokens_used
+      title: LLMResponse
+    Body_genSegmentAnything2_3:
+      properties:
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Image to segment.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for image generation.
+          default: facebook/sam2-hiera-large
+        point_coords:
+          type: string
+          title: Point Coords
+          description: Nx2 array of point prompts to the model, where each point is in (X,Y) in pixels.
+        point_labels:
+          type: string
+          title: Point Labels
+          description: Labels for the point prompts, where 1 indicates a foreground point and 0 indicates a background point.
+        box:
+          type: string
+          title: Box
+          description: A length 4 array given as a box prompt to the model, in XYXY format.
+        mask_input:
+          type: string
+          title: Mask Input
+          description: A low-resolution mask input to the model, typically from a previous prediction iteration, with the form 1xHxW (H=W=256 for SAM).
+        multimask_output:
+          type: boolean
+          title: Multimask Output
+          description: If true, the model will return three masks for ambiguous input prompts, often producing better masks than a single prediction.
+          default: true
+        return_logits:
+          type: boolean
+          title: Return Logits
+          description: If true, returns un-thresholded mask logits instead of a binary mask.
+          default: true
+        normalize_coords:
+          type: boolean
+          title: Normalize Coords
+          description: If true, the point coordinates will be normalized to the range [0,1], with point_coords expected to be with respect to image dimensions.
+          default: true
+      type: object
+      required:
+      - image
+      title: Body_genSegmentAnything2
       additionalProperties: false
-    TextToImageParams:
+    TextToImageParams_3:
       properties:
         model_id:
           type: string
@@ -691,6 +2249,28 @@ components:
       - prompt
       title: TextToImageParams
       additionalProperties: false
+    Body_genAudioToText_3:
+      properties:
+        audio:
+          type: string
+          format: binary
+          title: Audio
+          description: Uploaded audio file to be transcribed.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for transcription.
+          default: openai/whisper-large-v3
+        return_timestamps:
+          type: string
+          title: Return Timestamps
+          description: 'Return timestamps for the transcribed text. Supported values: ''sentence'', ''word'', or a string boolean (''true'' or ''false''). Default is ''true'' (''sentence''). ''false'' means no timestamps. ''word'' means word-based timestamps.'
+          default: 'true'
+      type: object
+      required:
+      - audio
+      title: Body_genAudioToText
+      additionalProperties: false
     Body_genLLM:
       properties:
         prompt:
@@ -725,7 +2305,7 @@ components:
       - prompt
       title: Body_genLLM
       additionalProperties: false
-    Body_genImageToImage:
+    Body_genImageToImage_3:
       properties:
         prompt:
           type: string
@@ -791,37 +2371,56 @@ components:
       - image
       title: Body_genImageToImage
       additionalProperties: false
-    studio-api-error:
-      type: object
+    VideoResponse_3:
       properties:
-        errors:
-          type: array
-          minItems: 1
+        images:
           items:
-            type: string
-    Body_genAudioToText:
+            $ref: '#/components/schemas/Media'
+          type: array
+          title: Images
+          description: The generated images.
+      type: object
+      required:
+      - images
+      title: VideoResponse
+      description: Response model for image generation.
+    Body_genUpscale_3:
       properties:
-        audio:
+        prompt:
+          type: string
+          title: Prompt
+          description: Text prompt(s) to guide upscaled image generation.
+        image:
           type: string
           format: binary
-          title: Audio
-          description: Uploaded audio file to be transcribed.
+          title: Image
+          description: Uploaded image to modify with the pipeline.
         model_id:
           type: string
           title: Model Id
-          description: Hugging Face model ID used for transcription.
-          default: openai/whisper-large-v3
-        return_timestamps:
-          type: string
-          title: Return Timestamps
-          description: 'Return timestamps for the transcribed text. Supported values: ''sentence'', ''word'', or a string boolean (''true'' or ''false''). Default is ''true'' (''sentence''). ''false'' means no timestamps. ''word'' means word-based timestamps.'
-          default: 'true'
+          description: Hugging Face model ID used for upscaled image generation.
+          default: stabilityai/stable-diffusion-x4-upscaler
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 75
       type: object
       required:
-      - audio
-      title: Body_genAudioToText
+      - prompt
+      - image
+      title: Body_genUpscale
       additionalProperties: false
-    Body_genImageToVideo:
+    Body_genImageToVideo_3:
       properties:
         image:
           type: string
@@ -877,7 +2476,20 @@ components:
       - image
       title: Body_genImageToVideo
       additionalProperties: false
-    Body_genSegmentAnything2:
+    LLMResponse_3:
+      properties:
+        response:
+          type: string
+          title: Response
+        tokens_used:
+          type: integer
+          title: Tokens Used
+      type: object
+      required:
+      - response
+      - tokens_used
+      title: LLMResponse
+    Body_genSegmentAnything2_4:
       properties:
         image:
           type: string
@@ -925,66 +2537,269 @@ components:
       - image
       title: Body_genSegmentAnything2
       additionalProperties: false
-    HTTPValidationError:
+    TextToImageParams_4:
       properties:
-        detail:
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for image generation.
+          default: SG161222/RealVisXL_V4.0_Lightning
+        loras:
+          type: string
+          title: Loras
+          description: 'A LoRA (Low-Rank Adaptation) model and its corresponding weight for image generation. Example: { "latent-consistency/lcm-lora-sdxl": 1.0, "nerijs/pixel-art-xl": 1.2}.'
+          default: ''
+        prompt:
+          type: string
+          title: Prompt
+          description: Text prompt(s) to guide image generation. Separate multiple prompts with '|' if supported by the model.
+        height:
+          type: integer
+          title: Height
+          description: The height in pixels of the generated image.
+          default: 576
+        width:
+          type: integer
+          title: Width
+          description: The width in pixels of the generated image.
+          default: 1024
+        guidance_scale:
+          type: number
+          title: Guidance Scale
+          description: Encourages model to generate images closely linked to the text prompt (higher values may reduce image quality).
+          default: 7.5
+        negative_prompt:
+          type: string
+          title: Negative Prompt
+          description: Text prompt(s) to guide what to exclude from image generation. Ignored if guidance_scale < 1.
+          default: ''
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 50
+        num_images_per_prompt:
+          type: integer
+          title: Num Images Per Prompt
+          description: Number of images to generate per prompt.
+          default: 1
+      type: object
+      required:
+      - prompt
+      title: TextToImageParams
+      additionalProperties: false
+    Body_genAudioToText_4:
+      properties:
+        audio:
+          type: string
+          format: binary
+          title: Audio
+          description: Uploaded audio file to be transcribed.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for transcription.
+          default: openai/whisper-large-v3
+        return_timestamps:
+          type: string
+          title: Return Timestamps
+          description: 'Return timestamps for the transcribed text. Supported values: ''sentence'', ''word'', or a string boolean (''true'' or ''false''). Default is ''true'' (''sentence''). ''false'' means no timestamps. ''word'' means word-based timestamps.'
+          default: 'true'
+      type: object
+      required:
+      - audio
+      title: Body_genAudioToText
+      additionalProperties: false
+    Body_genImageToImage_4:
+      properties:
+        prompt:
+          type: string
+          title: Prompt
+          description: Text prompt(s) to guide image generation.
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Uploaded image to modify with the pipeline.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for image generation.
+          default: timbrooks/instruct-pix2pix
+        loras:
+          type: string
+          title: Loras
+          description: 'A LoRA (Low-Rank Adaptation) model and its corresponding weight for image generation. Example: { "latent-consistency/lcm-lora-sdxl": 1.0, "nerijs/pixel-art-xl": 1.2}.'
+          default: ''
+        strength:
+          type: number
+          title: Strength
+          description: Degree of transformation applied to the reference image (0 to 1).
+          default: 0.8
+        guidance_scale:
+          type: number
+          title: Guidance Scale
+          description: Encourages model to generate images closely linked to the text prompt (higher values may reduce image quality).
+          default: 7.5
+        image_guidance_scale:
+          type: number
+          title: Image Guidance Scale
+          description: Degree to which the generated image is pushed towards the initial image.
+          default: 1.5
+        negative_prompt:
+          type: string
+          title: Negative Prompt
+          description: Text prompt(s) to guide what to exclude from image generation. Ignored if guidance_scale < 1.
+          default: ''
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 100
+        num_images_per_prompt:
+          type: integer
+          title: Num Images Per Prompt
+          description: Number of images to generate per prompt.
+          default: 1
+      type: object
+      required:
+      - prompt
+      - image
+      title: Body_genImageToImage
+      additionalProperties: false
+    VideoResponse_4:
+      properties:
+        images:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            $ref: '#/components/schemas/Media'
           type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Chunk:
-      properties:
-        timestamp:
-          items: {}
-          type: array
-          title: Timestamp
-          description: The timestamp of the chunk.
-        text:
-          type: string
-          title: Text
-          description: The text of the chunk.
+          title: Images
+          description: The generated images.
       type: object
       required:
-      - timestamp
-      - text
-      title: Chunk
-      description: A chunk of text with a timestamp.
-    APIError:
+      - images
+      title: VideoResponse
+      description: Response model for image generation.
+    Body_genUpscale_4:
       properties:
-        msg:
+        prompt:
           type: string
-          title: Msg
-          description: The error message.
+          title: Prompt
+          description: Text prompt(s) to guide upscaled image generation.
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Uploaded image to modify with the pipeline.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for upscaled image generation.
+          default: stabilityai/stable-diffusion-x4-upscaler
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 75
       type: object
       required:
-      - msg
-      title: APIError
-      description: API error response model.
-    TextResponse:
+      - prompt
+      - image
+      title: Body_genUpscale
+      additionalProperties: false
+    Body_genImageToVideo_4:
       properties:
-        text:
+        image:
           type: string
-          title: Text
-          description: The generated text.
-        chunks:
-          items:
-            $ref: '#/components/schemas/Chunk'
-          type: array
-          title: Chunks
-          description: The generated text chunks.
+          format: binary
+          title: Image
+          description: Uploaded image to generate a video from.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for video generation.
+          default: stabilityai/stable-video-diffusion-img2vid-xt-1-1
+        height:
+          type: integer
+          title: Height
+          description: The height in pixels of the generated video.
+          default: 576
+        width:
+          type: integer
+          title: Width
+          description: The width in pixels of the generated video.
+          default: 1024
+        fps:
+          type: integer
+          title: Fps
+          description: The frames per second of the generated video.
+          default: 6
+        motion_bucket_id:
+          type: integer
+          title: Motion Bucket Id
+          description: Used for conditioning the amount of motion for the generation. The higher the number the more motion will be in the video.
+          default: 127
+        noise_aug_strength:
+          type: number
+          title: Noise Aug Strength
+          description: Amount of noise added to the conditioning image. Higher values reduce resemblance to the conditioning image and increase motion.
+          default: 0.02
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 25
       type: object
       required:
-      - text
-      - chunks
-      title: TextResponse
-      description: Response model for text generation.
+      - image
+      title: Body_genImageToVideo
+      additionalProperties: false
   securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer
     apiKey:
       type: http
       scheme: bearer
       bearerFormat: JWT
-    HTTPBearer:
-      type: http
-      scheme: bearer
+x-refined-from:
+- livepeer-ai-worker-openapi.yml
+- livepeer-gateway-openapi.yml
+- livepeer-openapi.yml
+- livepeer-studio-openapi.yml
