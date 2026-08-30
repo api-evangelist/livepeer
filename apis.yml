@@ -280,8 +280,7 @@ apis:
   description: Operations related to access control/signing keys api
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
-  tags:
-  - Access Control
+  tags: []
   tags_raw:
   - accessControl
   properties:
@@ -305,7 +304,7 @@ apis:
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
   tags:
-  - Generate
+  - generate
   tags_raw:
   - generate
   properties:
@@ -329,7 +328,7 @@ apis:
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
   tags:
-  - Multistream
+  - multistream
   tags_raw:
   - multistream
   properties:
@@ -341,7 +340,7 @@ apis:
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
   tags:
-  - Playback
+  - playback
   tags_raw:
   - playback
   properties:
@@ -353,7 +352,7 @@ apis:
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
   tags:
-  - Room
+  - room
   tags_raw:
   - room
   properties:
