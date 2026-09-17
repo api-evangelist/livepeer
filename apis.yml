@@ -276,18 +276,6 @@ apis:
   properties:
   - type: Documentation
     url: https://docs.livepeer.org/developers/react/broadcast
-- aid: livepeer:livepeer-accesscontrol-api
-  name: Livepeer accessControl API
-  description: Operations related to access control/signing keys api
-  humanURL: https://docs.livepeer.org/api-reference/overview
-  baseURL: https://livepeer.studio/api
-  tags:
-  - Access Control
-  tags_raw:
-  - accessControl
-  properties:
-  - type: OpenAPI
-    url: openapi/livepeer-accesscontrol-api-openapi.yml
 - aid: livepeer:livepeer-asset-api
   name: Livepeer asset API
   description: Operations related to asset/vod api
@@ -488,6 +476,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/livepeer-status-api-openapi.yml
+- aid: livepeer:livepeer-access-control-api
+  name: Livepeer Access Control API
+  description: Operations related to access control/signing keys api
+  humanURL: https://docs.livepeer.org/api-reference/overview
+  baseURL: https://livepeer.studio/api
+  tags:
+  - Access Control
+  properties:
+  - type: OpenAPI
+    url: openapi/livepeer-access-control-api-openapi.yml
 common:
 - type: IssueTracker
   url: https://github.com/livepeer/livepeer-js/issues
