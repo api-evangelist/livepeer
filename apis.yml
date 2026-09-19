@@ -149,6 +149,9 @@ apis:
   baseURL: https://livepeer.studio/api/session
   tags:
   - Sessions
+  - Recording
+  tags_raw:
+  - Sessions
   - Recordings
   properties:
   - type: Documentation
@@ -354,7 +357,7 @@ apis:
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
   tags:
-  - Session
+  - Sessions
   tags_raw:
   - session
   properties:
@@ -422,6 +425,8 @@ apis:
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
   tags:
+  - Gateways
+  tags_raw:
   - Gateway
   properties:
   - type: OpenAPI
