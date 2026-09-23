@@ -1,14 +1,18 @@
 openapi: 3.2.0
 info:
-  title: Livepeer Playback API
+  title: Livepeer API Reference Playback API
+  description: 'Welcome to the Livepeer API reference docs. Here you will find all the
+
+    endpoints exposed on the standard Livepeer API, learn how to use them and
+
+    what they return.'
   version: 1.0.0
-  description: 'Operations tagged playback across 2 of this provider''s published API definitions: livepeer-openapi.yml, livepeer-studio-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://livepeer.studio/api
 security:
 - apiKey: []
 tags:
-- name: playback
+- name: Playback
   description: Operations related to playback api
 paths:
   /playback/{id}:
@@ -17,7 +21,7 @@ paths:
       summary: Retrieve Playback Info
       x-speakeasy-name-override: get
       tags:
-      - playback
+      - Playback
       parameters:
       - in: path
         name: id
@@ -55,8 +59,6 @@ paths:
       - lang: python
         label: getPlaybackInfo
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.playback.get(id=\"<id>\")\n\nif res.playback_info is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
 components:
   schemas:
     playback-policy:
@@ -147,105 +149,6 @@ components:
               type: string
               description: ID of the last task to fail execution.
               example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-    playback-info:
-      type: object
-      additionalProperties: false
-      required:
-      - type
-      - meta
-      properties:
-        type:
-          type: string
-          example: vod
-          enum:
-          - live
-          - vod
-          - recording
-        meta:
-          type: object
-          additionalProperties: false
-          required:
-          - source
-          properties:
-            live:
-              type: integer
-              enum:
-              - 0
-              - 1
-              example: 0
-            playbackPolicy:
-              $ref: '#/components/schemas/playback-policy'
-            source:
-              type: array
-              items:
-                type: object
-                additionalProperties: false
-                required:
-                - hrn
-                - type
-                - url
-                properties:
-                  hrn:
-                    type: string
-                    description: Human Readable Name
-                    example: MP4
-                    enum:
-                    - HLS (TS)
-                    - MP4
-                    - WebRTC (H264)
-                    - FLV (H264)
-                    - Thumbnail (JPEG)
-                    - Thumbnail (PNG)
-                    - Thumbnails
-                  type:
-                    type: string
-                    example: html5/video/mp4
-                    enum:
-                    - html5/application/vnd.apple.mpegurl
-                    - html5/video/mp4
-                    - html5/video/h264
-                    - video/x-flv
-                    - image/jpeg
-                    - image/png
-                    - text/vtt
-                  url:
-                    type: string
-                    example: https://asset-cdn.lp-playback.monster/hls/1bde4o2i6xycudoy/static360p0.mp4
-                  size:
-                    type: number
-                    example: 494778
-                  width:
-                    type: number
-                    example: 204
-                  height:
-                    type: number
-                    example: 360
-                  bitrate:
-                    type: number
-                    example: 449890
-            dvrPlayback:
-              type: array
-              items:
-                type: object
-                additionalProperties: false
-                properties:
-                  hrn:
-                    type: string
-                    example: MP4
-                    enum:
-                    - HLS (TS)
-                  type:
-                    type: string
-                    example: html5/video/mp4
-                    enum:
-                    - html5/application/vnd.apple.mpegurl
-                  url:
-                    type: string
-                    example: https://asset-cdn.lp-playback.monster/hls/1bde4o2i6xycudoy/static360p0.mp4
-                  error:
-                    type: string
-            attestation:
-              $ref: '#/components/schemas/attestation'
     attestation:
       type: object
       additionalProperties: false
@@ -360,6 +263,105 @@ components:
             example:
             - id not provided
             - Account not found
+    playback-info:
+      type: object
+      additionalProperties: false
+      required:
+      - type
+      - meta
+      properties:
+        type:
+          type: string
+          example: vod
+          enum:
+          - live
+          - vod
+          - recording
+        meta:
+          type: object
+          additionalProperties: false
+          required:
+          - source
+          properties:
+            live:
+              type: integer
+              enum:
+              - 0
+              - 1
+              example: 0
+            playbackPolicy:
+              $ref: '#/components/schemas/playback-policy'
+            source:
+              type: array
+              items:
+                type: object
+                additionalProperties: false
+                required:
+                - hrn
+                - type
+                - url
+                properties:
+                  hrn:
+                    type: string
+                    description: Human Readable Name
+                    example: MP4
+                    enum:
+                    - HLS (TS)
+                    - MP4
+                    - WebRTC (H264)
+                    - FLV (H264)
+                    - Thumbnail (JPEG)
+                    - Thumbnail (PNG)
+                    - Thumbnails
+                  type:
+                    type: string
+                    example: html5/video/mp4
+                    enum:
+                    - html5/application/vnd.apple.mpegurl
+                    - html5/video/mp4
+                    - html5/video/h264
+                    - video/x-flv
+                    - image/jpeg
+                    - image/png
+                    - text/vtt
+                  url:
+                    type: string
+                    example: https://asset-cdn.lp-playback.monster/hls/1bde4o2i6xycudoy/static360p0.mp4
+                  size:
+                    type: number
+                    example: 494778
+                  width:
+                    type: number
+                    example: 204
+                  height:
+                    type: number
+                    example: 360
+                  bitrate:
+                    type: number
+                    example: 449890
+            dvrPlayback:
+              type: array
+              items:
+                type: object
+                additionalProperties: false
+                properties:
+                  hrn:
+                    type: string
+                    example: MP4
+                    enum:
+                    - HLS (TS)
+                  type:
+                    type: string
+                    example: html5/video/mp4
+                    enum:
+                    - html5/application/vnd.apple.mpegurl
+                  url:
+                    type: string
+                    example: https://asset-cdn.lp-playback.monster/hls/1bde4o2i6xycudoy/static360p0.mp4
+                  error:
+                    type: string
+            attestation:
+              $ref: '#/components/schemas/attestation'
   securitySchemes:
     apiKey:
       type: http
@@ -368,6 +370,3 @@ components:
     HTTPBearer:
       type: http
       scheme: bearer
-x-refined-from:
-- livepeer-openapi.yml
-- livepeer-studio-openapi.yml

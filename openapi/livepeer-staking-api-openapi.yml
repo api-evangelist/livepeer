@@ -15,9 +15,7 @@ info:
 
     - Gateway: http://localhost:5935
 
-    - Orchestrator: http://localhost:7935
-
-    '
+    - Orchestrator: http://localhost:7935'
   version: 1.0.0
   contact:
     name: Livepeer Documentation

@@ -1,14 +1,18 @@
 openapi: 3.2.0
 info:
-  title: Livepeer Metrics API
+  title: Livepeer API Reference Metrics API
+  description: 'Welcome to the Livepeer API reference docs. Here you will find all the
+
+    endpoints exposed on the standard Livepeer API, learn how to use them and
+
+    what they return.'
   version: 1.0.0
-  description: 'Operations tagged metrics across 2 of this provider''s published API definitions: livepeer-openapi.yml, livepeer-studio-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://livepeer.studio/api
 security:
 - apiKey: []
 tags:
-- name: metrics
+- name: Metrics
   description: Operations related to metrics api
 paths:
   /data/views/now:
@@ -17,10 +21,8 @@ paths:
       x-speakeasy-name-override: getRealtimeViewership
       summary: Query realtime viewership
       tags:
-      - metrics
-      description: 'Requires a private (non-CORS) API key to be used.
-
-        '
+      - Metrics
+      description: Requires a private (non-CORS) API key to be used.
       parameters:
       - name: playbackId
         in: query
@@ -80,18 +82,14 @@ paths:
       - lang: python
         label: getRealtimeViewershipNow
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.metrics.get_realtime_viewership()\n\nif res.data is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /data/views/query:
     get:
       operationId: getViewershipMetrics
       x-speakeasy-name-override: getViewership
       summary: Query viewership metrics
       tags:
-      - metrics
-      description: 'Requires a private (non-CORS) API key to be used.
-
-        '
+      - Metrics
+      description: Requires a private (non-CORS) API key to be used.
       parameters:
       - name: playbackId
         in: query
@@ -198,18 +196,14 @@ paths:
       - lang: python
         label: getViewershipMetrics
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.metrics.get_viewership(request={})\n\nif res.data is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /data/views/query/creator:
     get:
       operationId: getCreatorViewershipMetrics
       x-speakeasy-name-override: getCreatorViewership
       summary: Query creator viewership metrics
       tags:
-      - metrics
-      description: 'Requires a proof of ownership to be sent in the request, which for now is just the assetId or streamId parameters (1 of those must be in the query-string).
-
-        '
+      - Metrics
+      description: Requires a proof of ownership to be sent in the request, which for now is just the assetId or streamId parameters (1 of those must be in the query-string).
       parameters:
       - name: from
         in: query
@@ -302,22 +296,18 @@ paths:
       - lang: python
         label: getCreatorViewershipMetrics
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.metrics.get_creator_viewership(request={})\n\nif res.data is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /data/views/query/total/{playbackId}:
     get:
       operationId: getPublicViewershipMetrics
       x-speakeasy-name-override: getPublicViewership
       summary: Query public total views metrics
       tags:
-      - metrics
+      - Metrics
       description: 'Allows querying for the public metrics for viewership about a video.
 
         This can be called from the frontend with a CORS key, or even
 
-        unauthenticated.
-
-        '
+        unauthenticated.'
       parameters:
       - name: playbackId
         in: path
@@ -369,14 +359,12 @@ paths:
       - lang: python
         label: getPublicViewershipMetrics
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.metrics.get_public_viewership(playback_id=\"<value>\")\n\nif res.data is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /data/usage/query:
     get:
       operationId: getUsageMetrics
       x-speakeasy-name-override: getUsage
       tags:
-      - metrics
+      - Metrics
       summary: Query usage metrics
       parameters:
       - name: from
@@ -447,43 +435,8 @@ paths:
       - lang: python
         label: getUsageMetrics
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.metrics.get_usage(request={})\n\nif res.usage_metric is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
 components:
   schemas:
-    realtime-viewership-metric:
-      type: object
-      description: 'An individual metric about realtime viewership of a stream/asset.
-
-        '
-      required:
-      - viewCount
-      - errorRate
-      properties:
-        playbackId:
-          type: string
-          description: The playback ID associated with the metric.
-          example: 1bde4o2i6xycudoy
-        device:
-          type: string
-          description: The device used by the viewer.
-          example: iPhone
-        browser:
-          type: string
-          description: The browser used by the viewer.
-          example: Safari
-        country:
-          type: string
-          description: The country where the viewer is located.
-          example: United States
-        viewCount:
-          type: integer
-          description: The number of views for the stream/asset.
-          example: 100
-        errorRate:
-          type: number
-          description: The error rate for the stream/asset.
-          example: 0.1
     viewership-metric:
       type: object
       description: 'An individual metric about viewership of a stream/asset. Necessarily, at least
@@ -597,17 +550,39 @@ components:
 
             '
           example: 0.5
-    error:
+    realtime-viewership-metric:
       type: object
+      description: 'An individual metric about realtime viewership of a stream/asset.
+
+        '
+      required:
+      - viewCount
+      - errorRate
       properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example:
-            - id not provided
-            - Account not found
+        playbackId:
+          type: string
+          description: The playback ID associated with the metric.
+          example: 1bde4o2i6xycudoy
+        device:
+          type: string
+          description: The device used by the viewer.
+          example: iPhone
+        browser:
+          type: string
+          description: The browser used by the viewer.
+          example: Safari
+        country:
+          type: string
+          description: The country where the viewer is located.
+          example: United States
+        viewCount:
+          type: integer
+          description: The number of views for the stream/asset.
+          example: 100
+        errorRate:
+          type: number
+          description: The error rate for the stream/asset.
+          example: 0.1
     usage-metric:
       type: object
       description: 'An individual metric about usage of a user.
@@ -634,6 +609,17 @@ components:
           type: number
           description: Total minutes of storage usage.
           example: 100
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
   securitySchemes:
     apiKey:
       type: http
@@ -642,6 +628,3 @@ components:
     HTTPBearer:
       type: http
       scheme: bearer
-x-refined-from:
-- livepeer-openapi.yml
-- livepeer-studio-openapi.yml

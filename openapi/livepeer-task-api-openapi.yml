@@ -1,14 +1,18 @@
 openapi: 3.2.0
 info:
-  title: Livepeer Task API
+  title: Livepeer API Reference Task API
+  description: 'Welcome to the Livepeer API reference docs. Here you will find all the
+
+    endpoints exposed on the standard Livepeer API, learn how to use them and
+
+    what they return.'
   version: 1.0.0
-  description: 'Operations tagged task across 2 of this provider''s published API definitions: livepeer-openapi.yml, livepeer-studio-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://livepeer.studio/api
 security:
 - apiKey: []
 tags:
-- name: task
+- name: Task
   description: Operations related to tasks api
 paths:
   /task:
@@ -17,7 +21,7 @@ paths:
       x-speakeasy-name-override: getAll
       summary: Retrieve Tasks
       tags:
-      - task
+      - Task
       responses:
         default:
           description: Error
@@ -44,15 +48,13 @@ paths:
       - lang: python
         label: getTasks
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.task.get_all()\n\nif res.data is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /task/{taskId}:
     get:
       operationId: getTask
       x-speakeasy-name-override: get
       summary: Retrieve a Task
       tags:
-      - task
+      - Task
       parameters:
       - in: path
         name: taskId
@@ -80,148 +82,46 @@ paths:
       - lang: python
         label: getTask
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.task.get(task_id=\"<value>\")\n\nif res.task is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
 components:
   schemas:
-    playback-policy:
-      type:
-      - object
-      - 'null'
-      description: Whether the playback policy for an asset or stream is public or signed
-      additionalProperties: false
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - public
-          - jwt
-          - webhook
-          example: webhook
-        webhookId:
-          type: string
-          description: ID of the webhook to use for playback policy
-          example: 1bde4o2i6xycudoy
-        webhookContext:
-          type: object
-          description: User-defined webhook context
-          additionalProperties: true
-          example:
-            streamerId: my-custom-id
-        refreshInterval:
-          type: number
-          description: 'Interval (in seconds) at which the playback policy should be
-
-            refreshed (default 600 seconds)
-
-            '
-          example: 600
-        allowedOrigins:
-          type: array
-          description: List of allowed origins for CORS playback (<scheme>://<hostname>:<port>, <scheme>://<hostname>)
-          items:
-            type: string
-    storage-status:
-      readOnly: true
-      additionalProperties: false
-      required:
-      - phase
-      - tasks
-      properties:
-        phase:
-          type: string
-          description: Phase of the asset storage
-          enum:
-          - waiting
-          - processing
-          - ready
-          - failed
-          - reverted
-          example: ready
-        progress:
-          type: number
-          description: Current progress of the task updating the storage.
-          example: 0.5
-        errorMessage:
-          type: string
-          description: Error message if the last storage changed failed.
-          example: Failed to update storage
-        tasks:
-          type: object
-          additionalProperties: false
-          properties:
-            pending:
-              type: string
-              description: 'ID of any currently running task that is exporting this
-
-                asset to IPFS.
-
-                '
-              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-            last:
-              type: string
-              description: 'ID of the last task to run successfully, that created
-
-                the currently saved data.
-
-                '
-              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-            failed:
-              type: string
-              description: ID of the last task to fail execution.
-              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-    creator-id:
+    export-task-params:
+      description: Parameters for the export task
       oneOf:
       - type: object
         additionalProperties: false
         required:
-        - type
-        - value
+        - custom
         properties:
-          type:
-            type: string
-            enum:
-            - unverified
-            example: unverified
-          value:
-            type: string
-            description: Developer-managed ID of the user who created the resource.
-            example: user123
-    input-creator-id:
-      oneOf:
+          custom:
+            type: object
+            description: custom URL parameters for the export task
+            additionalProperties: false
+            required:
+            - url
+            properties:
+              url:
+                type: string
+                format: uri
+                pattern: ^http(s)?://
+                description: URL where to export the asset
+                example: https://s3.amazonaws.com/my-bucket/path/filename.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=LLMMB
+              method:
+                type: string
+                description: Method to use on the export request
+                default: PUT
+                example: POST
+              headers:
+                type: object
+                description: Headers to add to the export request
+                additionalProperties:
+                  type: string
       - type: object
         additionalProperties: false
         required:
-        - type
-        - value
+        - ipfs
         properties:
-          type:
-            type: string
-            enum:
-            - unverified
-          value:
-            type: string
-      - type: string
-        description: Helper syntax to specify an unverified creator ID, fully managed by the developer.
-    ipfs-file-info:
-      type: object
-      required:
-      - cid
-      additionalProperties: false
-      properties:
-        cid:
-          type: string
-          description: CID of the file on IPFS
-        url:
-          readOnly: true
-          type: string
-          description: URL with IPFS scheme for the file
-        gatewayUrl:
-          readOnly: true
-          type: string
-          description: URL to access file via HTTP through an IPFS gateway
+          ipfs:
+            $ref: '#/components/schemas/ipfs-export-params'
     asset:
       type: object
       additionalProperties: false
@@ -547,137 +447,110 @@ components:
                     type: number
                     description: Bit depth of the track - only for audio tracks
                     example: 16
-    clip-payload:
-      type: object
+    playback-policy:
+      type:
+      - object
+      - 'null'
+      description: Whether the playback policy for an asset or stream is public or signed
       additionalProperties: false
       required:
-      - playbackId
-      - startTime
+      - type
       properties:
-        playbackId:
+        type:
           type: string
-          description: The playback ID of the stream or stream recording to clip. Asset playback IDs are not supported yet.
-          example: eaw4nk06ts2d0mzb
-        startTime:
+          enum:
+          - public
+          - jwt
+          - webhook
+          example: webhook
+        webhookId:
+          type: string
+          description: ID of the webhook to use for playback policy
+          example: 1bde4o2i6xycudoy
+        webhookContext:
+          type: object
+          description: User-defined webhook context
+          additionalProperties: true
+          example:
+            streamerId: my-custom-id
+        refreshInterval:
           type: number
-          description: The start timestamp of the clip in Unix milliseconds. _See the ClipTrigger in the UI Kit for an example of how this is calculated (for HLS, it uses `Program Date-Time` tags, and for WebRTC, it uses the latency from server to client at stream startup)._
-          example: 1587667174725
-        endTime:
-          type: number
-          description: The end timestamp of the clip in Unix milliseconds. _See the ClipTrigger in the UI Kit for an example of how this is calculated (for HLS, it uses `Program Date-Time` tags, and for WebRTC, it uses the latency from server to client at stream startup)._
-          example: 1587667174725
-        name:
-          type: string
-          description: The optional friendly name of the clip to create.
-          example: My Clip
-        sessionId:
-          type: string
-          description: The optional session ID of the stream to clip. This can be used to clip _recordings_ - if it is not specified, it will clip the ongoing livestream.
-          example: de7818e7-610a-4057-8f6f-b785dc1e6f88
-    new-asset-payload:
-      additionalProperties: false
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: 'The name of the asset. This is not necessarily the filename - it can be a custom name or title.
+          description: 'Interval (in seconds) at which the playback policy should be
+
+            refreshed (default 600 seconds)
 
             '
-          example: filename.mp4
-        staticMp4:
-          type: boolean
-          description: Whether to generate MP4s for the asset.
-          example: true
-        playbackPolicy:
-          $ref: '#/components/schemas/playback-policy'
-        creatorId:
-          $ref: '#/components/schemas/input-creator-id'
-        storage:
+          example: 600
+        allowedOrigins:
+          type: array
+          description: List of allowed origins for CORS playback (<scheme>://<hostname>:<port>, <scheme>://<hostname>)
+          items:
+            type: string
+    storage-status:
+      readOnly: true
+      additionalProperties: false
+      required:
+      - phase
+      - tasks
+      properties:
+        phase:
+          type: string
+          description: Phase of the asset storage
+          enum:
+          - waiting
+          - processing
+          - ready
+          - failed
+          - reverted
+          example: ready
+        progress:
+          type: number
+          description: Current progress of the task updating the storage.
+          example: 0.5
+        errorMessage:
+          type: string
+          description: Error message if the last storage changed failed.
+          example: Failed to update storage
+        tasks:
           type: object
           additionalProperties: false
           properties:
-            ipfs:
-              description: 'Set to true to make default export to IPFS. To customize the
+            pending:
+              type: string
+              description: 'ID of any currently running task that is exporting this
 
-                pinned files, specify an object with a spec field. False or null
-
-                means to unpin from IPFS, but it''s unsupported right now.
+                asset to IPFS.
 
                 '
-              oneOf:
-              - type: object
-                additionalProperties: false
-                properties:
-                  spec:
-                    oneOf:
-                    - type: 'null'
-                    - $ref: '#/components/schemas/asset/properties/storage/properties/ipfs/properties/spec'
-              - type: boolean
-              - type: 'null'
-        encryption:
-          type: object
-          additionalProperties: false
-          required:
-          - encryptedKey
-          properties:
-            encryptedKey:
+              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+            last:
               type: string
-              writeOnly: true
-              description: Encryption key used to encrypt the asset. Only writable in the upload asset endpoints and cannot be retrieved back.
-        c2pa:
-          type: boolean
-          description: Decides if the output video should include C2PA signature
-        profiles:
+              description: 'ID of the last task to run successfully, that created
+
+                the currently saved data.
+
+                '
+              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+            failed:
+              type: string
+              description: ID of the last task to fail execution.
+              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+    input-creator-id:
+      oneOf:
+      - type: object
+        additionalProperties: false
+        required:
+        - type
+        - value
+        properties:
           type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/transcode-profile'
-        targetSegmentSizeSecs:
-          type: number
-          description: How many seconds the duration of each output segment should be
-    ipfs-export-params:
-      type: object
-      additionalProperties: false
-      properties:
-        $ref: {}
-        pinata:
-          description: 'Custom credentials for the Piñata service. Must have either
-
-            a JWT or an API key and an API secret.
-
-            '
-          oneOf:
-          - type: object
-            additionalProperties: false
-            required:
-            - jwt
-            properties:
-              jwt:
-                type: string
-                writeOnly: true
-                description: 'Will be added to the Authorization header as a
-
-                  Bearer token.
-
-                  '
-                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-          - type: object
-            additionalProperties: false
-            required:
-            - apiKey
-            - apiSecret
-            properties:
-              apiKey:
-                type: string
-                description: Will be added to the pinata_api_key header.
-                example: '1234567890'
-              apiSecret:
-                type: string
-                writeOnly: true
-                description: Will be added to the pinata_secret_api_key header.
-                example: 1234567890abcdef
+            type: string
+            enum:
+            - unverified
+          value:
+            type: string
+      - type: string
+        description: Helper syntax to specify an unverified creator ID, fully managed by the developer.
     task:
       type: object
       additionalProperties: false
@@ -1006,55 +879,33 @@ components:
                       type: string
                       description: IPFS CID of the exported data
                       example: Qmabc123xyz341
-    error:
+    clip-payload:
       type: object
+      additionalProperties: false
+      required:
+      - playbackId
+      - startTime
       properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example:
-            - id not provided
-            - Account not found
-    export-task-params:
-      description: Parameters for the export task
-      oneOf:
-      - type: object
-        additionalProperties: false
-        required:
-        - custom
-        properties:
-          custom:
-            type: object
-            description: custom URL parameters for the export task
-            additionalProperties: false
-            required:
-            - url
-            properties:
-              url:
-                type: string
-                format: uri
-                pattern: ^http(s)?://
-                description: URL where to export the asset
-                example: https://s3.amazonaws.com/my-bucket/path/filename.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=LLMMB
-              method:
-                type: string
-                description: Method to use on the export request
-                default: PUT
-                example: POST
-              headers:
-                type: object
-                description: Headers to add to the export request
-                additionalProperties:
-                  type: string
-      - type: object
-        additionalProperties: false
-        required:
-        - ipfs
-        properties:
-          ipfs:
-            $ref: '#/components/schemas/ipfs-export-params'
+        playbackId:
+          type: string
+          description: The playback ID of the stream or stream recording to clip. Asset playback IDs are not supported yet.
+          example: eaw4nk06ts2d0mzb
+        startTime:
+          type: number
+          description: The start timestamp of the clip in Unix milliseconds. _See the ClipTrigger in the UI Kit for an example of how this is calculated (for HLS, it uses `Program Date-Time` tags, and for WebRTC, it uses the latency from server to client at stream startup)._
+          example: 1587667174725
+        endTime:
+          type: number
+          description: The end timestamp of the clip in Unix milliseconds. _See the ClipTrigger in the UI Kit for an example of how this is calculated (for HLS, it uses `Program Date-Time` tags, and for WebRTC, it uses the latency from server to client at stream startup)._
+          example: 1587667174725
+        name:
+          type: string
+          description: The optional friendly name of the clip to create.
+          example: My Clip
+        sessionId:
+          type: string
+          description: The optional session ID of the stream to clip. This can be used to clip _recordings_ - if it is not specified, it will clip the ongoing livestream.
+          example: de7818e7-610a-4057-8f6f-b785dc1e6f88
     transcode-profile:
       type: object
       description: Transcode API profile
@@ -1114,6 +965,155 @@ components:
           - VP8
           - VP9
           example: H.264
+    creator-id:
+      oneOf:
+      - type: object
+        additionalProperties: false
+        required:
+        - type
+        - value
+        properties:
+          type:
+            type: string
+            enum:
+            - unverified
+            example: unverified
+          value:
+            type: string
+            description: Developer-managed ID of the user who created the resource.
+            example: user123
+    new-asset-payload:
+      additionalProperties: false
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: 'The name of the asset. This is not necessarily the filename - it can be a custom name or title.
+
+            '
+          example: filename.mp4
+        staticMp4:
+          type: boolean
+          description: Whether to generate MP4s for the asset.
+          example: true
+        playbackPolicy:
+          $ref: '#/components/schemas/playback-policy'
+        creatorId:
+          $ref: '#/components/schemas/input-creator-id'
+        storage:
+          type: object
+          additionalProperties: false
+          properties:
+            ipfs:
+              description: 'Set to true to make default export to IPFS. To customize the
+
+                pinned files, specify an object with a spec field. False or null
+
+                means to unpin from IPFS, but it''s unsupported right now.
+
+                '
+              oneOf:
+              - type: object
+                additionalProperties: false
+                properties:
+                  spec:
+                    oneOf:
+                    - type: 'null'
+                    - $ref: '#/components/schemas/asset/properties/storage/properties/ipfs/properties/spec'
+              - type: boolean
+              - type: 'null'
+        encryption:
+          type: object
+          additionalProperties: false
+          required:
+          - encryptedKey
+          properties:
+            encryptedKey:
+              type: string
+              writeOnly: true
+              description: Encryption key used to encrypt the asset. Only writable in the upload asset endpoints and cannot be retrieved back.
+        c2pa:
+          type: boolean
+          description: Decides if the output video should include C2PA signature
+        profiles:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/transcode-profile'
+        targetSegmentSizeSecs:
+          type: number
+          description: How many seconds the duration of each output segment should be
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
+    ipfs-export-params:
+      type: object
+      additionalProperties: false
+      properties:
+        $ref: {}
+        pinata:
+          description: 'Custom credentials for the Piñata service. Must have either
+
+            a JWT or an API key and an API secret.
+
+            '
+          oneOf:
+          - type: object
+            additionalProperties: false
+            required:
+            - jwt
+            properties:
+              jwt:
+                type: string
+                writeOnly: true
+                description: 'Will be added to the Authorization header as a
+
+                  Bearer token.
+
+                  '
+                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+          - type: object
+            additionalProperties: false
+            required:
+            - apiKey
+            - apiSecret
+            properties:
+              apiKey:
+                type: string
+                description: Will be added to the pinata_api_key header.
+                example: '1234567890'
+              apiSecret:
+                type: string
+                writeOnly: true
+                description: Will be added to the pinata_secret_api_key header.
+                example: 1234567890abcdef
+    ipfs-file-info:
+      type: object
+      required:
+      - cid
+      additionalProperties: false
+      properties:
+        cid:
+          type: string
+          description: CID of the file on IPFS
+        url:
+          readOnly: true
+          type: string
+          description: URL with IPFS scheme for the file
+        gatewayUrl:
+          readOnly: true
+          type: string
+          description: URL to access file via HTTP through an IPFS gateway
   securitySchemes:
     apiKey:
       type: http
@@ -1122,6 +1122,3 @@ components:
     HTTPBearer:
       type: http
       scheme: bearer
-x-refined-from:
-- livepeer-openapi.yml
-- livepeer-studio-openapi.yml

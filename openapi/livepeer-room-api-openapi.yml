@@ -1,14 +1,18 @@
 openapi: 3.2.0
 info:
-  title: Livepeer Room API
+  title: Livepeer API Reference Room API
+  description: 'Welcome to the Livepeer API reference docs. Here you will find all the
+
+    endpoints exposed on the standard Livepeer API, learn how to use them and
+
+    what they return.'
   version: 1.0.0
-  description: 'Operations tagged room across 2 of this provider''s published API definitions: livepeer-openapi.yml, livepeer-studio-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://livepeer.studio/api
 security:
 - apiKey: []
 tags:
-- name: room
+- name: Room
   description: Operations related to rooms api
 paths:
   /room:
@@ -18,10 +22,8 @@ paths:
       x-speakeasy-name-override: create
       summary: Create a room
       tags:
-      - room
-      description: 'Create a multiparticipant livestreaming room.
-
-        '
+      - Room
+      description: Create a multiparticipant livestreaming room.
       responses:
         default:
           description: Error
@@ -43,15 +45,13 @@ paths:
       - lang: python
         label: createRoom
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.room.create()\n\nif res.create_room_response is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /room/{id}:
     get:
       deprecated: true
       operationId: getRoom
       x-speakeasy-name-override: get
       tags:
-      - room
+      - Room
       parameters:
       - name: id
         in: path
@@ -85,7 +85,7 @@ paths:
       operationId: deleteRoom
       x-speakeasy-name-override: delete
       tags:
-      - room
+      - Room
       parameters:
       - name: id
         in: path
@@ -109,15 +109,13 @@ paths:
       - lang: python
         label: deleteRoom
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.room.delete(id=\"<id>\")\n\nif res is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /room/{id}/egress:
     post:
       deprecated: true
       operationId: startRoomEgress
       x-speakeasy-name-override: startEgress
       tags:
-      - room
+      - Room
       requestBody:
         required: true
         content:
@@ -133,9 +131,7 @@ paths:
       summary: Start room RTMP egress
       description: 'Create a livestream for your room.
 
-        This allows you to leverage livestreaming features like recording and HLS output.
-
-        '
+        This allows you to leverage livestreaming features like recording and HLS output.'
       responses:
         default:
           description: Error
@@ -158,7 +154,7 @@ paths:
       x-speakeasy-name-override: stopEgress
       summary: Stop room RTMP egress
       tags:
-      - room
+      - Room
       parameters:
       - name: id
         in: path
@@ -181,15 +177,13 @@ paths:
       - lang: python
         label: stopRoomEgress
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.room.stop_egress(id=\"<id>\")\n\nif res is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /room/{id}/user:
     post:
       deprecated: true
       operationId: createRoomUser
       x-speakeasy-name-override: createUser
       tags:
-      - room
+      - Room
       requestBody:
         required: true
         content:
@@ -207,9 +201,7 @@ paths:
 
         The response will contain a joining URL for Livepeer''s default meeting app.
 
-        Alternatively the joining token can be used with a custom app.
-
-        '
+        Alternatively the joining token can be used with a custom app.'
       responses:
         default:
           description: Error
@@ -231,14 +223,12 @@ paths:
       - lang: python
         label: createRoomUser
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.room.create_user(id=\"<id>\", room_user_payload={\n    \"name\": \"name\",\n    \"can_publish\": True,\n    \"can_publish_data\": True,\n})\n\nif res.room_user_response is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /room/{id}/user/{userId}:
     get:
       operationId: getRoomUser
       x-speakeasy-name-override: getUser
       tags:
-      - room
+      - Room
       deprecated: true
       parameters:
       - name: id
@@ -278,7 +268,7 @@ paths:
       operationId: updateRoomUser
       x-speakeasy-name-override: updateUser
       tags:
-      - room
+      - Room
       requestBody:
         required: true
         content:
@@ -318,7 +308,7 @@ paths:
       operationId: deleteRoomUser
       x-speakeasy-name-override: deleteUser
       tags:
-      - room
+      - Room
       deprecated: true
       parameters:
       - name: id
@@ -348,33 +338,8 @@ paths:
       - lang: python
         label: deleteRoomUser
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.room.delete_user(id=\"<id>\", user_id=\"<value>\")\n\nif res is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
 components:
   schemas:
-    get-room-user-response:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the user
-          example: d32ae9e6-c459-4931-9898-e86e2f5e7e16
-        joinedAt:
-          type: integer
-          description: Timestamp (in milliseconds) at which the user joined
-          example: 1687517025261
-        name:
-          type: string
-          description: The display name of the user
-          example: name
-        isPublisher:
-          type: boolean
-          description: Whether a user is allowed to publish audio/video tracks
-          example: true
-          default: true
-        metadata:
-          type: string
-          description: User defined payload to store for the participant
     room:
       type: object
       required:
@@ -417,40 +382,13 @@ components:
               leftAt:
                 type: integer
                 description: the time the participant left
-    room-user-response:
+    create-room-response:
       type: object
       properties:
         id:
           type: string
-          description: The ID of the user
+          description: The ID of the room
           example: d32ae9e6-c459-4931-9898-e86e2f5e7e16
-        joinUrl:
-          type: string
-          description: Joining URL - use this for Livepeer's default meeting app (see the multiparticipant streaming guide for more info).
-          example: https://meet.livepeer.chat
-        token:
-          type: string
-          description: Joining JWT - this can be used if you have a custom meeting app (see the multiparticipant streaming guide for more info).
-          example: token
-    room-user-update-payload:
-      type: object
-      required:
-      - canPublish
-      additionalProperties: false
-      properties:
-        canPublish:
-          type: boolean
-          description: Whether a user is allowed to publish audio/video tracks (i.e. their microphone and webcam)
-          example: true
-          default: true
-        canPublishData:
-          type: boolean
-          description: Whether a user is allowed to publish data messages to the room
-          example: true
-          default: true
-        metadata:
-          type: string
-          description: User defined payload to store for the participant
     room-user-payload:
       type: object
       required:
@@ -472,13 +410,25 @@ components:
         metadata:
           type: string
           description: User defined payload to store for the participant
-    create-room-response:
+    room-user-update-payload:
       type: object
+      required:
+      - canPublish
+      additionalProperties: false
       properties:
-        id:
+        canPublish:
+          type: boolean
+          description: Whether a user is allowed to publish audio/video tracks (i.e. their microphone and webcam)
+          example: true
+          default: true
+        canPublishData:
+          type: boolean
+          description: Whether a user is allowed to publish data messages to the room
+          example: true
+          default: true
+        metadata:
           type: string
-          description: The ID of the room
-          example: d32ae9e6-c459-4931-9898-e86e2f5e7e16
+          description: User defined payload to store for the participant
     room-egress-payload:
       type: object
       required:
@@ -500,6 +450,44 @@ components:
             example:
             - id not provided
             - Account not found
+    room-user-response:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the user
+          example: d32ae9e6-c459-4931-9898-e86e2f5e7e16
+        joinUrl:
+          type: string
+          description: Joining URL - use this for Livepeer's default meeting app (see the multiparticipant streaming guide for more info).
+          example: https://meet.livepeer.chat
+        token:
+          type: string
+          description: Joining JWT - this can be used if you have a custom meeting app (see the multiparticipant streaming guide for more info).
+          example: token
+    get-room-user-response:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the user
+          example: d32ae9e6-c459-4931-9898-e86e2f5e7e16
+        joinedAt:
+          type: integer
+          description: Timestamp (in milliseconds) at which the user joined
+          example: 1687517025261
+        name:
+          type: string
+          description: The display name of the user
+          example: name
+        isPublisher:
+          type: boolean
+          description: Whether a user is allowed to publish audio/video tracks
+          example: true
+          default: true
+        metadata:
+          type: string
+          description: User defined payload to store for the participant
   securitySchemes:
     apiKey:
       type: http
@@ -508,6 +496,3 @@ components:
     HTTPBearer:
       type: http
       scheme: bearer
-x-refined-from:
-- livepeer-openapi.yml
-- livepeer-studio-openapi.yml

@@ -1,14 +1,18 @@
 openapi: 3.2.0
 info:
-  title: Livepeer Asset API
+  title: Livepeer API Reference Asset API
+  description: 'Welcome to the Livepeer API reference docs. Here you will find all the
+
+    endpoints exposed on the standard Livepeer API, learn how to use them and
+
+    what they return.'
   version: 1.0.0
-  description: 'Operations tagged asset across 2 of this provider''s published API definitions: livepeer-openapi.yml, livepeer-studio-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://livepeer.studio/api
 security:
 - apiKey: []
 tags:
-- name: asset
+- name: Asset
   description: Operations related to asset/vod api
 paths:
   /asset:
@@ -16,7 +20,7 @@ paths:
       operationId: getAssets
       x-speakeasy-name-override: getAll
       tags:
-      - asset
+      - Asset
       summary: Retrieve assets
       responses:
         default:
@@ -44,16 +48,137 @@ paths:
       - lang: python
         label: getAssets
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.asset.get_all()\n\nif res.data is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /asset/request-upload:
     post:
       operationId: requestUpload
       x-speakeasy-name-override: create
       tags:
-      - asset
+      - Asset
       summary: Upload an asset
-      description: "To upload an asset, your first need to request for a direct upload URL\nand only then actually upload the contents of the asset.\n\\\n\\\nOnce you created a upload link, you have 2 options, resumable or direct\nupload. For a more reliable experience, you should use resumable uploads\nwhich will work better for users with unreliable or slow network\nconnections. If you want a simpler implementation though, you should\njust use a direct upload.\n\n\n## Direct Upload\nFor a direct upload, make a PUT request to the URL received in the url\nfield of the response above, with the raw video file as the request\nbody. response above:\n\n\n## Resumable Upload\nLivepeer supports resumable uploads via Tus. This section provides a\nsimple example of how to use tus-js-client to upload a video file.\n\\\n\\\nFrom the previous section, we generated a URL to upload a video file to\nLivepeer on POST /api/asset/request-upload. You should use the\ntusEndpoint field of the response to upload the video file and track the\nprogress:\n\n```\n# This assumes there is an `input` element of `type=\"file\"` with id\n`fileInput` in the HTML\n\n\nconst input = document.getElementById('fileInput');\n\nconst file = input.files[0];\n\nconst upload = new tus.Upload(file, {\n  endpoint: tusEndpoint, // URL from `tusEndpoint` field in the\n`/request-upload` response\n  metadata: {\n    filename,\n    filetype: 'video/mp4',\n  },\n  uploadSize: file.size,\n  onError(err) {\n    console.error('Error uploading file:', err);\n  },\n  onProgress(bytesUploaded, bytesTotal) {\n    const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);\n    console.log('Uploaded ' + percentage + '%');\n  },\n  onSuccess() {\n    console.log('Upload finished:', upload.url);\n  },\n});\n\nconst previousUploads = await upload.findPreviousUploads();\n\nif (previousUploads.length > 0) {\n  upload.resumeFromPreviousUpload(previousUploads[0]);\n}\n\nupload.start();\n\n```\n\n> Note: If you are using tus from node.js, you need to add a custom URL\nstorage to enable resuming from previous uploads. On the browser, this\nis enabled by default using local storage. In node.js, add urlStorage:\nnew tus.FileUrlStorage(\"path/to/tmp/file\"), to the UploadFile object\ndefinition above.\n"
+      description: 'To upload an asset, your first need to request for a direct upload URL
+
+        and only then actually upload the contents of the asset.
+
+        \
+
+        \
+
+        Once you created a upload link, you have 2 options, resumable or direct
+
+        upload. For a more reliable experience, you should use resumable uploads
+
+        which will work better for users with unreliable or slow network
+
+        connections. If you want a simpler implementation though, you should
+
+        just use a direct upload.
+
+
+        ## Direct Upload
+
+        For a direct upload, make a PUT request to the URL received in the url
+
+        field of the response above, with the raw video file as the request
+
+        body. response above:
+
+
+        ## Resumable Upload
+
+        Livepeer supports resumable uploads via Tus. This section provides a
+
+        simple example of how to use tus-js-client to upload a video file.
+
+        \
+
+        \
+
+        From the previous section, we generated a URL to upload a video file to
+
+        Livepeer on POST /api/asset/request-upload. You should use the
+
+        tusEndpoint field of the response to upload the video file and track the
+
+        progress:
+
+
+        ```
+
+        # This assumes there is an `input` element of `type="file"` with id
+
+        `fileInput` in the HTML
+
+
+        const input = document.getElementById(''fileInput'');
+
+
+        const file = input.files[0];
+
+
+        const upload = new tus.Upload(file, {
+
+        endpoint: tusEndpoint, // URL from `tusEndpoint` field in the
+
+        `/request-upload` response
+
+        metadata: {
+
+        filename,
+
+        filetype: ''video/mp4'',
+
+        },
+
+        uploadSize: file.size,
+
+        onError(err) {
+
+        console.error(''Error uploading file:'', err);
+
+        },
+
+        onProgress(bytesUploaded, bytesTotal) {
+
+        const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
+
+        console.log(''Uploaded '' + percentage + ''%'');
+
+        },
+
+        onSuccess() {
+
+        console.log(''Upload finished:'', upload.url);
+
+        },
+
+        });
+
+
+        const previousUploads = await upload.findPreviousUploads();
+
+
+        if (previousUploads.length > 0) {
+
+        upload.resumeFromPreviousUpload(previousUploads[0]);
+
+        }
+
+
+        upload.start();
+
+
+        ```
+
+
+        > Note: If you are using tus from node.js, you need to add a custom URL
+
+        storage to enable resuming from previous uploads. On the browser, this
+
+        is enabled by default using local storage. In node.js, add urlStorage:
+
+        new tus.FileUrlStorage("path/to/tmp/file"), to the UploadFile object
+
+        definition above.'
       requestBody:
         required: true
         content:
@@ -110,15 +235,13 @@ paths:
       - lang: python
         label: requestUpload
         source: "from livepeer import Livepeer\nfrom livepeer.models import components\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.asset.create(request={\n    \"name\": \"filename.mp4\",\n    \"static_mp4\": True,\n    \"playback_policy\": {\n        \"type\": components.Type.WEBHOOK,\n        \"webhook_id\": \"1bde4o2i6xycudoy\",\n        \"webhook_context\": {\n            \"streamerId\": \"my-custom-id\",\n        },\n        \"refresh_interval\": 600,\n    },\n    \"profiles\": [\n        {\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"bitrate\": 3000000,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fps_den\": 1,\n            \"gop\": \"2\",\n            \"profile\": components.TranscodeProfileProfile.H264_BASELINE,\n            \"encoder\": components.TranscodeProfileEncoder.H_264,\n        },\n    ],\n})\n\nif res.data is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /asset/upload/url:
     post:
       operationId: uploadAsset
       x-speakeasy-name-override: createViaUrl
       summary: Upload asset via URL
       tags:
-      - asset
+      - Asset
       requestBody:
         required: true
         content:
@@ -188,14 +311,12 @@ paths:
       - lang: python
         label: uploadAsset
         source: "from livepeer import Livepeer\nfrom livepeer.models import components\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.asset.create_via_url(request={\n    \"name\": \"filename.mp4\",\n    \"static_mp4\": True,\n    \"playback_policy\": {\n        \"type\": components.Type.WEBHOOK,\n        \"webhook_id\": \"1bde4o2i6xycudoy\",\n        \"webhook_context\": {\n            \"streamerId\": \"my-custom-id\",\n        },\n        \"refresh_interval\": 600,\n    },\n    \"url\": \"https://s3.amazonaws.com/my-bucket/path/filename.mp4\",\n    \"profiles\": [\n        {\n            \"width\": 1280,\n            \"name\": \"720p\",\n            \"height\": 720,\n            \"bitrate\": 3000000,\n            \"quality\": 23,\n            \"fps\": 30,\n            \"fps_den\": 1,\n            \"gop\": \"2\",\n            \"profile\": components.TranscodeProfileProfile.H264_BASELINE,\n            \"encoder\": components.TranscodeProfileEncoder.H_264,\n        },\n    ],\n})\n\nif res.two_hundred_application_json_data is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /asset/{assetId}:
     get:
       operationId: getAsset
       x-speakeasy-name-override: get
       tags:
-      - asset
+      - Asset
       summary: Retrieves an asset
       parameters:
       - in: path
@@ -233,7 +354,7 @@ paths:
       x-speakeasy-name-override: update
       summary: Patch an asset
       tags:
-      - asset
+      - Asset
       parameters:
       - in: path
         name: assetId
@@ -276,7 +397,7 @@ paths:
       x-speakeasy-name-override: delete
       summary: Delete an asset
       tags:
-      - asset
+      - Asset
       parameters:
       - in: path
         name: assetId
@@ -303,38 +424,8 @@ paths:
       - lang: python
         label: deleteAsset
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.asset.delete(asset_id=\"<value>\")\n\nif res is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
 components:
   schemas:
-    input-creator-id:
-      oneOf:
-      - type: object
-        additionalProperties: false
-        required:
-        - type
-        - value
-        properties:
-          type:
-            type: string
-            enum:
-            - unverified
-          value:
-            type: string
-      - type: string
-        description: Helper syntax to specify an unverified creator ID, fully managed by the developer.
-    asset-patch-payload:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/asset/properties/name'
-        creatorId:
-          $ref: '#/components/schemas/input-creator-id'
-        playbackPolicy:
-          $ref: '#/components/schemas/playback-policy'
-        storage:
-          $ref: '#/components/schemas/new-asset-payload/properties/storage'
     new-asset-payload:
       additionalProperties: false
       required:
@@ -723,65 +814,6 @@ components:
                     type: number
                     description: Bit depth of the track - only for audio tracks
                     example: 16
-    transcode-profile:
-      type: object
-      description: Transcode API profile
-      additionalProperties: false
-      required:
-      - bitrate
-      properties:
-        width:
-          type: integer
-          minimum: 128
-          example: 1280
-        name:
-          type: string
-          minLength: 1
-          maxLength: 500
-          example: 720p
-        height:
-          type: integer
-          minimum: 128
-          example: 720
-        bitrate:
-          type: integer
-          minimum: 400
-          example: 3000000
-        quality:
-          type: integer
-          description: 'Restricts the size of the output video using the constant quality feature. Increasing this value will result in a lower quality video. Note that this parameter might not work if the transcoder lacks support for it.
-
-            '
-          minimum: 0
-          maximum: 44
-          example: 23
-        fps:
-          type: integer
-          minimum: 0
-          example: 30
-        fpsDen:
-          type: integer
-          minimum: 1
-          example: 1
-        gop:
-          type: string
-          example: 2
-        profile:
-          type: string
-          enum:
-          - H264Baseline
-          - H264Main
-          - H264High
-          - H264ConstrainedHigh
-          example: H264Baseline
-        encoder:
-          type: string
-          enum:
-          - H.264
-          - HEVC
-          - VP8
-          - VP9
-          example: H.264
     playback-policy:
       type:
       - object
@@ -821,17 +853,22 @@ components:
           description: List of allowed origins for CORS playback (<scheme>://<hostname>:<port>, <scheme>://<hostname>)
           items:
             type: string
-    error:
-      type: object
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
+    input-creator-id:
+      oneOf:
+      - type: object
+        additionalProperties: false
+        required:
+        - type
+        - value
+        properties:
+          type:
             type: string
-            example:
-            - id not provided
-            - Account not found
+            enum:
+            - unverified
+          value:
+            type: string
+      - type: string
+        description: Helper syntax to specify an unverified creator ID, fully managed by the developer.
     creator-id:
       oneOf:
       - type: object
@@ -898,23 +935,6 @@ components:
               type: string
               description: ID of the last task to fail execution.
               example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-    ipfs-file-info:
-      type: object
-      required:
-      - cid
-      additionalProperties: false
-      properties:
-        cid:
-          type: string
-          description: CID of the file on IPFS
-        url:
-          readOnly: true
-          type: string
-          description: URL with IPFS scheme for the file
-        gatewayUrl:
-          readOnly: true
-          type: string
-          description: URL to access file via HTTP through an IPFS gateway
     new-asset-from-url-payload:
       additionalProperties: false
       required:
@@ -951,6 +971,105 @@ components:
           $ref: '#/components/schemas/new-asset-payload/properties/profiles'
         targetSegmentSizeSecs:
           $ref: '#/components/schemas/new-asset-payload/properties/targetSegmentSizeSecs'
+    asset-patch-payload:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/asset/properties/name'
+        creatorId:
+          $ref: '#/components/schemas/input-creator-id'
+        playbackPolicy:
+          $ref: '#/components/schemas/playback-policy'
+        storage:
+          $ref: '#/components/schemas/new-asset-payload/properties/storage'
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
+    ipfs-file-info:
+      type: object
+      required:
+      - cid
+      additionalProperties: false
+      properties:
+        cid:
+          type: string
+          description: CID of the file on IPFS
+        url:
+          readOnly: true
+          type: string
+          description: URL with IPFS scheme for the file
+        gatewayUrl:
+          readOnly: true
+          type: string
+          description: URL to access file via HTTP through an IPFS gateway
+    transcode-profile:
+      type: object
+      description: Transcode API profile
+      additionalProperties: false
+      required:
+      - bitrate
+      properties:
+        width:
+          type: integer
+          minimum: 128
+          example: 1280
+        name:
+          type: string
+          minLength: 1
+          maxLength: 500
+          example: 720p
+        height:
+          type: integer
+          minimum: 128
+          example: 720
+        bitrate:
+          type: integer
+          minimum: 400
+          example: 3000000
+        quality:
+          type: integer
+          description: 'Restricts the size of the output video using the constant quality feature. Increasing this value will result in a lower quality video. Note that this parameter might not work if the transcoder lacks support for it.
+
+            '
+          minimum: 0
+          maximum: 44
+          example: 23
+        fps:
+          type: integer
+          minimum: 0
+          example: 30
+        fpsDen:
+          type: integer
+          minimum: 1
+          example: 1
+        gop:
+          type: string
+          example: 2
+        profile:
+          type: string
+          enum:
+          - H264Baseline
+          - H264Main
+          - H264High
+          - H264ConstrainedHigh
+          example: H264Baseline
+        encoder:
+          type: string
+          enum:
+          - H.264
+          - HEVC
+          - VP8
+          - VP9
+          example: H.264
   securitySchemes:
     apiKey:
       type: http
@@ -959,6 +1078,3 @@ components:
     HTTPBearer:
       type: http
       scheme: bearer
-x-refined-from:
-- livepeer-openapi.yml
-- livepeer-studio-openapi.yml

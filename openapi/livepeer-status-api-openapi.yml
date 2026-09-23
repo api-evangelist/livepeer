@@ -15,9 +15,7 @@ info:
 
     - Gateway: http://localhost:5935
 
-    - Orchestrator: http://localhost:7935
-
-    '
+    - Orchestrator: http://localhost:7935'
   version: 1.0.0
   contact:
     name: Livepeer Documentation
@@ -77,6 +75,17 @@ paths:
                   $ref: '#/components/schemas/Orchestrator'
 components:
   schemas:
+    ProtocolParameters:
+      type: object
+      properties:
+        totalBondedToken:
+          type: string
+        totalSupply:
+          type: string
+        paused:
+          type: boolean
+        currentRound:
+          type: string
     NodeStatus:
       type: object
       properties:
@@ -114,15 +123,4 @@ components:
           type: string
           example: '1000'
         activationRound:
-          type: string
-    ProtocolParameters:
-      type: object
-      properties:
-        totalBondedToken:
-          type: string
-        totalSupply:
-          type: string
-        paused:
-          type: boolean
-        currentRound:
           type: string

@@ -1,8 +1,12 @@
 openapi: 3.2.0
 info:
-  title: Livepeer Multistream API
+  title: Livepeer API Reference Multistream API
+  description: 'Welcome to the Livepeer API reference docs. Here you will find all the
+
+    endpoints exposed on the standard Livepeer API, learn how to use them and
+
+    what they return.'
   version: 1.0.0
-  description: 'Operations tagged multistream across 2 of this provider''s published API definitions: livepeer-openapi.yml, livepeer-studio-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://livepeer.studio/api
 security:
@@ -80,8 +84,6 @@ paths:
       - lang: python
         label: createMultistreamTarget
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.multistream.create(request={\n    \"url\": \"rtmps://live.my-service.tv/channel/secretKey\",\n})\n\nif res.multistream_target is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /multistream/target/{id}:
     parameters:
     - name: id
@@ -159,9 +161,7 @@ paths:
       - multistream
       description: 'Make sure to remove any references to the target on existing
 
-        streams before actually deleting it from the API.
-
-        '
+        streams before actually deleting it from the API.'
       responses:
         default:
           description: Error
@@ -181,8 +181,6 @@ paths:
       - lang: python
         label: deleteMultistreamTarget
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.multistream.delete(id=\"<id>\")\n\nif res is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
 components:
   schemas:
     multistream-target:
@@ -247,6 +245,3 @@ components:
     HTTPBearer:
       type: http
       scheme: bearer
-x-refined-from:
-- livepeer-openapi.yml
-- livepeer-studio-openapi.yml

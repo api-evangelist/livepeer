@@ -59,56 +59,6 @@ components:
       - gpu_stats
       title: HardwareStats
       description: Response model for real-time GPU statistics.
-    GPUComputeInfo:
-      properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        memory_total:
-          type: integer
-          title: Memory Total
-        memory_free:
-          type: integer
-          title: Memory Free
-        major:
-          type: integer
-          title: Major
-        minor:
-          type: integer
-          title: Minor
-      type: object
-      required:
-      - id
-      - name
-      - memory_total
-      - memory_free
-      - major
-      - minor
-      title: GPUComputeInfo
-      description: Model for detailed GPU compute information.
-    HardwareInformation:
-      properties:
-        pipeline:
-          type: string
-          title: Pipeline
-        model_id:
-          type: string
-          title: Model Id
-        gpu_info:
-          additionalProperties:
-            $ref: '#/components/schemas/GPUComputeInfo'
-          type: object
-          title: Gpu Info
-      type: object
-      required:
-      - pipeline
-      - model_id
-      - gpu_info
-      title: HardwareInformation
-      description: Response model for GPU information.
     GPUUtilizationInfo:
       properties:
         id:
@@ -139,6 +89,56 @@ components:
       - utilization_memory
       title: GPUUtilizationInfo
       description: Model for GPU utilization statistics.
+    HardwareInformation:
+      properties:
+        pipeline:
+          type: string
+          title: Pipeline
+        model_id:
+          type: string
+          title: Model Id
+        gpu_info:
+          additionalProperties:
+            $ref: '#/components/schemas/GPUComputeInfo'
+          type: object
+          title: Gpu Info
+      type: object
+      required:
+      - pipeline
+      - model_id
+      - gpu_info
+      title: HardwareInformation
+      description: Response model for GPU information.
+    GPUComputeInfo:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        memory_total:
+          type: integer
+          title: Memory Total
+        memory_free:
+          type: integer
+          title: Memory Free
+        major:
+          type: integer
+          title: Major
+        minor:
+          type: integer
+          title: Minor
+      type: object
+      required:
+      - id
+      - name
+      - memory_total
+      - memory_free
+      - major
+      - minor
+      title: GPUComputeInfo
+      description: Model for detailed GPU compute information.
   securitySchemes:
     HTTPBearer:
       type: http

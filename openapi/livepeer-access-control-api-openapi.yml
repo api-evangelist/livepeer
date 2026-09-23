@@ -1,14 +1,18 @@
 openapi: 3.2.0
 info:
-  title: Livepeer Access Control API
+  title: Livepeer API Reference Access Control API
+  description: 'Welcome to the Livepeer API reference docs. Here you will find all the
+
+    endpoints exposed on the standard Livepeer API, learn how to use them and
+
+    what they return.'
   version: 1.0.0
-  description: 'Operations tagged accessControl across 2 of this provider''s published API definitions: livepeer-openapi.yml, livepeer-studio-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://livepeer.studio/api
 security:
 - apiKey: []
 tags:
-- name: accessControl
+- name: Access Control
   description: Operations related to access control/signing keys api
 paths:
   /access-control/signing-key:
@@ -17,12 +21,10 @@ paths:
       x-speakeasy-name-override: create
       summary: Create a signing key
       tags:
-      - accessControl
-      description: 'The publicKey is a representation of the public key, encoded as base 64 and is passed as a string, and  the privateKey is displayed only on creation. This is the only moment where the client can save the private key, otherwise it will be lost. Remember to decode your string when signing JWTs.
+      - Access Control
+      description: 'The publicKey is a representation of the public key, encoded as base 64 and is passed as a string, and the privateKey is displayed only on creation. This is the only moment where the client can save the private key, otherwise it will be lost. Remember to decode your string when signing JWTs.
 
-        Up to 10 signing keys can be generated, after that you must delete at least one signing key to create a new one.
-
-        '
+        Up to 10 signing keys can be generated, after that you must delete at least one signing key to create a new one.'
       responses:
         default:
           description: Error
@@ -52,7 +54,7 @@ paths:
       x-speakeasy-name-override: getAll
       summary: Retrieves signing keys
       tags:
-      - accessControl
+      - Access Control
       responses:
         default:
           description: Error
@@ -79,15 +81,13 @@ paths:
       - lang: python
         label: getSigningKeys
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.access_control.get_all()\n\nif res.data is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /access-control/signing-key/{keyId}:
     delete:
       operationId: deleteSigningKey
       x-speakeasy-name-override: delete
       summary: Delete Signing Key
       tags:
-      - accessControl
+      - Access Control
       parameters:
       - in: path
         name: keyId
@@ -119,7 +119,7 @@ paths:
       x-speakeasy-name-override: get
       summary: Retrieves a signing key
       tags:
-      - accessControl
+      - Access Control
       parameters:
       - in: path
         name: keyId
@@ -156,7 +156,7 @@ paths:
       x-speakeasy-name-override: update
       summary: Update a signing key
       tags:
-      - accessControl
+      - Access Control
       parameters:
       - in: path
         name: keyId
@@ -195,8 +195,6 @@ paths:
       - lang: python
         label: updateSigningKey
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.access_control.update(key_id=\"<value>\", request_body={})\n\nif res is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
 components:
   schemas:
     signing-key:
@@ -257,6 +255,3 @@ components:
     HTTPBearer:
       type: http
       scheme: bearer
-x-refined-from:
-- livepeer-openapi.yml
-- livepeer-studio-openapi.yml

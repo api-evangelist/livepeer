@@ -1,14 +1,18 @@
 openapi: 3.2.0
 info:
-  title: Livepeer Webhook API
+  title: Livepeer API Reference Webhook API
+  description: 'Welcome to the Livepeer API reference docs. Here you will find all the
+
+    endpoints exposed on the standard Livepeer API, learn how to use them and
+
+    what they return.'
   version: 1.0.0
-  description: 'Operations tagged webhook across 2 of this provider''s published API definitions: livepeer-openapi.yml, livepeer-studio-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://livepeer.studio/api
 security:
 - apiKey: []
 tags:
-- name: webhook
+- name: Webhook
   description: Operations related to webhook api
 paths:
   /webhook:
@@ -17,7 +21,7 @@ paths:
       operationId: getWebhooks
       summary: Retrieve a Webhook
       tags:
-      - webhook
+      - Webhook
       responses:
         default:
           description: Error
@@ -49,10 +53,8 @@ paths:
       x-speakeasy-name-override: create
       summary: Create a webhook
       tags:
-      - webhook
-      description: 'To create a new webhook, you need to make an API call with the events you want to listen for and the URL that will be called when those events occur.
-
-        '
+      - Webhook
+      description: To create a new webhook, you need to make an API call with the events you want to listen for and the URL that will be called when those events occur.
       requestBody:
         required: true
         content:
@@ -83,15 +85,13 @@ paths:
       - lang: python
         label: createWebhook
         source: "from livepeer import Livepeer\nfrom livepeer.models import components\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.webhook.create(request={\n    \"name\": \"test_webhook\",\n    \"project_id\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"events\": [\n        components.Events.STREAM_STARTED,\n        components.Events.STREAM_IDLE,\n    ],\n    \"url\": \"https://my-service.com/webhook\",\n    \"shared_secret\": \"my-secret\",\n    \"stream_id\": \"de7818e7-610a-4057-8f6f-b785dc1e6f88\",\n})\n\nif res.webhook is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /webhook/{id}:
     get:
       operationId: getWebhook
       x-speakeasy-name-override: get
       summary: Retrieve a webhook
       tags:
-      - webhook
+      - Webhook
       parameters:
       - name: id
         in: path
@@ -133,7 +133,7 @@ paths:
       x-speakeasy-name-override: update
       operationId: updateWebhook
       tags:
-      - webhook
+      - Webhook
       requestBody:
         required: true
         content:
@@ -166,7 +166,7 @@ paths:
         source: "from livepeer import Livepeer\nfrom livepeer.models import components\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.webhook.update(id=\"<id>\", webhook={\n    \"name\": \"test_webhook\",\n    \"project_id\": \"aac12556-4d65-4d34-9fb6-d1f0985eb0a9\",\n    \"events\": [\n        components.Events.STREAM_STARTED,\n        components.Events.STREAM_IDLE,\n    ],\n    \"url\": \"https://my-service.com/webhook\",\n    \"shared_secret\": \"my-secret\",\n    \"stream_id\": \"de7818e7-610a-4057-8f6f-b785dc1e6f88\",\n})\n\nif res.webhook is not None:\n    # handle response\n    pass"
     delete:
       tags:
-      - webhook
+      - Webhook
       parameters:
       - name: id
         in: path
@@ -200,14 +200,12 @@ paths:
       - lang: python
         label: deleteWebhook
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.webhook.delete(id=\"<id>\")\n\nif res.webhook is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /webhook/{id}/log:
     get:
       operationId: getWebhookLogs
       x-speakeasy-name-override: getLogs
       tags:
-      - webhook
+      - Webhook
       summary: Retrieve webhook logs
       parameters:
       - name: id
@@ -241,12 +239,10 @@ paths:
       - lang: python
         label: getWebhookLogs
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.webhook.get_logs(id=\"<id>\")\n\nif res.data is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /webhook/{id}/log/{logId}:
     get:
       tags:
-      - webhook
+      - Webhook
       operationId: getWebhookLog
       x-speakeasy-name-override: getLog
       summary: Retrieve a webhook log
@@ -285,12 +281,10 @@ paths:
       - lang: python
         label: getWebhookLog
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.webhook.get_log(id=\"<id>\", log_id=\"<value>\")\n\nif res.webhook_log is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
   /webhook/{id}/log/{logId}/resend:
     post:
       tags:
-      - webhook
+      - Webhook
       operationId: resendWebhook
       x-speakeasy-name-override: resendLog
       summary: Resend a webhook
@@ -298,9 +292,7 @@ paths:
 
         developing and debugging, allowing you to easily repeat the same webhook
 
-        to check or fix the behaviour in your handler.
-
-        '
+        to check or fix the behaviour in your handler.'
       parameters:
       - name: id
         in: path
@@ -336,10 +328,92 @@ paths:
       - lang: python
         label: resendWebhook
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.webhook.resend_log(id=\"<id>\", log_id=\"<value>\")\n\nif res.webhook_log is not None:\n    # handle response\n    pass"
-    servers:
-    - url: https://livepeer.studio/api
 components:
   schemas:
+    webhook-log:
+      type: object
+      required:
+      - id
+      - webhookId
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: de7818e7-610a-4057-8f6f-b785dc1e6f88
+        webhookId:
+          readOnly: true
+          type: string
+          description: ID of the webhook this request was made for
+          example: de7818e7-610a-4057-8f6f-b785dc1e6f88
+        event:
+          readOnly: true
+          type: string
+          description: The event type that triggered the webhook request
+          example: stream.started
+        createdAt:
+          readOnly: true
+          type: number
+          description: 'Timestamp (in milliseconds) at which webhook request object was
+
+            created
+
+            '
+          example: 1587667174725
+        duration:
+          type: number
+          description: The time taken (in seconds) to make the webhook request
+          example: 0.5
+        success:
+          type: boolean
+          description: Whether the webhook request was successful
+          example: true
+        request:
+          type: object
+          properties:
+            url:
+              type: string
+              description: URL used for the request
+              example: https://my-service.com/webhook
+            method:
+              type: string
+              description: HTTP request method
+              example: POST
+            headers:
+              type: object
+              description: HTTP request headers
+              additionalProperties:
+                type: string
+              example:
+                User-Agent: livepeer.studio
+            body:
+              type: string
+              description: request body
+              example: '{"event": "stream.started"}'
+        response:
+          type: object
+          additionalProperties: false
+          properties:
+            body:
+              type: string
+              description: response body
+            status:
+              type: number
+              description: HTTP status code
+            statusText:
+              type: string
+              description: response status text
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
     webhook:
       type: object
       required:
@@ -452,90 +526,6 @@ components:
 
                 '
               example: 1587667174725
-    error:
-      type: object
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example:
-            - id not provided
-            - Account not found
-    webhook-log:
-      type: object
-      required:
-      - id
-      - webhookId
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: de7818e7-610a-4057-8f6f-b785dc1e6f88
-        webhookId:
-          readOnly: true
-          type: string
-          description: ID of the webhook this request was made for
-          example: de7818e7-610a-4057-8f6f-b785dc1e6f88
-        event:
-          readOnly: true
-          type: string
-          description: The event type that triggered the webhook request
-          example: stream.started
-        createdAt:
-          readOnly: true
-          type: number
-          description: 'Timestamp (in milliseconds) at which webhook request object was
-
-            created
-
-            '
-          example: 1587667174725
-        duration:
-          type: number
-          description: The time taken (in seconds) to make the webhook request
-          example: 0.5
-        success:
-          type: boolean
-          description: Whether the webhook request was successful
-          example: true
-        request:
-          type: object
-          properties:
-            url:
-              type: string
-              description: URL used for the request
-              example: https://my-service.com/webhook
-            method:
-              type: string
-              description: HTTP request method
-              example: POST
-            headers:
-              type: object
-              description: HTTP request headers
-              additionalProperties:
-                type: string
-              example:
-                User-Agent: livepeer.studio
-            body:
-              type: string
-              description: request body
-              example: '{"event": "stream.started"}'
-        response:
-          type: object
-          additionalProperties: false
-          properties:
-            body:
-              type: string
-              description: response body
-            status:
-              type: number
-              description: HTTP status code
-            statusText:
-              type: string
-              description: response status text
   securitySchemes:
     apiKey:
       type: http
@@ -544,6 +534,3 @@ components:
     HTTPBearer:
       type: http
       scheme: bearer
-x-refined-from:
-- livepeer-openapi.yml
-- livepeer-studio-openapi.yml
