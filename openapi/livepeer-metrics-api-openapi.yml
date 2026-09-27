@@ -583,6 +583,17 @@ components:
           type: number
           description: The error rate for the stream/asset.
           example: 0.1
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
     usage-metric:
       type: object
       description: 'An individual metric about usage of a user.
@@ -609,17 +620,6 @@ components:
           type: number
           description: Total minutes of storage usage.
           example: 100
-    error:
-      type: object
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example:
-            - id not provided
-            - Account not found
   securitySchemes:
     apiKey:
       type: http

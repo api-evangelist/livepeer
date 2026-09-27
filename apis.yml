@@ -10,17 +10,24 @@ description: Livepeer is a decentralized video infrastructure network. Independe
   upscale, audio-to-text), and webhooks. Official SDKs are published for JavaScript/TypeScript, Python,
   Go, and Ruby, with React Player and React Broadcast components for client-side playback and ingest.
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - livepeer/go-livepeer
+    - livepeer/livepeer-go
+    - livepeer/livepeer-js
+    - livepeer/livepeer-python
+    - livepeer/livepeer-ruby
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: free
@@ -280,7 +287,7 @@ apis:
   - type: Documentation
     url: https://docs.livepeer.org/developers/react/broadcast
 - aid: livepeer:livepeer-asset-api
-  name: Livepeer asset API
+  name: Livepeer Asset API
   description: Operations related to asset/vod api
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
@@ -292,7 +299,7 @@ apis:
   - type: OpenAPI
     url: openapi/livepeer-asset-api-openapi.yml
 - aid: livepeer:livepeer-generate-api
-  name: Livepeer generate API
+  name: Livepeer Generate API
   description: Operations related to AI generate api
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
@@ -304,7 +311,7 @@ apis:
   - type: OpenAPI
     url: openapi/livepeer-generate-api-openapi.yml
 - aid: livepeer:livepeer-metrics-api
-  name: Livepeer metrics API
+  name: Livepeer Metrics API
   description: Operations related to metrics api
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
@@ -316,7 +323,7 @@ apis:
   - type: OpenAPI
     url: openapi/livepeer-metrics-api-openapi.yml
 - aid: livepeer:livepeer-multistream-api
-  name: Livepeer multistream API
+  name: Livepeer Multistream API
   description: Operations related to multistream api
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
@@ -328,7 +335,7 @@ apis:
   - type: OpenAPI
     url: openapi/livepeer-multistream-api-openapi.yml
 - aid: livepeer:livepeer-playback-api
-  name: Livepeer playback API
+  name: Livepeer Playback API
   description: Operations related to playback api
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
@@ -340,7 +347,7 @@ apis:
   - type: OpenAPI
     url: openapi/livepeer-playback-api-openapi.yml
 - aid: livepeer:livepeer-room-api
-  name: Livepeer room API
+  name: Livepeer Room API
   description: Operations related to rooms api
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
@@ -352,7 +359,7 @@ apis:
   - type: OpenAPI
     url: openapi/livepeer-room-api-openapi.yml
 - aid: livepeer:livepeer-session-api
-  name: Livepeer session API
+  name: Livepeer Session API
   description: Operations related to session api
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
@@ -364,7 +371,7 @@ apis:
   - type: OpenAPI
     url: openapi/livepeer-session-api-openapi.yml
 - aid: livepeer:livepeer-stream-api
-  name: Livepeer stream API
+  name: Livepeer Stream API
   description: Operations related to livestream api
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
@@ -376,7 +383,7 @@ apis:
   - type: OpenAPI
     url: openapi/livepeer-stream-api-openapi.yml
 - aid: livepeer:livepeer-task-api
-  name: Livepeer task API
+  name: Livepeer Task API
   description: Operations related to tasks api
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
@@ -388,7 +395,7 @@ apis:
   - type: OpenAPI
     url: openapi/livepeer-task-api-openapi.yml
 - aid: livepeer:livepeer-transcode-api
-  name: Livepeer transcode API
+  name: Livepeer Transcode API
   description: Operations related to transcode api
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api
@@ -398,7 +405,7 @@ apis:
   - type: OpenAPI
     url: openapi/livepeer-transcode-api-openapi.yml
 - aid: livepeer:livepeer-webhook-api
-  name: Livepeer webhook API
+  name: Livepeer Webhook API
   description: Operations related to webhook api
   humanURL: https://docs.livepeer.org/api-reference/overview
   baseURL: https://livepeer.studio/api

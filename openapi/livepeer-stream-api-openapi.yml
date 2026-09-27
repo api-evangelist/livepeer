@@ -487,76 +487,6 @@ paths:
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.stream.remove_multistream_target(id=\"<id>\", target_id=\"<value>\")\n\nif res is not None:\n    # handle response\n    pass"
 components:
   schemas:
-    target:
-      type: object
-      required:
-      - profile
-      additionalProperties: false
-      properties:
-        profile:
-          type: string
-          description: 'Name of transcoding profile that should be sent. Use
-
-            "source" for pushing source stream data
-
-            '
-          minLength: 1
-          maxLength: 500
-          example: 720p0
-        videoOnly:
-          type: boolean
-          description: 'If true, the stream audio will be muted and only silent
-
-            video will be pushed to the target.
-
-            '
-          default: false
-          example: false
-        id:
-          type: string
-          description: ID of multistream target object where to push this stream
-          example: PUSH123
-        spec:
-          type: object
-          writeOnly: true
-          description: 'Inline multistream target object. Will automatically
-
-            create the target resource to be used by the created
-
-            stream.
-
-            '
-          required:
-          - url
-          additionalProperties: false
-          properties:
-            name:
-              type: string
-              example: My target
-            url:
-              $ref: '#/components/schemas/multistream-target/properties/url'
-    stream-patch-payload:
-      type: object
-      additionalProperties: false
-      properties:
-        creatorId:
-          $ref: '#/components/schemas/input-creator-id'
-        record:
-          $ref: '#/components/schemas/stream/properties/record'
-        suspended:
-          $ref: '#/components/schemas/stream/properties/suspended'
-        multistream:
-          $ref: '#/components/schemas/stream/properties/multistream'
-        playbackPolicy:
-          $ref: '#/components/schemas/playback-policy'
-        profiles:
-          $ref: '#/components/schemas/new-stream-payload/properties/profiles'
-        recordingSpec:
-          $ref: '#/components/schemas/new-stream-payload/properties/recordingSpec'
-        userTags:
-          $ref: '#/components/schemas/stream/properties/userTags'
-        name:
-          $ref: '#/components/schemas/stream/properties/name'
     stream:
       type: object
       required:
@@ -803,73 +733,261 @@ components:
           deprecated: true
         renditions:
           type: object
-    target-add-payload:
+    ipfs-file-info:
       type: object
-      additionalProperties: false
-      $ref: '#/components/schemas/target'
-    new-asset-payload:
-      additionalProperties: false
       required:
-      - name
+      - cid
+      additionalProperties: false
       properties:
-        name:
+        cid:
           type: string
-          description: 'The name of the asset. This is not necessarily the filename - it can be a custom name or title.
+          description: CID of the file on IPFS
+        url:
+          readOnly: true
+          type: string
+          description: URL with IPFS scheme for the file
+        gatewayUrl:
+          readOnly: true
+          type: string
+          description: URL to access file via HTTP through an IPFS gateway
+    stream-health-payload:
+      type: object
+      description: 'Payload received from Catalyst about the health of livestreams currently
+
+        or recently active on Mist.
+
+        '
+      required:
+      - stream_name
+      - is_active
+      - is_healthy
+      properties:
+        stream_name:
+          type: string
+          description: 'The name of the stream within Catalyst/Mist, normally comprised of
+
+            the base stream name with the playback ID after the + sign.
 
             '
-          example: filename.mp4
-        staticMp4:
+          example: videorec+eaw4nk06ts2d0mzb
+        session_id:
+          description: 'The unique identifier for the specific session, created by Mist and
+
+            used for creating the session object in the DB.
+
+            '
+          type: string
+        is_active:
           type: boolean
-          description: Whether to generate MP4s for the asset.
-          example: true
-        playbackPolicy:
-          $ref: '#/components/schemas/playback-policy'
-        creatorId:
-          $ref: '#/components/schemas/input-creator-id'
-        storage:
+          description: Indicates whether the stream is currently live or not.
+        is_healthy:
+          oneOf:
+          - type: 'null'
+          - type: boolean
+          description: Indicates whether the stream is healthy or not.
+        issues:
+          oneOf:
+          - type: 'null'
+          - type: string
+          description: '"Raw issues affecting the stream as described by Mist, if any. We don''t expose those to the end-user, showing only human_issues instead."
+
+            '
+        human_issues:
+          oneOf:
+          - type: 'null'
+          - type: array
+            items:
+              type: string
+          description: A string array of human-readable errors describing issues affecting the stream, if any.
+        tracks:
+          type: object
+          description: 'A map of track objects containing information about the stream''s
+
+            tracks. The keys are the unique track ID from Mist.
+
+            '
+          additionalProperties:
+            type: object
+            properties:
+              codec:
+                type: string
+                description: The codec being used for the track.
+              kbits:
+                type: number
+                description: The bitrate of the track, in kilobits per second.
+              keys:
+                type: object
+                description: An object containing additional track-specific metrics.
+                additionalProperties:
+                  type: number
+              fpks:
+                type: number
+                description: 'The framerate of the track, in frames per thousand seconds
+
+                  (kilo-second).
+
+                  '
+              height:
+                type: number
+                description: The height of the track's video resolution.
+              width:
+                type: number
+                description: The width of the track's video resolution.
+        extra:
+          type: object
+          description: 'An object containing any additional fields sent by mist in the
+
+            health (STREAM_BUFFER) payload.
+
+            '
+          additionalProperties: true
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
+    storage-status:
+      readOnly: true
+      additionalProperties: false
+      required:
+      - phase
+      - tasks
+      properties:
+        phase:
+          type: string
+          description: Phase of the asset storage
+          enum:
+          - waiting
+          - processing
+          - ready
+          - failed
+          - reverted
+          example: ready
+        progress:
+          type: number
+          description: Current progress of the task updating the storage.
+          example: 0.5
+        errorMessage:
+          type: string
+          description: Error message if the last storage changed failed.
+          example: Failed to update storage
+        tasks:
           type: object
           additionalProperties: false
           properties:
-            ipfs:
-              description: 'Set to true to make default export to IPFS. To customize the
+            pending:
+              type: string
+              description: 'ID of any currently running task that is exporting this
 
-                pinned files, specify an object with a spec field. False or null
-
-                means to unpin from IPFS, but it''s unsupported right now.
+                asset to IPFS.
 
                 '
-              oneOf:
-              - type: object
-                additionalProperties: false
-                properties:
-                  spec:
-                    oneOf:
-                    - type: 'null'
-                    - $ref: '#/components/schemas/asset/properties/storage/properties/ipfs/properties/spec'
-              - type: boolean
-              - type: 'null'
-        encryption:
-          type: object
-          additionalProperties: false
-          required:
-          - encryptedKey
-          properties:
-            encryptedKey:
+              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+            last:
               type: string
-              writeOnly: true
-              description: Encryption key used to encrypt the asset. Only writable in the upload asset endpoints and cannot be retrieved back.
-        c2pa:
-          type: boolean
-          description: Decides if the output video should include C2PA signature
+              description: 'ID of the last task to run successfully, that created
+
+                the currently saved data.
+
+                '
+              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+            failed:
+              type: string
+              description: ID of the last task to fail execution.
+              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+    stream-patch-payload:
+      type: object
+      additionalProperties: false
+      properties:
+        creatorId:
+          $ref: '#/components/schemas/input-creator-id'
+        record:
+          $ref: '#/components/schemas/stream/properties/record'
+        suspended:
+          $ref: '#/components/schemas/stream/properties/suspended'
+        multistream:
+          $ref: '#/components/schemas/stream/properties/multistream'
+        playbackPolicy:
+          $ref: '#/components/schemas/playback-policy'
         profiles:
+          $ref: '#/components/schemas/new-stream-payload/properties/profiles'
+        recordingSpec:
+          $ref: '#/components/schemas/new-stream-payload/properties/recordingSpec'
+        userTags:
+          $ref: '#/components/schemas/stream/properties/userTags'
+        name:
+          $ref: '#/components/schemas/stream/properties/name'
+    target:
+      type: object
+      required:
+      - profile
+      additionalProperties: false
+      properties:
+        profile:
+          type: string
+          description: 'Name of transcoding profile that should be sent. Use
+
+            "source" for pushing source stream data
+
+            '
+          minLength: 1
+          maxLength: 500
+          example: 720p0
+        videoOnly:
+          type: boolean
+          description: 'If true, the stream audio will be muted and only silent
+
+            video will be pushed to the target.
+
+            '
+          default: false
+          example: false
+        id:
+          type: string
+          description: ID of multistream target object where to push this stream
+          example: PUSH123
+        spec:
+          type: object
+          writeOnly: true
+          description: 'Inline multistream target object. Will automatically
+
+            create the target resource to be used by the created
+
+            stream.
+
+            '
+          required:
+          - url
+          additionalProperties: false
+          properties:
+            name:
+              type: string
+              example: My target
+            url:
+              $ref: '#/components/schemas/multistream-target/properties/url'
+    creator-id:
+      oneOf:
+      - type: object
+        additionalProperties: false
+        required:
+        - type
+        - value
+        properties:
           type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/transcode-profile'
-        targetSegmentSizeSecs:
-          type: number
-          description: How many seconds the duration of each output segment should be
+            type: string
+            enum:
+            - unverified
+            example: unverified
+          value:
+            type: string
+            description: Developer-managed ID of the user who created the resource.
+            example: user123
     ffmpeg-profile:
       type: object
       description: Transcode profile
@@ -929,46 +1047,6 @@ components:
           type: string
           enum:
           - H.264
-    multistream-target:
-      type: object
-      required:
-      - url
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-        name:
-          type: string
-        userId:
-          type: string
-          readOnly: true
-          example: 66E2161C-7670-4D05-B71D-DA2D6979556F
-          deprecated: true
-        url:
-          type: string
-          writeOnly: true
-          description: Livepeer-compatible multistream target URL (RTMP(S) or SRT)
-          example: rtmps://live.my-service.tv/channel/secretKey
-          format: uri
-          pattern: ^(srt|rtmps?)://
-        disabled:
-          type: boolean
-          description: 'If true then this multistream target will not be used for pushing
-
-            even if it is configured in a stream object.
-
-            '
-        createdAt:
-          type: number
-          readOnly: true
-          description: 'Timestamp (in milliseconds) at which multistream target object was
-
-            created
-
-            '
-          example: 1587667174725
     asset:
       type: object
       additionalProperties: false
@@ -1294,6 +1372,109 @@ components:
                     type: number
                     description: Bit depth of the track - only for audio tracks
                     example: 16
+    multistream-target:
+      type: object
+      required:
+      - url
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+        name:
+          type: string
+        userId:
+          type: string
+          readOnly: true
+          example: 66E2161C-7670-4D05-B71D-DA2D6979556F
+          deprecated: true
+        url:
+          type: string
+          writeOnly: true
+          description: Livepeer-compatible multistream target URL (RTMP(S) or SRT)
+          example: rtmps://live.my-service.tv/channel/secretKey
+          format: uri
+          pattern: ^(srt|rtmps?)://
+        disabled:
+          type: boolean
+          description: 'If true then this multistream target will not be used for pushing
+
+            even if it is configured in a stream object.
+
+            '
+        createdAt:
+          type: number
+          readOnly: true
+          description: 'Timestamp (in milliseconds) at which multistream target object was
+
+            created
+
+            '
+          example: 1587667174725
+    new-asset-payload:
+      additionalProperties: false
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: 'The name of the asset. This is not necessarily the filename - it can be a custom name or title.
+
+            '
+          example: filename.mp4
+        staticMp4:
+          type: boolean
+          description: Whether to generate MP4s for the asset.
+          example: true
+        playbackPolicy:
+          $ref: '#/components/schemas/playback-policy'
+        creatorId:
+          $ref: '#/components/schemas/input-creator-id'
+        storage:
+          type: object
+          additionalProperties: false
+          properties:
+            ipfs:
+              description: 'Set to true to make default export to IPFS. To customize the
+
+                pinned files, specify an object with a spec field. False or null
+
+                means to unpin from IPFS, but it''s unsupported right now.
+
+                '
+              oneOf:
+              - type: object
+                additionalProperties: false
+                properties:
+                  spec:
+                    oneOf:
+                    - type: 'null'
+                    - $ref: '#/components/schemas/asset/properties/storage/properties/ipfs/properties/spec'
+              - type: boolean
+              - type: 'null'
+        encryption:
+          type: object
+          additionalProperties: false
+          required:
+          - encryptedKey
+          properties:
+            encryptedKey:
+              type: string
+              writeOnly: true
+              description: Encryption key used to encrypt the asset. Only writable in the upload asset endpoints and cannot be retrieved back.
+        c2pa:
+          type: boolean
+          description: Decides if the output video should include C2PA signature
+        profiles:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/transcode-profile'
+        targetSegmentSizeSecs:
+          type: number
+          description: How many seconds the duration of each output segment should be
     playback-policy:
       type:
       - object
@@ -1333,6 +1514,10 @@ components:
           description: List of allowed origins for CORS playback (<scheme>://<hostname>:<port>, <scheme>://<hostname>)
           items:
             type: string
+    target-add-payload:
+      type: object
+      additionalProperties: false
+      $ref: '#/components/schemas/target'
     input-creator-id:
       oneOf:
       - type: object
@@ -1349,50 +1534,6 @@ components:
             type: string
       - type: string
         description: Helper syntax to specify an unverified creator ID, fully managed by the developer.
-    clip-payload:
-      type: object
-      additionalProperties: false
-      required:
-      - playbackId
-      - startTime
-      properties:
-        playbackId:
-          type: string
-          description: The playback ID of the stream or stream recording to clip. Asset playback IDs are not supported yet.
-          example: eaw4nk06ts2d0mzb
-        startTime:
-          type: number
-          description: The start timestamp of the clip in Unix milliseconds. _See the ClipTrigger in the UI Kit for an example of how this is calculated (for HLS, it uses `Program Date-Time` tags, and for WebRTC, it uses the latency from server to client at stream startup)._
-          example: 1587667174725
-        endTime:
-          type: number
-          description: The end timestamp of the clip in Unix milliseconds. _See the ClipTrigger in the UI Kit for an example of how this is calculated (for HLS, it uses `Program Date-Time` tags, and for WebRTC, it uses the latency from server to client at stream startup)._
-          example: 1587667174725
-        name:
-          type: string
-          description: The optional friendly name of the clip to create.
-          example: My Clip
-        sessionId:
-          type: string
-          description: The optional session ID of the stream to clip. This can be used to clip _recordings_ - if it is not specified, it will clip the ongoing livestream.
-          example: de7818e7-610a-4057-8f6f-b785dc1e6f88
-    creator-id:
-      oneOf:
-      - type: object
-        additionalProperties: false
-        required:
-        - type
-        - value
-        properties:
-          type:
-            type: string
-            enum:
-            - unverified
-            example: unverified
-          value:
-            type: string
-            description: Developer-managed ID of the user who created the resource.
-            example: user123
     new-stream-payload:
       type: object
       required:
@@ -1431,174 +1572,6 @@ components:
           $ref: '#/components/schemas/stream/properties/multistream'
         userTags:
           $ref: '#/components/schemas/stream/properties/userTags'
-    stream-health-payload:
-      type: object
-      description: 'Payload received from Catalyst about the health of livestreams currently
-
-        or recently active on Mist.
-
-        '
-      required:
-      - stream_name
-      - is_active
-      - is_healthy
-      properties:
-        stream_name:
-          type: string
-          description: 'The name of the stream within Catalyst/Mist, normally comprised of
-
-            the base stream name with the playback ID after the + sign.
-
-            '
-          example: videorec+eaw4nk06ts2d0mzb
-        session_id:
-          description: 'The unique identifier for the specific session, created by Mist and
-
-            used for creating the session object in the DB.
-
-            '
-          type: string
-        is_active:
-          type: boolean
-          description: Indicates whether the stream is currently live or not.
-        is_healthy:
-          oneOf:
-          - type: 'null'
-          - type: boolean
-          description: Indicates whether the stream is healthy or not.
-        issues:
-          oneOf:
-          - type: 'null'
-          - type: string
-          description: '"Raw issues affecting the stream as described by Mist, if any. We don''t expose those to the end-user, showing only human_issues instead."
-
-            '
-        human_issues:
-          oneOf:
-          - type: 'null'
-          - type: array
-            items:
-              type: string
-          description: A string array of human-readable errors describing issues affecting the stream, if any.
-        tracks:
-          type: object
-          description: 'A map of track objects containing information about the stream''s
-
-            tracks. The keys are the unique track ID from Mist.
-
-            '
-          additionalProperties:
-            type: object
-            properties:
-              codec:
-                type: string
-                description: The codec being used for the track.
-              kbits:
-                type: number
-                description: The bitrate of the track, in kilobits per second.
-              keys:
-                type: object
-                description: An object containing additional track-specific metrics.
-                additionalProperties:
-                  type: number
-              fpks:
-                type: number
-                description: 'The framerate of the track, in frames per thousand seconds
-
-                  (kilo-second).
-
-                  '
-              height:
-                type: number
-                description: The height of the track's video resolution.
-              width:
-                type: number
-                description: The width of the track's video resolution.
-        extra:
-          type: object
-          description: 'An object containing any additional fields sent by mist in the
-
-            health (STREAM_BUFFER) payload.
-
-            '
-          additionalProperties: true
-    storage-status:
-      readOnly: true
-      additionalProperties: false
-      required:
-      - phase
-      - tasks
-      properties:
-        phase:
-          type: string
-          description: Phase of the asset storage
-          enum:
-          - waiting
-          - processing
-          - ready
-          - failed
-          - reverted
-          example: ready
-        progress:
-          type: number
-          description: Current progress of the task updating the storage.
-          example: 0.5
-        errorMessage:
-          type: string
-          description: Error message if the last storage changed failed.
-          example: Failed to update storage
-        tasks:
-          type: object
-          additionalProperties: false
-          properties:
-            pending:
-              type: string
-              description: 'ID of any currently running task that is exporting this
-
-                asset to IPFS.
-
-                '
-              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-            last:
-              type: string
-              description: 'ID of the last task to run successfully, that created
-
-                the currently saved data.
-
-                '
-              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-            failed:
-              type: string
-              description: ID of the last task to fail execution.
-              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-    error:
-      type: object
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example:
-            - id not provided
-            - Account not found
-    ipfs-file-info:
-      type: object
-      required:
-      - cid
-      additionalProperties: false
-      properties:
-        cid:
-          type: string
-          description: CID of the file on IPFS
-        url:
-          readOnly: true
-          type: string
-          description: URL with IPFS scheme for the file
-        gatewayUrl:
-          readOnly: true
-          type: string
-          description: URL to access file via HTTP through an IPFS gateway
     transcode-profile:
       type: object
       description: Transcode API profile
@@ -1658,6 +1631,33 @@ components:
           - VP8
           - VP9
           example: H.264
+    clip-payload:
+      type: object
+      additionalProperties: false
+      required:
+      - playbackId
+      - startTime
+      properties:
+        playbackId:
+          type: string
+          description: The playback ID of the stream or stream recording to clip. Asset playback IDs are not supported yet.
+          example: eaw4nk06ts2d0mzb
+        startTime:
+          type: number
+          description: The start timestamp of the clip in Unix milliseconds. _See the ClipTrigger in the UI Kit for an example of how this is calculated (for HLS, it uses `Program Date-Time` tags, and for WebRTC, it uses the latency from server to client at stream startup)._
+          example: 1587667174725
+        endTime:
+          type: number
+          description: The end timestamp of the clip in Unix milliseconds. _See the ClipTrigger in the UI Kit for an example of how this is calculated (for HLS, it uses `Program Date-Time` tags, and for WebRTC, it uses the latency from server to client at stream startup)._
+          example: 1587667174725
+        name:
+          type: string
+          description: The optional friendly name of the clip to create.
+          example: My Clip
+        sessionId:
+          type: string
+          description: The optional session ID of the stream to clip. This can be used to clip _recordings_ - if it is not specified, it will clip the ongoing livestream.
+          example: de7818e7-610a-4057-8f6f-b785dc1e6f88
   securitySchemes:
     apiKey:
       type: http

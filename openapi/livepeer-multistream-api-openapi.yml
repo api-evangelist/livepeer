@@ -223,6 +223,9 @@ components:
 
             '
           example: 1587667174725
+    multistream-target-patch-payload:
+      $ref: '#/components/schemas/multistream-target'
+      required: []
     error:
       type: object
       properties:
@@ -234,9 +237,6 @@ components:
             example:
             - id not provided
             - Account not found
-    multistream-target-patch-payload:
-      $ref: '#/components/schemas/multistream-target'
-      required: []
   securitySchemes:
     apiKey:
       type: http
