@@ -426,6 +426,237 @@ paths:
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.asset.delete(asset_id=\"<value>\")\n\nif res is not None:\n    # handle response\n    pass"
 components:
   schemas:
+    creator-id:
+      oneOf:
+      - type: object
+        additionalProperties: false
+        required:
+        - type
+        - value
+        properties:
+          type:
+            type: string
+            enum:
+            - unverified
+            example: unverified
+          value:
+            type: string
+            description: Developer-managed ID of the user who created the resource.
+            example: user123
+    storage-status:
+      readOnly: true
+      additionalProperties: false
+      required:
+      - phase
+      - tasks
+      properties:
+        phase:
+          type: string
+          description: Phase of the asset storage
+          enum:
+          - waiting
+          - processing
+          - ready
+          - failed
+          - reverted
+          example: ready
+        progress:
+          type: number
+          description: Current progress of the task updating the storage.
+          example: 0.5
+        errorMessage:
+          type: string
+          description: Error message if the last storage changed failed.
+          example: Failed to update storage
+        tasks:
+          type: object
+          additionalProperties: false
+          properties:
+            pending:
+              type: string
+              description: 'ID of any currently running task that is exporting this
+
+                asset to IPFS.
+
+                '
+              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+            last:
+              type: string
+              description: 'ID of the last task to run successfully, that created
+
+                the currently saved data.
+
+                '
+              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+            failed:
+              type: string
+              description: ID of the last task to fail execution.
+              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
+    new-asset-payload:
+      additionalProperties: false
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: 'The name of the asset. This is not necessarily the filename - it can be a custom name or title.
+
+            '
+          example: filename.mp4
+        staticMp4:
+          type: boolean
+          description: Whether to generate MP4s for the asset.
+          example: true
+        playbackPolicy:
+          $ref: '#/components/schemas/playback-policy'
+        creatorId:
+          $ref: '#/components/schemas/input-creator-id'
+        storage:
+          type: object
+          additionalProperties: false
+          properties:
+            ipfs:
+              description: 'Set to true to make default export to IPFS. To customize the
+
+                pinned files, specify an object with a spec field. False or null
+
+                means to unpin from IPFS, but it''s unsupported right now.
+
+                '
+              oneOf:
+              - type: object
+                additionalProperties: false
+                properties:
+                  spec:
+                    oneOf:
+                    - type: 'null'
+                    - $ref: '#/components/schemas/asset/properties/storage/properties/ipfs/properties/spec'
+              - type: boolean
+              - type: 'null'
+        encryption:
+          type: object
+          additionalProperties: false
+          required:
+          - encryptedKey
+          properties:
+            encryptedKey:
+              type: string
+              writeOnly: true
+              description: Encryption key used to encrypt the asset. Only writable in the upload asset endpoints and cannot be retrieved back.
+        c2pa:
+          type: boolean
+          description: Decides if the output video should include C2PA signature
+        profiles:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/transcode-profile'
+        targetSegmentSizeSecs:
+          type: number
+          description: How many seconds the duration of each output segment should be
+    input-creator-id:
+      oneOf:
+      - type: object
+        additionalProperties: false
+        required:
+        - type
+        - value
+        properties:
+          type:
+            type: string
+            enum:
+            - unverified
+          value:
+            type: string
+      - type: string
+        description: Helper syntax to specify an unverified creator ID, fully managed by the developer.
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
+    new-asset-from-url-payload:
+      additionalProperties: false
+      required:
+      - name
+      - url
+      properties:
+        name:
+          $ref: '#/components/schemas/new-asset-payload/properties/name'
+        staticMp4:
+          $ref: '#/components/schemas/new-asset-payload/properties/staticMp4'
+        playbackPolicy:
+          $ref: '#/components/schemas/playback-policy'
+        creatorId:
+          $ref: '#/components/schemas/input-creator-id'
+        storage:
+          $ref: '#/components/schemas/new-asset-payload/properties/storage'
+        url:
+          type: string
+          format: uri
+          pattern: ^(https?|ipfs|ar)://
+          description: 'URL where the asset contents can be retrieved, e.g. `https://s3.amazonaws.com/my-bucket/path/filename.mp4`.
+
+            For an IPFS source, this should be similar to: `ipfs://{CID}`. For an Arweave
+
+            source: `ar://{CID}`.
+
+            '
+          example: https://s3.amazonaws.com/my-bucket/path/filename.mp4
+        encryption:
+          $ref: '#/components/schemas/new-asset-payload/properties/encryption'
+        c2pa:
+          $ref: '#/components/schemas/new-asset-payload/properties/c2pa'
+        profiles:
+          $ref: '#/components/schemas/new-asset-payload/properties/profiles'
+        targetSegmentSizeSecs:
+          $ref: '#/components/schemas/new-asset-payload/properties/targetSegmentSizeSecs'
+    playback-policy:
+      type:
+      - object
+      - 'null'
+      description: Whether the playback policy for an asset or stream is public or signed
+      additionalProperties: false
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - public
+          - jwt
+          - webhook
+          example: webhook
+        webhookId:
+          type: string
+          description: ID of the webhook to use for playback policy
+          example: 1bde4o2i6xycudoy
+        webhookContext:
+          type: object
+          description: User-defined webhook context
+          additionalProperties: true
+          example:
+            streamerId: my-custom-id
+        refreshInterval:
+          type: number
+          description: 'Interval (in seconds) at which the playback policy should be
+
+            refreshed (default 600 seconds)
+
+            '
+          example: 600
+        allowedOrigins:
+          type: array
+          description: List of allowed origins for CORS playback (<scheme>://<hostname>:<port>, <scheme>://<hostname>)
+          items:
+            type: string
     asset:
       type: object
       additionalProperties: false
@@ -751,266 +982,6 @@ components:
                     type: number
                     description: Bit depth of the track - only for audio tracks
                     example: 16
-    ipfs-file-info:
-      type: object
-      required:
-      - cid
-      additionalProperties: false
-      properties:
-        cid:
-          type: string
-          description: CID of the file on IPFS
-        url:
-          readOnly: true
-          type: string
-          description: URL with IPFS scheme for the file
-        gatewayUrl:
-          readOnly: true
-          type: string
-          description: URL to access file via HTTP through an IPFS gateway
-    error:
-      type: object
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example:
-            - id not provided
-            - Account not found
-    storage-status:
-      readOnly: true
-      additionalProperties: false
-      required:
-      - phase
-      - tasks
-      properties:
-        phase:
-          type: string
-          description: Phase of the asset storage
-          enum:
-          - waiting
-          - processing
-          - ready
-          - failed
-          - reverted
-          example: ready
-        progress:
-          type: number
-          description: Current progress of the task updating the storage.
-          example: 0.5
-        errorMessage:
-          type: string
-          description: Error message if the last storage changed failed.
-          example: Failed to update storage
-        tasks:
-          type: object
-          additionalProperties: false
-          properties:
-            pending:
-              type: string
-              description: 'ID of any currently running task that is exporting this
-
-                asset to IPFS.
-
-                '
-              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-            last:
-              type: string
-              description: 'ID of the last task to run successfully, that created
-
-                the currently saved data.
-
-                '
-              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-            failed:
-              type: string
-              description: ID of the last task to fail execution.
-              example: 09F8B46C-61A0-4254-9875-F71F4C605BC7
-    asset-patch-payload:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/asset/properties/name'
-        creatorId:
-          $ref: '#/components/schemas/input-creator-id'
-        playbackPolicy:
-          $ref: '#/components/schemas/playback-policy'
-        storage:
-          $ref: '#/components/schemas/new-asset-payload/properties/storage'
-    new-asset-payload:
-      additionalProperties: false
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: 'The name of the asset. This is not necessarily the filename - it can be a custom name or title.
-
-            '
-          example: filename.mp4
-        staticMp4:
-          type: boolean
-          description: Whether to generate MP4s for the asset.
-          example: true
-        playbackPolicy:
-          $ref: '#/components/schemas/playback-policy'
-        creatorId:
-          $ref: '#/components/schemas/input-creator-id'
-        storage:
-          type: object
-          additionalProperties: false
-          properties:
-            ipfs:
-              description: 'Set to true to make default export to IPFS. To customize the
-
-                pinned files, specify an object with a spec field. False or null
-
-                means to unpin from IPFS, but it''s unsupported right now.
-
-                '
-              oneOf:
-              - type: object
-                additionalProperties: false
-                properties:
-                  spec:
-                    oneOf:
-                    - type: 'null'
-                    - $ref: '#/components/schemas/asset/properties/storage/properties/ipfs/properties/spec'
-              - type: boolean
-              - type: 'null'
-        encryption:
-          type: object
-          additionalProperties: false
-          required:
-          - encryptedKey
-          properties:
-            encryptedKey:
-              type: string
-              writeOnly: true
-              description: Encryption key used to encrypt the asset. Only writable in the upload asset endpoints and cannot be retrieved back.
-        c2pa:
-          type: boolean
-          description: Decides if the output video should include C2PA signature
-        profiles:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/transcode-profile'
-        targetSegmentSizeSecs:
-          type: number
-          description: How many seconds the duration of each output segment should be
-    creator-id:
-      oneOf:
-      - type: object
-        additionalProperties: false
-        required:
-        - type
-        - value
-        properties:
-          type:
-            type: string
-            enum:
-            - unverified
-            example: unverified
-          value:
-            type: string
-            description: Developer-managed ID of the user who created the resource.
-            example: user123
-    playback-policy:
-      type:
-      - object
-      - 'null'
-      description: Whether the playback policy for an asset or stream is public or signed
-      additionalProperties: false
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - public
-          - jwt
-          - webhook
-          example: webhook
-        webhookId:
-          type: string
-          description: ID of the webhook to use for playback policy
-          example: 1bde4o2i6xycudoy
-        webhookContext:
-          type: object
-          description: User-defined webhook context
-          additionalProperties: true
-          example:
-            streamerId: my-custom-id
-        refreshInterval:
-          type: number
-          description: 'Interval (in seconds) at which the playback policy should be
-
-            refreshed (default 600 seconds)
-
-            '
-          example: 600
-        allowedOrigins:
-          type: array
-          description: List of allowed origins for CORS playback (<scheme>://<hostname>:<port>, <scheme>://<hostname>)
-          items:
-            type: string
-    new-asset-from-url-payload:
-      additionalProperties: false
-      required:
-      - name
-      - url
-      properties:
-        name:
-          $ref: '#/components/schemas/new-asset-payload/properties/name'
-        staticMp4:
-          $ref: '#/components/schemas/new-asset-payload/properties/staticMp4'
-        playbackPolicy:
-          $ref: '#/components/schemas/playback-policy'
-        creatorId:
-          $ref: '#/components/schemas/input-creator-id'
-        storage:
-          $ref: '#/components/schemas/new-asset-payload/properties/storage'
-        url:
-          type: string
-          format: uri
-          pattern: ^(https?|ipfs|ar)://
-          description: 'URL where the asset contents can be retrieved, e.g. `https://s3.amazonaws.com/my-bucket/path/filename.mp4`.
-
-            For an IPFS source, this should be similar to: `ipfs://{CID}`. For an Arweave
-
-            source: `ar://{CID}`.
-
-            '
-          example: https://s3.amazonaws.com/my-bucket/path/filename.mp4
-        encryption:
-          $ref: '#/components/schemas/new-asset-payload/properties/encryption'
-        c2pa:
-          $ref: '#/components/schemas/new-asset-payload/properties/c2pa'
-        profiles:
-          $ref: '#/components/schemas/new-asset-payload/properties/profiles'
-        targetSegmentSizeSecs:
-          $ref: '#/components/schemas/new-asset-payload/properties/targetSegmentSizeSecs'
-    input-creator-id:
-      oneOf:
-      - type: object
-        additionalProperties: false
-        required:
-        - type
-        - value
-        properties:
-          type:
-            type: string
-            enum:
-            - unverified
-          value:
-            type: string
-      - type: string
-        description: Helper syntax to specify an unverified creator ID, fully managed by the developer.
     transcode-profile:
       type: object
       description: Transcode API profile
@@ -1070,6 +1041,35 @@ components:
           - VP8
           - VP9
           example: H.264
+    asset-patch-payload:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/asset/properties/name'
+        creatorId:
+          $ref: '#/components/schemas/input-creator-id'
+        playbackPolicy:
+          $ref: '#/components/schemas/playback-policy'
+        storage:
+          $ref: '#/components/schemas/new-asset-payload/properties/storage'
+    ipfs-file-info:
+      type: object
+      required:
+      - cid
+      additionalProperties: false
+      properties:
+        cid:
+          type: string
+          description: CID of the file on IPFS
+        url:
+          readOnly: true
+          type: string
+          description: URL with IPFS scheme for the file
+        gatewayUrl:
+          readOnly: true
+          type: string
+          description: URL to access file via HTTP through an IPFS gateway
   securitySchemes:
     apiKey:
       type: http

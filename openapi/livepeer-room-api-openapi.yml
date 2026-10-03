@@ -382,6 +382,34 @@ components:
               leftAt:
                 type: integer
                 description: the time the participant left
+    create-room-response:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the room
+          example: d32ae9e6-c459-4931-9898-e86e2f5e7e16
+    room-egress-payload:
+      type: object
+      required:
+      - streamId
+      additionalProperties: false
+      properties:
+        streamId:
+          type: string
+          description: The ID of the Livepeer Stream to stream to
+          example: aac12556-4d65-4d34-9fb6-d1f0985eb0a9
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
     get-room-user-response:
       type: object
       properties:
@@ -405,23 +433,6 @@ components:
         metadata:
           type: string
           description: User defined payload to store for the participant
-    room-egress-payload:
-      type: object
-      required:
-      - streamId
-      additionalProperties: false
-      properties:
-        streamId:
-          type: string
-          description: The ID of the Livepeer Stream to stream to
-          example: aac12556-4d65-4d34-9fb6-d1f0985eb0a9
-    create-room-response:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the room
-          example: d32ae9e6-c459-4931-9898-e86e2f5e7e16
     room-user-payload:
       type: object
       required:
@@ -443,17 +454,6 @@ components:
         metadata:
           type: string
           description: User defined payload to store for the participant
-    error:
-      type: object
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example:
-            - id not provided
-            - Account not found
     room-user-response:
       type: object
       properties:

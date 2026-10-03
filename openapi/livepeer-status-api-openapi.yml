@@ -75,20 +75,6 @@ paths:
                   $ref: '#/components/schemas/Orchestrator'
 components:
   schemas:
-    Orchestrator:
-      type: object
-      properties:
-        address:
-          type: string
-          example: 0x...
-        serviceURI:
-          type: string
-          example: https://orchestrator.example.com:8935
-        pricePerPixel:
-          type: string
-          example: '1000'
-        activationRound:
-          type: string
     NodeStatus:
       type: object
       properties:
@@ -113,6 +99,20 @@ components:
             lptBalance:
               type: string
               example: '1000000000000000000'
+    Orchestrator:
+      type: object
+      properties:
+        address:
+          type: string
+          example: 0x...
+        serviceURI:
+          type: string
+          example: https://orchestrator.example.com:8935
+        pricePerPixel:
+          type: string
+          example: '1000'
+        activationRound:
+          type: string
     ProtocolParameters:
       type: object
       properties:

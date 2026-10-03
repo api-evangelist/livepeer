@@ -437,6 +437,32 @@ paths:
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.metrics.get_usage(request={})\n\nif res.usage_metric is not None:\n    # handle response\n    pass"
 components:
   schemas:
+    usage-metric:
+      type: object
+      description: 'An individual metric about usage of a user.
+
+        '
+      properties:
+        UserID:
+          type: string
+          description: The user ID associated with the metric
+          example: 1bde4o2i6xycudoy
+        CreatorID:
+          type: string
+          description: The creator ID associated with the metric
+          example: john@doe.com
+        DeliveryUsageMins:
+          type: number
+          description: Total minutes of delivery usage.
+          example: 100
+        TotalUsageMins:
+          type: number
+          description: Total transcoded minutes.
+          example: 100
+        StorageUsageMins:
+          type: number
+          description: Total minutes of storage usage.
+          example: 100
     viewership-metric:
       type: object
       description: 'An individual metric about viewership of a stream/asset. Necessarily, at least
@@ -594,32 +620,6 @@ components:
             example:
             - id not provided
             - Account not found
-    usage-metric:
-      type: object
-      description: 'An individual metric about usage of a user.
-
-        '
-      properties:
-        UserID:
-          type: string
-          description: The user ID associated with the metric
-          example: 1bde4o2i6xycudoy
-        CreatorID:
-          type: string
-          description: The creator ID associated with the metric
-          example: john@doe.com
-        DeliveryUsageMins:
-          type: number
-          description: Total minutes of delivery usage.
-          example: 100
-        TotalUsageMins:
-          type: number
-          description: Total transcoded minutes.
-          example: 100
-        StorageUsageMins:
-          type: number
-          description: Total minutes of storage usage.
-          example: 100
   securitySchemes:
     apiKey:
       type: http
