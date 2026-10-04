@@ -44,6 +44,9 @@ accessModel:
   generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/livepeer.png
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
 tags:
 - Video
 - Streaming
@@ -499,6 +502,9 @@ apis:
   - type: OpenAPI
     url: openapi/livepeer-access-control-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/livepeer-capability-edges.yml
+  name: Livepeer Business Capability Map
 - type: IssueTracker
   url: https://github.com/livepeer/livepeer-js/issues
 - type: Releases
