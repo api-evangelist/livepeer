@@ -75,30 +75,6 @@ paths:
                   $ref: '#/components/schemas/Orchestrator'
 components:
   schemas:
-    NodeStatus:
-      type: object
-      properties:
-        node:
-          type: object
-          properties:
-            version:
-              type: string
-              example: 0.7.0
-            chainId:
-              type: integer
-              example: 42161
-        account:
-          type: object
-          properties:
-            address:
-              type: string
-              example: 0x...
-            ethBalance:
-              type: string
-              example: '1000000000000000000'
-            lptBalance:
-              type: string
-              example: '1000000000000000000'
     Orchestrator:
       type: object
       properties:
@@ -124,3 +100,27 @@ components:
           type: boolean
         currentRound:
           type: string
+    NodeStatus:
+      type: object
+      properties:
+        node:
+          type: object
+          properties:
+            version:
+              type: string
+              example: 0.7.0
+            chainId:
+              type: integer
+              example: 42161
+        account:
+          type: object
+          properties:
+            address:
+              type: string
+              example: 0x...
+            ethBalance:
+              type: string
+              example: '1000000000000000000'
+            lptBalance:
+              type: string
+              example: '1000000000000000000'

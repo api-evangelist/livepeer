@@ -340,6 +340,69 @@ paths:
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.room.delete_user(id=\"<id>\", user_id=\"<value>\")\n\nif res is not None:\n    # handle response\n    pass"
 components:
   schemas:
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
+    room-user-update-payload:
+      type: object
+      required:
+      - canPublish
+      additionalProperties: false
+      properties:
+        canPublish:
+          type: boolean
+          description: Whether a user is allowed to publish audio/video tracks (i.e. their microphone and webcam)
+          example: true
+          default: true
+        canPublishData:
+          type: boolean
+          description: Whether a user is allowed to publish data messages to the room
+          example: true
+          default: true
+        metadata:
+          type: string
+          description: User defined payload to store for the participant
+    get-room-user-response:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the user
+          example: d32ae9e6-c459-4931-9898-e86e2f5e7e16
+        joinedAt:
+          type: integer
+          description: Timestamp (in milliseconds) at which the user joined
+          example: 1687517025261
+        name:
+          type: string
+          description: The display name of the user
+          example: name
+        isPublisher:
+          type: boolean
+          description: Whether a user is allowed to publish audio/video tracks
+          example: true
+          default: true
+        metadata:
+          type: string
+          description: User defined payload to store for the participant
+    room-egress-payload:
+      type: object
+      required:
+      - streamId
+      additionalProperties: false
+      properties:
+        streamId:
+          type: string
+          description: The ID of the Livepeer Stream to stream to
+          example: aac12556-4d65-4d34-9fb6-d1f0985eb0a9
     room:
       type: object
       required:
@@ -389,50 +452,21 @@ components:
           type: string
           description: The ID of the room
           example: d32ae9e6-c459-4931-9898-e86e2f5e7e16
-    room-egress-payload:
-      type: object
-      required:
-      - streamId
-      additionalProperties: false
-      properties:
-        streamId:
-          type: string
-          description: The ID of the Livepeer Stream to stream to
-          example: aac12556-4d65-4d34-9fb6-d1f0985eb0a9
-    error:
-      type: object
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example:
-            - id not provided
-            - Account not found
-    get-room-user-response:
+    room-user-response:
       type: object
       properties:
         id:
           type: string
           description: The ID of the user
           example: d32ae9e6-c459-4931-9898-e86e2f5e7e16
-        joinedAt:
-          type: integer
-          description: Timestamp (in milliseconds) at which the user joined
-          example: 1687517025261
-        name:
+        joinUrl:
           type: string
-          description: The display name of the user
-          example: name
-        isPublisher:
-          type: boolean
-          description: Whether a user is allowed to publish audio/video tracks
-          example: true
-          default: true
-        metadata:
+          description: Joining URL - use this for Livepeer's default meeting app (see the multiparticipant streaming guide for more info).
+          example: https://meet.livepeer.chat
+        token:
           type: string
-          description: User defined payload to store for the participant
+          description: Joining JWT - this can be used if you have a custom meeting app (see the multiparticipant streaming guide for more info).
+          example: token
     room-user-payload:
       type: object
       required:
@@ -451,40 +485,6 @@ components:
           type: boolean
           description: Whether a user is allowed to publish data messages to the room
           example: true
-        metadata:
-          type: string
-          description: User defined payload to store for the participant
-    room-user-response:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the user
-          example: d32ae9e6-c459-4931-9898-e86e2f5e7e16
-        joinUrl:
-          type: string
-          description: Joining URL - use this for Livepeer's default meeting app (see the multiparticipant streaming guide for more info).
-          example: https://meet.livepeer.chat
-        token:
-          type: string
-          description: Joining JWT - this can be used if you have a custom meeting app (see the multiparticipant streaming guide for more info).
-          example: token
-    room-user-update-payload:
-      type: object
-      required:
-      - canPublish
-      additionalProperties: false
-      properties:
-        canPublish:
-          type: boolean
-          description: Whether a user is allowed to publish audio/video tracks (i.e. their microphone and webcam)
-          example: true
-          default: true
-        canPublishData:
-          type: boolean
-          description: Whether a user is allowed to publish data messages to the room
-          example: true
-          default: true
         metadata:
           type: string
           description: User defined payload to store for the participant

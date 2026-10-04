@@ -330,6 +330,17 @@ paths:
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.webhook.resend_log(id=\"<id>\", log_id=\"<value>\")\n\nif res.webhook_log is not None:\n    # handle response\n    pass"
 components:
   schemas:
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
     webhook:
       type: object
       required:
@@ -515,17 +526,6 @@ components:
             statusText:
               type: string
               description: response status text
-    error:
-      type: object
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example:
-            - id not provided
-            - Account not found
   securitySchemes:
     apiKey:
       type: http

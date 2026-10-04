@@ -197,6 +197,17 @@ paths:
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.access_control.update(key_id=\"<value>\", request_body={})\n\nif res is not None:\n    # handle response\n    pass"
 components:
   schemas:
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
     signing-key:
       type: object
       additionalProperties: false
@@ -236,17 +247,6 @@ components:
           type: string
           description: The ID of the project
           example: aac12556-4d65-4d34-9fb
-    error:
-      type: object
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example:
-            - id not provided
-            - Account not found
   securitySchemes:
     apiKey:
       type: http

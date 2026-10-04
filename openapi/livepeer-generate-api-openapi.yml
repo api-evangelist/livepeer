@@ -1066,97 +1066,6 @@ paths:
     - url: https://livepeer.studio/api
 components:
   schemas:
-    MasksResponse:
-      properties:
-        masks:
-          type: string
-          title: Masks
-          description: The generated masks.
-        scores:
-          type: string
-          title: Scores
-          description: The model's confidence scores for each generated mask.
-        logits:
-          type: string
-          title: Logits
-          description: The raw, unnormalized predictions (logits) for the masks.
-      type: object
-      required:
-      - masks
-      - scores
-      - logits
-      title: MasksResponse
-      description: Response model for object segmentation.
-    VideoResponse:
-      properties:
-        frames:
-          items:
-            items:
-              $ref: '#/components/schemas/Media'
-            type: array
-          type: array
-          title: Frames
-          description: The generated video frames.
-      type: object
-      required:
-      - frames
-      title: VideoResponse
-      description: Response model for video generation.
-    Body_genImageToVideo:
-      properties:
-        image:
-          type: string
-          format: binary
-          title: Image
-          description: Uploaded image to generate a video from.
-        model_id:
-          type: string
-          title: Model Id
-          description: Hugging Face model ID used for video generation.
-          default: ''
-        height:
-          type: integer
-          title: Height
-          description: The height in pixels of the generated video.
-          default: 576
-        width:
-          type: integer
-          title: Width
-          description: The width in pixels of the generated video.
-          default: 1024
-        fps:
-          type: integer
-          title: Fps
-          description: The frames per second of the generated video.
-          default: 6
-        motion_bucket_id:
-          type: integer
-          title: Motion Bucket Id
-          description: Used for conditioning the amount of motion for the generation. The higher the number the more motion will be in the video.
-          default: 127
-        noise_aug_strength:
-          type: number
-          title: Noise Aug Strength
-          description: Amount of noise added to the conditioning image. Higher values reduce resemblance to the conditioning image and increase motion.
-          default: 0.02
-        safety_check:
-          type: boolean
-          title: Safety Check
-          description: Perform a safety check to estimate if generated images could be offensive or harmful.
-          default: true
-        seed:
-          type: integer
-          title: Seed
-          description: Seed for random number generation.
-        num_inference_steps:
-          type: integer
-          title: Num Inference Steps
-          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
-          default: 25
-      type: object
-      required:
-      - image
-      title: Body_genImageToVideo
     LLMMessage:
       properties:
         role:
@@ -1170,225 +1079,6 @@ components:
       - role
       - content
       title: LLMMessage
-    ImageToTextResponse:
-      properties:
-        text:
-          type: string
-          title: Text
-          description: The generated text.
-      type: object
-      required:
-      - text
-      title: ImageToTextResponse
-      description: Response model for text generation.
-    Media:
-      properties:
-        url:
-          type: string
-          title: Url
-          description: The URL where the media can be accessed.
-        seed:
-          type: integer
-          title: Seed
-          description: The seed used to generate the media.
-        nsfw:
-          type: boolean
-          title: Nsfw
-          description: Whether the media was flagged as NSFW.
-      type: object
-      required:
-      - url
-      - seed
-      - nsfw
-      title: Media
-      description: A media object containing information about the generated media.
-    LLMRequest:
-      properties:
-        messages:
-          items:
-            $ref: '#/components/schemas/LLMMessage'
-          type: array
-          title: Messages
-        model:
-          type: string
-          title: Model
-          default: ''
-        temperature:
-          type: number
-          title: Temperature
-          default: 0.7
-        max_tokens:
-          type: integer
-          title: Max Tokens
-          default: 256
-        top_p:
-          type: number
-          title: Top P
-          default: 1.0
-        top_k:
-          type: integer
-          title: Top K
-          default: -1
-        stream:
-          type: boolean
-          title: Stream
-          default: false
-      type: object
-      required:
-      - messages
-      title: LLMRequest
-    TextToSpeechParams:
-      properties:
-        model_id:
-          type: string
-          title: Model Id
-          description: Hugging Face model ID used for text to speech generation.
-          default: ''
-        text:
-          type: string
-          title: Text
-          description: Text input for speech generation.
-          default: ''
-        description:
-          type: string
-          title: Description
-          description: Description of speaker to steer text to speech generation.
-          default: A male speaker delivers a slightly expressive and animated speech with a moderate speed and pitch.
-      type: object
-      title: TextToSpeechParams
-    Body_genImageToText:
-      properties:
-        image:
-          type: string
-          format: binary
-          title: Image
-          description: Uploaded image to transform with the pipeline.
-        prompt:
-          type: string
-          title: Prompt
-          description: Text prompt(s) to guide transformation.
-          default: ''
-        model_id:
-          type: string
-          title: Model Id
-          description: Hugging Face model ID used for transformation.
-          default: ''
-      type: object
-      required:
-      - image
-      title: Body_genImageToText
-    MediaURL:
-      properties:
-        url:
-          type: string
-          title: Url
-          description: The URL where the media can be accessed.
-      type: object
-      required:
-      - url
-      title: MediaURL
-      description: A URL from which media can be accessed.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    LiveVideoToVideoResponse:
-      properties:
-        subscribe_url:
-          type: string
-          title: Subscribe Url
-          description: Source URL of the incoming stream to subscribe to
-        publish_url:
-          type: string
-          title: Publish Url
-          description: Destination URL of the outgoing stream to publish to
-        control_url:
-          type: string
-          title: Control Url
-          description: URL for updating the live video-to-video generation
-          default: ''
-        events_url:
-          type: string
-          title: Events Url
-          description: URL for subscribing to events for pipeline status and logs
-          default: ''
-      type: object
-      required:
-      - subscribe_url
-      - publish_url
-      title: LiveVideoToVideoResponse
-      description: Response model for live video-to-video generation.
-    Body_genSegmentAnything2:
-      properties:
-        image:
-          type: string
-          format: binary
-          title: Image
-          description: Image to segment.
-        model_id:
-          type: string
-          title: Model Id
-          description: Hugging Face model ID used for image generation.
-          default: ''
-        point_coords:
-          type: string
-          title: Point Coords
-          description: Nx2 array of point prompts to the model, where each point is in (X,Y) in pixels.
-        point_labels:
-          type: string
-          title: Point Labels
-          description: Labels for the point prompts, where 1 indicates a foreground point and 0 indicates a background point.
-        box:
-          type: string
-          title: Box
-          description: A length 4 array given as a box prompt to the model, in XYXY format.
-        mask_input:
-          type: string
-          title: Mask Input
-          description: A low-resolution mask input to the model, typically from a previous prediction iteration, with the form 1xHxW (H=W=256 for SAM).
-        multimask_output:
-          type: boolean
-          title: Multimask Output
-          description: If true, the model will return three masks for ambiguous input prompts, often producing better masks than a single prediction.
-          default: true
-        return_logits:
-          type: boolean
-          title: Return Logits
-          description: If true, returns un-thresholded mask logits instead of a binary mask.
-          default: true
-        normalize_coords:
-          type: boolean
-          title: Normalize Coords
-          description: If true, the point coordinates will be normalized to the range [0,1], with point_coords expected to be with respect to image dimensions.
-          default: true
-      type: object
-      required:
-      - image
-      title: Body_genSegmentAnything2
-    LLMChoice:
-      properties:
-        index:
-          type: integer
-          title: Index
-        finish_reason:
-          type: string
-          title: Finish Reason
-          default: ''
-        delta:
-          allOf:
-          - $ref: '#/components/schemas/LLMMessage'
-        message:
-          allOf:
-          - $ref: '#/components/schemas/LLMMessage'
-      type: object
-      required:
-      - index
-      title: LLMChoice
     Body_genImageToImage:
       properties:
         prompt:
@@ -1454,27 +1144,440 @@ components:
       - prompt
       - image
       title: Body_genImageToImage
-    ValidationError:
+    AudioResponse:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+        audio:
+          allOf:
+          - $ref: '#/components/schemas/MediaURL'
+          description: The generated audio.
       type: object
       required:
-      - loc
+      - audio
+      title: AudioResponse
+      description: Response model for audio generation.
+    VideoResponse:
+      properties:
+        frames:
+          items:
+            items:
+              $ref: '#/components/schemas/Media'
+            type: array
+          type: array
+          title: Frames
+          description: The generated video frames.
+      type: object
+      required:
+      - frames
+      title: VideoResponse
+      description: Response model for video generation.
+    Chunk:
+      properties:
+        timestamp:
+          items: {}
+          type: array
+          title: Timestamp
+          description: The timestamp of the chunk.
+        text:
+          type: string
+          title: Text
+          description: The text of the chunk.
+      type: object
+      required:
+      - timestamp
+      - text
+      title: Chunk
+      description: A chunk of text with a timestamp.
+    ImageToTextResponse:
+      properties:
+        text:
+          type: string
+          title: Text
+          description: The generated text.
+      type: object
+      required:
+      - text
+      title: ImageToTextResponse
+      description: Response model for text generation.
+    ImageResponse:
+      properties:
+        images:
+          items:
+            $ref: '#/components/schemas/Media'
+          type: array
+          title: Images
+          description: The generated images.
+      type: object
+      required:
+      - images
+      title: ImageResponse
+      description: Response model for image generation.
+    LLMResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        model:
+          type: string
+          title: Model
+        created:
+          type: integer
+          title: Created
+        usage:
+          $ref: '#/components/schemas/LLMTokenUsage'
+        choices:
+          items:
+            $ref: '#/components/schemas/LLMChoice'
+          type: array
+          title: Choices
+      type: object
+      required:
+      - id
+      - model
+      - created
+      - usage
+      - choices
+      title: LLMResponse
+    MediaURL:
+      properties:
+        url:
+          type: string
+          title: Url
+          description: The URL where the media can be accessed.
+      type: object
+      required:
+      - url
+      title: MediaURL
+      description: A URL from which media can be accessed.
+    Body_genImageToText:
+      properties:
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Uploaded image to transform with the pipeline.
+        prompt:
+          type: string
+          title: Prompt
+          description: Text prompt(s) to guide transformation.
+          default: ''
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for transformation.
+          default: ''
+      type: object
+      required:
+      - image
+      title: Body_genImageToText
+    LLMTokenUsage:
+      properties:
+        prompt_tokens:
+          type: integer
+          title: Prompt Tokens
+        completion_tokens:
+          type: integer
+          title: Completion Tokens
+        total_tokens:
+          type: integer
+          title: Total Tokens
+      type: object
+      required:
+      - prompt_tokens
+      - completion_tokens
+      - total_tokens
+      title: LLMTokenUsage
+    LiveVideoToVideoResponse:
+      properties:
+        subscribe_url:
+          type: string
+          title: Subscribe Url
+          description: Source URL of the incoming stream to subscribe to
+        publish_url:
+          type: string
+          title: Publish Url
+          description: Destination URL of the outgoing stream to publish to
+        control_url:
+          type: string
+          title: Control Url
+          description: URL for updating the live video-to-video generation
+          default: ''
+        events_url:
+          type: string
+          title: Events Url
+          description: URL for subscribing to events for pipeline status and logs
+          default: ''
+      type: object
+      required:
+      - subscribe_url
+      - publish_url
+      title: LiveVideoToVideoResponse
+      description: Response model for live video-to-video generation.
+    MasksResponse:
+      properties:
+        masks:
+          type: string
+          title: Masks
+          description: The generated masks.
+        scores:
+          type: string
+          title: Scores
+          description: The model's confidence scores for each generated mask.
+        logits:
+          type: string
+          title: Logits
+          description: The raw, unnormalized predictions (logits) for the masks.
+      type: object
+      required:
+      - masks
+      - scores
+      - logits
+      title: MasksResponse
+      description: Response model for object segmentation.
+    Body_genSegmentAnything2:
+      properties:
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Image to segment.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for image generation.
+          default: ''
+        point_coords:
+          type: string
+          title: Point Coords
+          description: Nx2 array of point prompts to the model, where each point is in (X,Y) in pixels.
+        point_labels:
+          type: string
+          title: Point Labels
+          description: Labels for the point prompts, where 1 indicates a foreground point and 0 indicates a background point.
+        box:
+          type: string
+          title: Box
+          description: A length 4 array given as a box prompt to the model, in XYXY format.
+        mask_input:
+          type: string
+          title: Mask Input
+          description: A low-resolution mask input to the model, typically from a previous prediction iteration, with the form 1xHxW (H=W=256 for SAM).
+        multimask_output:
+          type: boolean
+          title: Multimask Output
+          description: If true, the model will return three masks for ambiguous input prompts, often producing better masks than a single prediction.
+          default: true
+        return_logits:
+          type: boolean
+          title: Return Logits
+          description: If true, returns un-thresholded mask logits instead of a binary mask.
+          default: true
+        normalize_coords:
+          type: boolean
+          title: Normalize Coords
+          description: If true, the point coordinates will be normalized to the range [0,1], with point_coords expected to be with respect to image dimensions.
+          default: true
+      type: object
+      required:
+      - image
+      title: Body_genSegmentAnything2
+    LLMRequest:
+      properties:
+        messages:
+          items:
+            $ref: '#/components/schemas/LLMMessage'
+          type: array
+          title: Messages
+        model:
+          type: string
+          title: Model
+          default: ''
+        temperature:
+          type: number
+          title: Temperature
+          default: 0.7
+        max_tokens:
+          type: integer
+          title: Max Tokens
+          default: 256
+        top_p:
+          type: number
+          title: Top P
+          default: 1.0
+        top_k:
+          type: integer
+          title: Top K
+          default: -1
+        stream:
+          type: boolean
+          title: Stream
+          default: false
+      type: object
+      required:
+      - messages
+      title: LLMRequest
+    TextResponse:
+      properties:
+        text:
+          type: string
+          title: Text
+          description: The generated text.
+        chunks:
+          items:
+            $ref: '#/components/schemas/Chunk'
+          type: array
+          title: Chunks
+          description: The generated text chunks.
+      type: object
+      required:
+      - text
+      - chunks
+      title: TextResponse
+      description: Response model for text generation.
+    HTTPError:
+      properties:
+        detail:
+          allOf:
+          - $ref: '#/components/schemas/APIError'
+          description: Detailed error information.
+      type: object
+      required:
+      - detail
+      title: HTTPError
+      description: HTTP error response model.
+    Body_genImageToVideo:
+      properties:
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Uploaded image to generate a video from.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for video generation.
+          default: ''
+        height:
+          type: integer
+          title: Height
+          description: The height in pixels of the generated video.
+          default: 576
+        width:
+          type: integer
+          title: Width
+          description: The width in pixels of the generated video.
+          default: 1024
+        fps:
+          type: integer
+          title: Fps
+          description: The frames per second of the generated video.
+          default: 6
+        motion_bucket_id:
+          type: integer
+          title: Motion Bucket Id
+          description: Used for conditioning the amount of motion for the generation. The higher the number the more motion will be in the video.
+          default: 127
+        noise_aug_strength:
+          type: number
+          title: Noise Aug Strength
+          description: Amount of noise added to the conditioning image. Higher values reduce resemblance to the conditioning image and increase motion.
+          default: 0.02
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 25
+      type: object
+      required:
+      - image
+      title: Body_genImageToVideo
+    Media:
+      properties:
+        url:
+          type: string
+          title: Url
+          description: The URL where the media can be accessed.
+        seed:
+          type: integer
+          title: Seed
+          description: The seed used to generate the media.
+        nsfw:
+          type: boolean
+          title: Nsfw
+          description: Whether the media was flagged as NSFW.
+      type: object
+      required:
+      - url
+      - seed
+      - nsfw
+      title: Media
+      description: A media object containing information about the generated media.
+    TextToSpeechParams:
+      properties:
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for text to speech generation.
+          default: ''
+        text:
+          type: string
+          title: Text
+          description: Text input for speech generation.
+          default: ''
+        description:
+          type: string
+          title: Description
+          description: Description of speaker to steer text to speech generation.
+          default: A male speaker delivers a slightly expressive and animated speech with a moderate speed and pitch.
+      type: object
+      title: TextToSpeechParams
+    APIError:
+      properties:
+        msg:
+          type: string
+          title: Msg
+          description: The error message.
+      type: object
+      required:
       - msg
-      - type
-      title: ValidationError
+      title: APIError
+      description: API error response model.
+    LLMChoice:
+      properties:
+        index:
+          type: integer
+          title: Index
+        finish_reason:
+          type: string
+          title: Finish Reason
+          default: ''
+        delta:
+          allOf:
+          - $ref: '#/components/schemas/LLMMessage'
+        message:
+          allOf:
+          - $ref: '#/components/schemas/LLMMessage'
+      type: object
+      required:
+      - index
+      title: LLMChoice
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     Body_genUpscale:
       properties:
         prompt:
@@ -1510,23 +1613,53 @@ components:
       - prompt
       - image
       title: Body_genUpscale
-    LLMTokenUsage:
+    ValidationError:
       properties:
-        prompt_tokens:
-          type: integer
-          title: Prompt Tokens
-        completion_tokens:
-          type: integer
-          title: Completion Tokens
-        total_tokens:
-          type: integer
-          title: Total Tokens
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
       required:
-      - prompt_tokens
-      - completion_tokens
-      - total_tokens
-      title: LLMTokenUsage
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    Body_genAudioToText:
+      properties:
+        audio:
+          type: string
+          format: binary
+          title: Audio
+          description: Uploaded audio file to be transcribed.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for transcription.
+          default: ''
+        return_timestamps:
+          type: string
+          title: Return Timestamps
+          description: 'Return timestamps for the transcribed text. Supported values: ''sentence'', ''word'', or a string boolean (''true'' or ''false''). Default is ''true'' (''sentence''). ''false'' means no timestamps. ''word'' means word-based timestamps.'
+          default: 'true'
+        metadata:
+          type: string
+          title: Metadata
+          description: Additional job information to be passed to the pipeline.
+          default: '{}'
+      type: object
+      required:
+      - audio
+      title: Body_genAudioToText
     TextToImageParams:
       properties:
         model_id:
@@ -1586,139 +1719,6 @@ components:
       required:
       - prompt
       title: TextToImageParams
-    TextResponse:
-      properties:
-        text:
-          type: string
-          title: Text
-          description: The generated text.
-        chunks:
-          items:
-            $ref: '#/components/schemas/Chunk'
-          type: array
-          title: Chunks
-          description: The generated text chunks.
-      type: object
-      required:
-      - text
-      - chunks
-      title: TextResponse
-      description: Response model for text generation.
-    AudioResponse:
-      properties:
-        audio:
-          allOf:
-          - $ref: '#/components/schemas/MediaURL'
-          description: The generated audio.
-      type: object
-      required:
-      - audio
-      title: AudioResponse
-      description: Response model for audio generation.
-    LLMResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-        model:
-          type: string
-          title: Model
-        created:
-          type: integer
-          title: Created
-        usage:
-          $ref: '#/components/schemas/LLMTokenUsage'
-        choices:
-          items:
-            $ref: '#/components/schemas/LLMChoice'
-          type: array
-          title: Choices
-      type: object
-      required:
-      - id
-      - model
-      - created
-      - usage
-      - choices
-      title: LLMResponse
-    Body_genAudioToText:
-      properties:
-        audio:
-          type: string
-          format: binary
-          title: Audio
-          description: Uploaded audio file to be transcribed.
-        model_id:
-          type: string
-          title: Model Id
-          description: Hugging Face model ID used for transcription.
-          default: ''
-        return_timestamps:
-          type: string
-          title: Return Timestamps
-          description: 'Return timestamps for the transcribed text. Supported values: ''sentence'', ''word'', or a string boolean (''true'' or ''false''). Default is ''true'' (''sentence''). ''false'' means no timestamps. ''word'' means word-based timestamps.'
-          default: 'true'
-        metadata:
-          type: string
-          title: Metadata
-          description: Additional job information to be passed to the pipeline.
-          default: '{}'
-      type: object
-      required:
-      - audio
-      title: Body_genAudioToText
-    APIError:
-      properties:
-        msg:
-          type: string
-          title: Msg
-          description: The error message.
-      type: object
-      required:
-      - msg
-      title: APIError
-      description: API error response model.
-    Chunk:
-      properties:
-        timestamp:
-          items: {}
-          type: array
-          title: Timestamp
-          description: The timestamp of the chunk.
-        text:
-          type: string
-          title: Text
-          description: The text of the chunk.
-      type: object
-      required:
-      - timestamp
-      - text
-      title: Chunk
-      description: A chunk of text with a timestamp.
-    ImageResponse:
-      properties:
-        images:
-          items:
-            $ref: '#/components/schemas/Media'
-          type: array
-          title: Images
-          description: The generated images.
-      type: object
-      required:
-      - images
-      title: ImageResponse
-      description: Response model for image generation.
-    HTTPError:
-      properties:
-        detail:
-          allOf:
-          - $ref: '#/components/schemas/APIError'
-          description: Detailed error information.
-      type: object
-      required:
-      - detail
-      title: HTTPError
-      description: HTTP error response model.
     LiveVideoToVideoParams:
       properties:
         subscribe_url:
@@ -1754,157 +1754,6 @@ components:
       - subscribe_url
       - publish_url
       title: LiveVideoToVideoParams
-    VideoResponse_2:
-      properties:
-        images:
-          items:
-            $ref: '#/components/schemas/Media'
-          type: array
-          title: Images
-          description: The generated images.
-      type: object
-      required:
-      - images
-      title: VideoResponse
-      description: Response model for image generation.
-    Body_genImageToVideo_2:
-      properties:
-        image:
-          type: string
-          format: binary
-          title: Image
-          description: Uploaded image to generate a video from.
-        model_id:
-          type: string
-          title: Model Id
-          description: Hugging Face model ID used for video generation.
-          default: stabilityai/stable-video-diffusion-img2vid-xt-1-1
-        height:
-          type: integer
-          title: Height
-          description: The height in pixels of the generated video.
-          default: 576
-        width:
-          type: integer
-          title: Width
-          description: The width in pixels of the generated video.
-          default: 1024
-        fps:
-          type: integer
-          title: Fps
-          description: The frames per second of the generated video.
-          default: 6
-        motion_bucket_id:
-          type: integer
-          title: Motion Bucket Id
-          description: Used for conditioning the amount of motion for the generation. The higher the number the more motion will be in the video.
-          default: 127
-        noise_aug_strength:
-          type: number
-          title: Noise Aug Strength
-          description: Amount of noise added to the conditioning image. Higher values reduce resemblance to the conditioning image and increase motion.
-          default: 0.02
-        safety_check:
-          type: boolean
-          title: Safety Check
-          description: Perform a safety check to estimate if generated images could be offensive or harmful.
-          default: true
-        seed:
-          type: integer
-          title: Seed
-          description: Seed for random number generation.
-        num_inference_steps:
-          type: integer
-          title: Num Inference Steps
-          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
-          default: 25
-      type: object
-      required:
-      - image
-      title: Body_genImageToVideo
-      additionalProperties: false
-    Body_genLLM:
-      properties:
-        prompt:
-          type: string
-          title: Prompt
-        model_id:
-          type: string
-          title: Model Id
-          default: meta-llama/Meta-Llama-3.1-8B-Instruct
-        system_msg:
-          type: string
-          title: System Msg
-          default: ''
-        temperature:
-          type: number
-          title: Temperature
-          default: 0.7
-        max_tokens:
-          type: integer
-          title: Max Tokens
-          default: 256
-        history:
-          type: string
-          title: History
-          default: '[]'
-        stream:
-          type: boolean
-          title: Stream
-          default: false
-      type: object
-      required:
-      - prompt
-      title: Body_genLLM
-      additionalProperties: false
-    Body_genSegmentAnything2_2:
-      properties:
-        image:
-          type: string
-          format: binary
-          title: Image
-          description: Image to segment.
-        model_id:
-          type: string
-          title: Model Id
-          description: Hugging Face model ID used for image generation.
-          default: facebook/sam2-hiera-large
-        point_coords:
-          type: string
-          title: Point Coords
-          description: Nx2 array of point prompts to the model, where each point is in (X,Y) in pixels.
-        point_labels:
-          type: string
-          title: Point Labels
-          description: Labels for the point prompts, where 1 indicates a foreground point and 0 indicates a background point.
-        box:
-          type: string
-          title: Box
-          description: A length 4 array given as a box prompt to the model, in XYXY format.
-        mask_input:
-          type: string
-          title: Mask Input
-          description: A low-resolution mask input to the model, typically from a previous prediction iteration, with the form 1xHxW (H=W=256 for SAM).
-        multimask_output:
-          type: boolean
-          title: Multimask Output
-          description: If true, the model will return three masks for ambiguous input prompts, often producing better masks than a single prediction.
-          default: true
-        return_logits:
-          type: boolean
-          title: Return Logits
-          description: If true, returns un-thresholded mask logits instead of a binary mask.
-          default: true
-        normalize_coords:
-          type: boolean
-          title: Normalize Coords
-          description: If true, the point coordinates will be normalized to the range [0,1], with point_coords expected to be with respect to image dimensions.
-          default: true
-      type: object
-      required:
-      - image
-      title: Body_genSegmentAnything2
-      additionalProperties: false
     Body_genImageToImage_2:
       properties:
         prompt:
@@ -1971,6 +1820,136 @@ components:
       - image
       title: Body_genImageToImage
       additionalProperties: false
+    VideoResponse_2:
+      properties:
+        images:
+          items:
+            $ref: '#/components/schemas/Media'
+          type: array
+          title: Images
+          description: The generated images.
+      type: object
+      required:
+      - images
+      title: VideoResponse
+      description: Response model for image generation.
+    LLMResponse_2:
+      properties:
+        response:
+          type: string
+          title: Response
+        tokens_used:
+          type: integer
+          title: Tokens Used
+      type: object
+      required:
+      - response
+      - tokens_used
+      title: LLMResponse
+    Body_genSegmentAnything2_2:
+      properties:
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Image to segment.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for image generation.
+          default: facebook/sam2-hiera-large
+        point_coords:
+          type: string
+          title: Point Coords
+          description: Nx2 array of point prompts to the model, where each point is in (X,Y) in pixels.
+        point_labels:
+          type: string
+          title: Point Labels
+          description: Labels for the point prompts, where 1 indicates a foreground point and 0 indicates a background point.
+        box:
+          type: string
+          title: Box
+          description: A length 4 array given as a box prompt to the model, in XYXY format.
+        mask_input:
+          type: string
+          title: Mask Input
+          description: A low-resolution mask input to the model, typically from a previous prediction iteration, with the form 1xHxW (H=W=256 for SAM).
+        multimask_output:
+          type: boolean
+          title: Multimask Output
+          description: If true, the model will return three masks for ambiguous input prompts, often producing better masks than a single prediction.
+          default: true
+        return_logits:
+          type: boolean
+          title: Return Logits
+          description: If true, returns un-thresholded mask logits instead of a binary mask.
+          default: true
+        normalize_coords:
+          type: boolean
+          title: Normalize Coords
+          description: If true, the point coordinates will be normalized to the range [0,1], with point_coords expected to be with respect to image dimensions.
+          default: true
+      type: object
+      required:
+      - image
+      title: Body_genSegmentAnything2
+      additionalProperties: false
+    Body_genImageToVideo_2:
+      properties:
+        image:
+          type: string
+          format: binary
+          title: Image
+          description: Uploaded image to generate a video from.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for video generation.
+          default: stabilityai/stable-video-diffusion-img2vid-xt-1-1
+        height:
+          type: integer
+          title: Height
+          description: The height in pixels of the generated video.
+          default: 576
+        width:
+          type: integer
+          title: Width
+          description: The width in pixels of the generated video.
+          default: 1024
+        fps:
+          type: integer
+          title: Fps
+          description: The frames per second of the generated video.
+          default: 6
+        motion_bucket_id:
+          type: integer
+          title: Motion Bucket Id
+          description: Used for conditioning the amount of motion for the generation. The higher the number the more motion will be in the video.
+          default: 127
+        noise_aug_strength:
+          type: number
+          title: Noise Aug Strength
+          description: Amount of noise added to the conditioning image. Higher values reduce resemblance to the conditioning image and increase motion.
+          default: 0.02
+        safety_check:
+          type: boolean
+          title: Safety Check
+          description: Perform a safety check to estimate if generated images could be offensive or harmful.
+          default: true
+        seed:
+          type: integer
+          title: Seed
+          description: Seed for random number generation.
+        num_inference_steps:
+          type: integer
+          title: Num Inference Steps
+          description: Number of denoising steps. More steps usually lead to higher quality images but slower inference. Modulated by strength.
+          default: 25
+      type: object
+      required:
+      - image
+      title: Body_genImageToVideo
+      additionalProperties: false
     Body_genUpscale_2:
       properties:
         prompt:
@@ -2006,6 +1985,62 @@ components:
       - prompt
       - image
       title: Body_genUpscale
+      additionalProperties: false
+    Body_genLLM:
+      properties:
+        prompt:
+          type: string
+          title: Prompt
+        model_id:
+          type: string
+          title: Model Id
+          default: meta-llama/Meta-Llama-3.1-8B-Instruct
+        system_msg:
+          type: string
+          title: System Msg
+          default: ''
+        temperature:
+          type: number
+          title: Temperature
+          default: 0.7
+        max_tokens:
+          type: integer
+          title: Max Tokens
+          default: 256
+        history:
+          type: string
+          title: History
+          default: '[]'
+        stream:
+          type: boolean
+          title: Stream
+          default: false
+      type: object
+      required:
+      - prompt
+      title: Body_genLLM
+      additionalProperties: false
+    Body_genAudioToText_2:
+      properties:
+        audio:
+          type: string
+          format: binary
+          title: Audio
+          description: Uploaded audio file to be transcribed.
+        model_id:
+          type: string
+          title: Model Id
+          description: Hugging Face model ID used for transcription.
+          default: openai/whisper-large-v3
+        return_timestamps:
+          type: string
+          title: Return Timestamps
+          description: 'Return timestamps for the transcribed text. Supported values: ''sentence'', ''word'', or a string boolean (''true'' or ''false''). Default is ''true'' (''sentence''). ''false'' means no timestamps. ''word'' means word-based timestamps.'
+          default: 'true'
+      type: object
+      required:
+      - audio
+      title: Body_genAudioToText
       additionalProperties: false
     TextToImageParams_2:
       properties:
@@ -2066,41 +2101,6 @@ components:
       required:
       - prompt
       title: TextToImageParams
-      additionalProperties: false
-    LLMResponse_2:
-      properties:
-        response:
-          type: string
-          title: Response
-        tokens_used:
-          type: integer
-          title: Tokens Used
-      type: object
-      required:
-      - response
-      - tokens_used
-      title: LLMResponse
-    Body_genAudioToText_2:
-      properties:
-        audio:
-          type: string
-          format: binary
-          title: Audio
-          description: Uploaded audio file to be transcribed.
-        model_id:
-          type: string
-          title: Model Id
-          description: Hugging Face model ID used for transcription.
-          default: openai/whisper-large-v3
-        return_timestamps:
-          type: string
-          title: Return Timestamps
-          description: 'Return timestamps for the transcribed text. Supported values: ''sentence'', ''word'', or a string boolean (''true'' or ''false''). Default is ''true'' (''sentence''). ''false'' means no timestamps. ''word'' means word-based timestamps.'
-          default: 'true'
-      type: object
-      required:
-      - audio
-      title: Body_genAudioToText
       additionalProperties: false
     studio-api-error:
       type: object

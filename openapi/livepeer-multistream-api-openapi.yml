@@ -183,9 +183,17 @@ paths:
         source: "from livepeer import Livepeer\n\ns = Livepeer(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n)\n\nres = s.multistream.delete(id=\"<id>\")\n\nif res is not None:\n    # handle response\n    pass"
 components:
   schemas:
-    multistream-target-patch-payload:
-      $ref: '#/components/schemas/multistream-target'
-      required: []
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example:
+            - id not provided
+            - Account not found
     multistream-target:
       type: object
       required:
@@ -226,17 +234,9 @@ components:
 
             '
           example: 1587667174725
-    error:
-      type: object
-      properties:
-        errors:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example:
-            - id not provided
-            - Account not found
+    multistream-target-patch-payload:
+      $ref: '#/components/schemas/multistream-target'
+      required: []
   securitySchemes:
     apiKey:
       type: http
