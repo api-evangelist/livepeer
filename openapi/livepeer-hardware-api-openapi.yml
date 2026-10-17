@@ -39,6 +39,26 @@ paths:
       - Hardware
 components:
   schemas:
+    HardwareStats:
+      properties:
+        pipeline:
+          type: string
+          title: Pipeline
+        model_id:
+          type: string
+          title: Model Id
+        gpu_stats:
+          additionalProperties:
+            $ref: '#/components/schemas/GPUUtilizationInfo'
+          type: object
+          title: Gpu Stats
+      type: object
+      required:
+      - pipeline
+      - model_id
+      - gpu_stats
+      title: HardwareStats
+      description: Response model for real-time GPU statistics.
     GPUComputeInfo:
       properties:
         id:
@@ -69,7 +89,7 @@ components:
       - minor
       title: GPUComputeInfo
       description: Model for detailed GPU compute information.
-    HardwareStats:
+    HardwareInformation:
       properties:
         pipeline:
           type: string
@@ -77,18 +97,18 @@ components:
         model_id:
           type: string
           title: Model Id
-        gpu_stats:
+        gpu_info:
           additionalProperties:
-            $ref: '#/components/schemas/GPUUtilizationInfo'
+            $ref: '#/components/schemas/GPUComputeInfo'
           type: object
-          title: Gpu Stats
+          title: Gpu Info
       type: object
       required:
       - pipeline
       - model_id
-      - gpu_stats
-      title: HardwareStats
-      description: Response model for real-time GPU statistics.
+      - gpu_info
+      title: HardwareInformation
+      description: Response model for GPU information.
     GPUUtilizationInfo:
       properties:
         id:
@@ -119,26 +139,6 @@ components:
       - utilization_memory
       title: GPUUtilizationInfo
       description: Model for GPU utilization statistics.
-    HardwareInformation:
-      properties:
-        pipeline:
-          type: string
-          title: Pipeline
-        model_id:
-          type: string
-          title: Model Id
-        gpu_info:
-          additionalProperties:
-            $ref: '#/components/schemas/GPUComputeInfo'
-          type: object
-          title: Gpu Info
-      type: object
-      required:
-      - pipeline
-      - model_id
-      - gpu_info
-      title: HardwareInformation
-      description: Response model for GPU information.
   securitySchemes:
     HTTPBearer:
       type: http
