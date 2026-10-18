@@ -53,6 +53,14 @@ tags:
 - Transcoding
 - Decentralized
 - Web3
+- Live Streaming
+- AI Video
+tags_raw:
+- Video
+- Streaming
+- Transcoding
+- Decentralized
+- Web3
 - Live Video
 - AI Video
 created: '2026-05-23'
@@ -203,7 +211,7 @@ apis:
   tags:
   - Artificial Intelligence
   - Generation
-  - Text-to-Image
+  - Image Generation
   - Image-to-Video
   tags_raw:
   - AI
